@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Montserrat;
+    scroll-behavior: smooth;
+}
+
+.new-section {
+    padding: 60px 0px;
+}
+
+
+.header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/home.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+    width: auto;
+    color: #fff;
+}
+
+
+.main-text h1 {
+    color: white;
+    font-size: 72px;
+}
+
+.main-text p {
+    font-size: 25px;
+}
+
+.main-text a {
+    color: #fff;
+}
+
+.model {
+    width: 800px;
+}
+
+.content {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn-home {
+    color: white;
+    background-color: #ff214f;
+    padding: 8px 30px;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 30px;
+}
+
+.btn-home:hover {
+    color: white;
+    background-color: #ff214f;
+}
+
+.btn-second {
+    margin-left: 5px;
+    border-bottom: solid 2px white;
+}
+
+.youtube-btn {
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    bottom: 15%;
+    transform: translate(-50%, -5%);
+    animation: ripple 1.4s alternate infinite;
+
+}
+
+
+@keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 .1rem rgba(197, 197, 197, 0.185),
+            0 0 0 0.3rem rgba(173, 173, 173, 0.171),
+            0 0 0 1rem rgba(158, 158, 158, 0.205);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0.1rem rgba(121, 121, 121, 0.137),
+            0 0 0 1rem rgba(163, 163, 163, 0.11),
+            0 0 0 3rem rgba(190, 190, 190, 0.062);
+    }
+}
+
+
+.down-arrow {
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    transform: translate(-50%, -50%);
+}
+
+.heading {
+    padding-bottom: 60px;
+}
+
+.roles-red {
+    color: #ff214f;
+    font-size: 17px;
+    margin-bottom: 0px;
+}
+
+.rolls-icon {
+    border-right: 1px solid #ff214f;
+    height: 22px;
+}
+
+.rolls-content p {
+    color: #767676;
+    font-size: 17px;
+}
+
+#about {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/carousel_2.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 70vh;
+    width: auto;
+    color: #fff;
+}
+
+.about-content {
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.about-content h4 {
+    font-size: 50px;
+}
+
+.about-content p {
+    color: #d6d5d5;
+    font-size: 22px;
+}
