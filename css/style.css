@@ -269,7 +269,25 @@ p {
     color: #ff0035;
 }
 
+.social-team a {
+    padding: 8px;
+}
 
+.fab-facebook {
+    color: #2867ee;
+}
+
+.fab-instagram {
+    color: #8a3ab9;
+}
+
+.fab-linkedin {
+    color: #0e76a8;
+}
+
+.fab-envelope {
+    color: #6c6c6c;
+}
 
 /* media query */
 
