@@ -142,7 +142,7 @@ p {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    height: 70vh;
+    height: 90vh;
     width: auto;
     color: #fff;
 }
@@ -156,12 +156,12 @@ p {
 }
 
 .about-content h4 {
-    font-size: 42px;
+    font-size: 46px;
 }
 
 .about-content p {
     color: #d6d5d5;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 /* testimonials */
@@ -214,24 +214,6 @@ p {
     background-color: #ffffdc;
 } */
 
-.owl-carousel .owl-item img {
-    display: block;
-    width: 100%;
-}
-
-.owl-theme .owl-controls .owl-page {
-    display: inline-block;
-}
-
-.owl-theme .owl-controls .owl-page span {
-    background: none repeat scroll 0 0 #869791;
-    border-radius: 20px;
-    display: block;
-    height: 12px;
-    margin: 5px 7px;
-    opacity: 0.5;
-    width: 12px;
-}
 
 .overlay {
     position: absolute;
@@ -249,7 +231,7 @@ p {
     height: 100%;
 }
 
-.text {
+.text p {
     color: white;
     font-size: 20px;
     position: absolute;
@@ -259,6 +241,10 @@ p {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
+}
+
+.team-name {
+    text-transform: uppercase;
 }
 
 .team-member {
@@ -287,6 +273,22 @@ p {
 
 .fab-envelope {
     color: #6c6c6c;
+}
+
+
+.team-translate {
+    margin-top: 30px;
+}
+
+.team-translate .social-team {
+    transform: translateY(-170px);
+    opacity: 0;
+    transition: transform ease-in-out 500ms;
+}
+
+.team-translate:hover .social-team {
+    transform: translateY(0px);
+    opacity: 1;
 }
 
 /* media query */
