@@ -7,6 +7,7 @@
 body {
     font-family: Montserrat;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 .new-section {
@@ -142,7 +143,8 @@ p {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    height: 90vh;
+
+    height: 70vh;
     width: auto;
     color: #fff;
 }
@@ -153,6 +155,7 @@ p {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+
 }
 
 .about-content h4 {
@@ -316,12 +319,14 @@ p {
         height: 50px;
     }
 
+    #about {
+        height: 100vh;
+    }
+
     .about-content {
         align-items: center;
-        position: absolute;
-        left: 0%;
-        top: 0%;
-        transform: translate(0px, 0px);
+
+
     }
 
     .about-content h4 {

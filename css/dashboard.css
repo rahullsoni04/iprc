@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #27435a;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar a {
+    display: block;
+    color: rgb(255, 255, 255);
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    background-color: #000000b3;
+    color: white;
+}
+
+.sidebar a:hover:not(.active) {
+    background-color: #567d9c;
+    border-right-style: inset;
+    border-right: 4px solid #ff214f;
+    color: white;
+}
+
+div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+}
+
+.content h2 {
+    margin-top: 60px;
+}
+
+.content p {
+    margin: 20px;
+}
+
+.main-buttons {
+    margin: 20px;
+}
+
+.table>thead {
+    vertical-align: bottom;
+    background: #27435a;
+    color: white;
+}
+
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar a {
+        float: left;
+    }
+
+    div.content {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+}

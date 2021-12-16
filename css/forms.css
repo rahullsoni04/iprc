@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Montserrat;
+    scroll-behavior: smooth;
+    height: 100vh;
+    background-color: #f5fbff;
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+.login {
+    background: #fff;
+    color: rgb(0, 0, 0);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0px 8px 20px -20px rgb(0 0 0 / 84%);
+
+}
+
+
+
+.login h1 {
+    font-size: 36px;
+
+    color: #000000;
+    margin-bottom: 40px;
+}
+
+.login p {
+    font-size: 17px;
+    letter-spacing: 1px;
+
+}
+
+
+
+.login button {
+
+    color: white;
+    padding: 11px 32px;
+    margin-top: 40px;
+    border-radius: 22px;
+    text-align: center;
+
+}
+
+.form__group input {
+    background: #fbfbfb;
+    outline: none;
+    color: #444444;
+    padding: 12px;
+    margin: 10px;
+    width: 100%;
+    text-align: initial;
+    border: 1px solid #ebebeb;
+}
+
+@media only screen and (min-width: 600px) {
+
+    .main-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    body {
+        padding-top: 10px;
+    }
+
+    .main-content img {
+        display: none;
+    }
+
+}
