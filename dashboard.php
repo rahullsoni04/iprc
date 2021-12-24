@@ -32,17 +32,17 @@
             debitis, autem similique minima labore suscipit sapiente qui. Eius laboriosam adipisci quibusdam molestias
             dolores eum!</p>
         <div class="main-buttons">
-            <button type="button" class="btn btn-primary">Apply Noc</button>
-            <button type="button" class="btn btn-primary">Vedio Tutorial</button>
-            <button type="button" class="btn btn-primary">Contact Us</button>
+            <button type="button" class="btn">Apply Noc</button>
+            <button type="button" class="btn">Vedio Tutorial</button>
+            <button type="button" class="btn">Contact Us</button>
         </div>
-        <div class="class table">
+        <div class="table">
             <table class="table table-bordered">
                 <?php
                 $sql = "SELECT * FROM `ipr_copyrights` WHERE 1";
                 $query = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_all($query, MYSQLI_BOTH);
-                ?>
+                ?>               
                 <thead>
                     <tr>
                         <th scope="col">Select</th>
@@ -59,13 +59,13 @@
                     for ($i = 0; $i < mysqli_num_rows($query); $i++) {
                     ?>
                         <tr>
-                            <td><button type="button" class="btn btn-info">Select</button></td>
+                            <td><button type="button" class="btn">Select</button></td>
                             <td><?php echo $row[$i]['presenter_name']; ?></td>
                             <td><?php echo $row[$i]['title']; ?></td>
                             <td><?php echo $row[$i]['description']; ?></td>
                             <td><?php echo $row[$i]['diary_no']; ?></td>
                             <td><?php echo $row[$i]['status']; ?></td>
-                            <td><button type="button" class="btn btn-info">Download Noc</button></td>
+                            <td><button type="button" class="btn">Download Noc</button></td>
                         </tr>
                     <?php
                     }
