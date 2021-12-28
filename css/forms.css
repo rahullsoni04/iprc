@@ -21,6 +21,16 @@ html {
     scroll-behavior: smooth;
 }
 
+.quote{
+    position: absolute;
+    left: 10%;
+    top: 20%;
+}
+
+.quote p{
+    color: white;
+    font-size: 40px;
+}
 
 .login {
     background: rgba(168, 195, 207, 0.733);
@@ -48,13 +58,13 @@ html {
     border-radius: 15px;
 	border: 2px solid rgb(224, 255, 88);
 	padding:11px 32px;
-	color: rgb(255, 255, 255);
+	color: rgb(7, 16, 138);
 	text-decoration: none; 
 }	
 
 .btn:hover{
 	background-color:  rgb(235, 220, 12);
-    color: rgb(255, 255, 255);
+    color: rgb(7, 16, 138);
     box-shadow: 0 0 6px rgb(245, 248, 56);
 	transition: 0.3s ease;
 }
