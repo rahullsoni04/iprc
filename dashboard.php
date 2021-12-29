@@ -1,4 +1,5 @@
-<?php require_once 'requirements.php';
+<?php
+ require_once 'requirements.php';
 // echo var_dump($conn);
 ?>
 <!DOCTYPE html>

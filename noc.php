@@ -1,74 +1,70 @@
 <!doctype html>
 <html lang="en">
-<?php
-// include("config.php");
 
-
-?>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>NOC</title>
-
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css"
+    integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+    
+    <link rel="stylesheet" href="css/forms.css?v=<?php echo time(); ?>">
+    
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <style>
-        body {
-            background-color: rgb(231, 239, 245);
-        }
+    <?php
+// include("config.php");
 
-        .form_preview {
-            display: none;
-        }
-    </style>
+
+?>
 </head>
 
 <body>
     <div class="container" style="max-width: 700px;">
 
-        <img src="./images/header_elite.png" class="img-fluid mb-3 mt-3 " alt="...">
-        <h2 class="h1 text-center">Application of NOC</h2>
+        <!-- <img src="./images/header_elite.png" class="img-fluid mb-3 mt-3 " alt="..."> -->
+        <h2 class="h1 text-center" style="color: white;">Application of NOC</h2>
         <form method="post">
 
             <div class="row">
                 <div class="col-lg-12" id="form">
-                    <div class="form-group">
+                    <div class="form__group field">
 
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Title">
-
-                    </div>
-                    <div class="form-group">
-
-                        <input type="text" class="form-control" id="des" name="des" placeholder="Description">
+                        <input type="input" class="txt form__field" id="title" name="title" placeholder="Title">
 
                     </div>
-                    <div class="form-group">
+                    <div class="form__group field">
 
-                        <input type="text" class="form-control" id="dairyno" name="dairyno" placeholder="Dairy Number">
+                        <input type="input" class="txt form__field" id="des" name="des" placeholder="Description">
+
+                    </div>
+                    <div class="form__group field">
+
+                        <input type="input" class="txt form__field " id="dairyno" name="dairyno" placeholder="Dairy Number">
 
                     </div>
                     <div id="inputFormRow">
-                        <div class="input-group mb-3">
-                            <input type="text" name="name_applicant[]" class="form-control m-input" placeholder="Name of Applicant" autocomplete="off">
+                        <div class="form__group field">
+                            <input type="input" name="name_applicant[]" class="txt form__field" placeholder="Name of Applicant" autocomplete="off">
 
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="text" name="email_applicant[]" class="form-control m-input" placeholder="Email" autocomplete="off">
+                        <div class="form__group field">
+                            <input type="input" name="email_applicant[]" class="txt form__field" placeholder="Email" autocomplete="off">
 
                         </div>
-                        <div class="input-group mb-3">
+                        <div class="form__group field">
 
-                            <select id="role_applicant" class="form-control" name="role[]">
+                            <select id="role_applicant" class="txt form__field" name="role[]">
                                 <option value="" disabled selected hidden>Select your Role</option>
                                 <option value="Author">Author</option>
                                 <option value="Applicant">Applicant</option>
                                 <option value="Both">Both</option>
                             </select>
                         </div>
-                        <div class="input-group mb-3">
+                        <div class="form__group field">
 
-                            <select id="designation" class="form-control" name="designation[]">
+                            <select id="designation" class="txt form__field" name="designation[]">
                                 <option value="" disabled selected hidden>Select your Designation</option>
                                 <option value="asst. prof">Asst . Prof</option>
                                 <option value="asso. prof">Asso . Prof</option>
@@ -76,39 +72,19 @@
                             </select>
                         </div>
                         <div class="input-group-append mb-3">
-                            <button id="removeRow" type="button" class="btn btn-danger" hidden>Remove</button>
+                            <button id="removeRow" type="button" class="btnp" hidden>Remove</button>
                         </div>
                     </div>
 
                     <div id="newRow"></div>
-                    <button id="addRow" type="button" class="btn btn-info">Add Member</button>
-
+                    <button id="addRow" type="button" class="btnp btn-sm btn-info">Add Member</button>
+                    
                 </div>
                 <input type="text" id="previewpdf1" name="previewpdf1" style="display:none;">
                 <input type="text" id="previewpdf2" name="previewpdf2" style="display: none;">
                 <div id="previewForm" style="overflow: scroll; height:450px;">
                     <div style="background-color: white; padding:3%;" id="previewForm1">
-                        <style>
-                            html {
-                                margin: 60px 60px;
-                            }
 
-                            table,
-                            th,
-                            td {
-                                border: 1px solid black;
-                            }
-
-                            td {
-                                text-align: center;
-                            }
-
-                            table {
-                                border-collapse: collapse;
-                                table-layout: auto;
-                                width: 400px;
-                            }
-                        </style>
                         <p align="right" id="date"><br></p>
                         <p>
                             To<br>
@@ -168,8 +144,10 @@
 
                     </div>
                 </div>
-                <button class="btn btn-block btn-primary mt-3" name="submit">Submit</button>
-                <a class="btn btn-block btn-primary mt-3" name="preview" id="preview" style="color: white;">Preview</a>
+                <div class="row text-center">
+                    <div class="col-sm-6"> <button class="btnp btn btn-sm mt-3" name="submit">Submit</button></div>
+                    <div class="col-sm-6"> <a class="btnp btn btn-sm mt-3" name="preview" id="preview">Preview</a></div>                                 
+                </div>
             </div>
 
             <?php
@@ -303,24 +281,24 @@
             var html = '';
 
             html += `<div id="inputFormRow">
-                        <div class="input-group mb-3">
-                            <input type="text" name="name_applicant[]" class="form-control m-input" placeholder="Name of Applicant" autocomplete="off">
+                        <div class="form__group field">
+                            <input type="input" name="name_applicant[]" class="txt form__field" placeholder="Name of Applicant" autocomplete="off">
                             
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="text" name="email_applicant[]" class="form-control m-input" placeholder="Email" autocomplete="off">
+                        <div class="form__group field">
+                            <input type="input" name="email_applicant[]" class="txt form__field" placeholder="Email" autocomplete="off">
                             
                         </div>
-                        <div class="input-group mb-3">
-                        <select id="role_applicant" class="form-control" name="role[]">
+                        <div class="form__group field">
+                        <select id="role_applicant" class="txt form__field" name="role[]">
                             <option value="" disabled selected hidden>Select your Role</option>
                             <option >Author</option>
                             <option>Applicant</option>
                             <option>Both</option>
                         </select>
                         </div>
-                        <div class="input-group mb-3">
-                        <select id="designation" class="form-control" name="designation[]">
+                        <div class="form__group field">
+                        <select id="designation" class="txt form__field" name="designation[]">
                             <option value="" disabled selected hidden>Select your Designation</option>
                             <option >Asst . Prof</option>
                             <option>Asso . Prof</option>
@@ -328,7 +306,7 @@
                         </select>
                         </div>
                         <div class="input-group-append mb-3">                
-                            <button id="removeRow" type="button" class="btn btn-danger" >Remove</button>
+                            <button id="removeRow" type="button" class="btnp" >Remove</button>
                         </div>`
 
             $('#newRow').append(html);
