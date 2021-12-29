@@ -1,13 +1,18 @@
 body {
     margin: 0;
-    font-family: "Lato", sans-serif;
+	background-image: url(/images/bg1.jpg);
+	height: 100vh;
+	background-size: cover;
+	background-position: center;
+    font-family: "Sofia", sans-serif;
 }
+
 
 .sidebar {
     margin: 0;
-    padding: 0;
+    padding: 2px;
     width: 200px;
-    background-color: #27435a;
+    background-color: #3b8294;
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -21,12 +26,12 @@ body {
 }
 
 .sidebar a.active {
-    background-color: #000000b3;
+    background-color:  #276879;
     color: white;
 }
 
 .sidebar a:hover:not(.active) {
-    background-color: #567d9c;
+    background-color: rgba(103, 157, 165, 0.733);
     border-right-style: inset;
     border-right: 4px solid #ff214f;
     color: white;
@@ -39,23 +44,63 @@ div.content {
 }
 
 .content h2 {
+    font-size: 50px;
+    text-shadow: 3px 3px 3px #ababab;
     margin-top: 60px;
+    color: rgb(0, 0, 0);
 }
 
 .content p {
     margin: 20px;
+    color: rgb(0, 0, 0);
+}
+
+
+.logo img{
+    position: relative;
+	float: right;
+	width:100px;
+    top: 20px;
+    right:20px;
+	height: auto;
+}
+
+/* button */
+
+.btn{
+    background-color: rgb(44, 124, 134);
+    border-radius: 5px;
+	border: 2px solid rgb(38, 101, 121);
+	padding:5px 10px;
+	color: rgb(255, 255, 255);
+	text-decoration: none; 
+	bottom: 2px ;   
+}	
+
+.btn:hover{
+	background-color:  rgb(59, 155, 170);
+    color: rgb(255, 255, 255);
+    box-shadow: 0 0 6px rgb(125, 198, 240);
+	transition: 0.3s ease;
 }
 
 .main-buttons {
+    max-width:1000px;
     margin: 20px;
+    padding-inline: 3px;
 }
 
 .table>thead {
     vertical-align: bottom;
-    background: #27435a;
+    background:  #276879;
     color: white;
+    text-align: center;
 }
 
+.table{
+    border: #3fa6c0;
+    color: rgb(0, 0, 0);
+}
 
 @media screen and (max-width: 700px) {
     .sidebar {
