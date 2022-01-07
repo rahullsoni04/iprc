@@ -117,7 +117,12 @@ p {
 }
 
 .heading {
-    padding-bottom: 60px;
+    padding-bottom: 40px;
+
+}
+.heading h1{
+    color: #4b4b4b;
+    text-transform: uppercase ;
 }
 
 .roles-red {
@@ -293,10 +298,81 @@ p {
     transform: translateY(0px);
     opacity: 1;
 }
+/* team section ends */
+
+/* event */
+
+.posts {
+    box-shadow: 0px 10px 20px 4px #00000015;
+    margin-bottom: 30px;
+    
+    background-color: white;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+}
+
+.blog-inner {
+    margin-top: 25px;
+    padding: 0px 20px;
+    padding-bottom: 30px;
+}
+
+.posts a {
+    text-decoration: none;
+}
+
+.posts h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.posts h2 a {
+    color: #727275;
+
+}
+
+.event_date {
+    background-color: #eaeaf0;
+    color: black;
+    padding: 10px 6px;
+    margin-left: 1px;
+}
+
+/* event section ends */
+
+/* News */
+#news{
+    background-color: #f7f7f7 ;
+}
+#events{
+    background-color: #f7f7f7 ;
+}
+.blogs{
+    background-color: white;
+}
+.blogs a{
+    text-decoration: none;
+    font-size: 24px;
+    color: #727275;
+    font-weight: 600;
+}
+.blogs a:hover{
+    color: #ff0035;
+}
+.blogs hr{
+    color: #4b4b4b;
+}
+.blogs .blog-date{
+    font-size: 14px;
+}
+/* News ends */
+
 
 /* footer */
 footer{
-    padding: 30px 0px;
+    padding: 80px 0px 20px;
     background-image: url(../images/footer_bg);
     background-size: cover;
 	background-position: center;
@@ -310,8 +386,15 @@ footer p{
 
 footer h2{
     color: rgb(223, 215, 215);
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
+}
+footer p{
+    color: white;
+}
+footer i{
+    font-size: 24px;
+    margin-left: 8px;
 }
 /* footer ends */
 
