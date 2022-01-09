@@ -13,9 +13,33 @@
     <link rel="stylesheet" href="css/forms.css">
     <title>IPR | Login</title>
     
+    <?php
+
+use FontLib\Table\Type\post;
+
+require_once 'requirements.php';       
+    ?>
+    
 </head>
 
 <body>
+    <?php 
+        if($_SERVER['REQUEST_METHOD']=="POST"){
+            $username=$_POST['emailid'];
+            $password=$_POST['password'];           
+            $sql = "SELECT `email_id`, `password` FROM `ipr_users` WHERE `email_id`= '$username' AND `password`= '$password'";
+            $query = mysqli_query($conn, $sql);
+            $count = mysqli_num_rows($query);
+            if($count==0){
+                Notify("Invalid User!");
+            }
+            else{
+                $_SESSION['email']=$username;
+                Notify("Login Successful");
+            }
+        }
+        
+    ?>
     <div class="container login-page text-center ">
         <div class="row align-items-center"> 
     <div class="quote col-lg-6 col-sm-12 col-md-12">
@@ -28,18 +52,21 @@
               
             <div class="col-lg-6 col-sm-12 col-md-12 main-content">
                 <div class="login">
+                
                     <h1>LOGIN</h1>
                     <p>Please enter username and password</p>
                     <div class="form__group field">
-                        <input type="input" class="form__field" placeholder="Enter Username" name="username" id='username'
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
+                        <input type="email" name="emailid" class="form__field" placeholder="Enter Username" id='username'
                             required />
                         <br>
-                        <input type="input" class="form__field" placeholder="Enter Password" name="name" id='name' required />
+                        <input type="password" name="password" class="form__field" placeholder="Enter Password" id='name' required />
 
                     </div>
                     <br>
 
-                    <button class="btn" href="#">Login</button>
+                    <button value="login" name="loginbtn" class="btn" href="#">Login</button>
+                    </form>
                     <p class="mt-4">Don't have an Account </p>
                     <a href="signup.html" class="btn">Create Now</a>
                 </div>
