@@ -18,39 +18,51 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#" style="color: aliceblue;">SAKEC IPR</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo01">
-                <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">HOME</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#events">EVENTS</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#team">OUR TEAM</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#gallery">GALLERY</a>
-                    </li>                   
-                    <li class="nav-item active">
-                        <a class="nav-link active" href="#contact">CONTACT</a>
-                    </li>
-                </ul>
-                <span class="navbar-right">
-                    <a class="btn btn-outline-info" style="position: relative; left: 50px; padding: 5px 15px; color: white;">Login</a>
-                  </span>
-                
+   
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">SAKEC IPR</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link " href="#"  >
+                  Dropdown
+                </a>
+               
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link " href="#"  >
+                  Dropdown
+                </a>
+               
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link " href="#"  >
+                  Dropdown
+                </a>
+               
+              </li>
+             
+            </ul>
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-outline-info " style=" padding: 5px 15px; color: white;">Login</a>
             </div>
+          </div>
         </div>
-    </nav>
+      </nav>
+
     <!-- navbar ends -->
     <!-- banner -->
+
 
 
 
@@ -662,8 +674,10 @@
 
              $(function () {
   $(document).scroll(function () {
-    var $nav = $(".bg-light");
+    var $nav = $(".bg-dark");
+    var $navbtn = $(".btn-outline-info");
     $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+    $navbtn.toggleClass('scrolled', $(this).scrollTop() > $navbtn.height());
   });
 });
     </script>

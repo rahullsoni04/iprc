@@ -107,30 +107,94 @@ p {
 }
 
 /* Navbar */
-.bg-light {
-    padding: 15px 5px;
+ .bg-dark {
+    padding: 15px 50px;
     transition: 500ms ease;
     font-family:  system-ui;
     background-color: transparent !important;
 }
+.navbar-light .navbar-brand  {
+    color: white;
+    font-size: 25px;
+}
+.navbar-light .navbar-brand:hover{
+    color: white;
+}
 
-.navbar-light .navbar-nav .active>.nav-link,
-.navbar-light .navbar-nav .nav-link.active,
+
+.navbar-light .navbar-nav .nav-link,
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .show>.nav-link {
 color: rgb(255 255 255 / 90%);
-padding: 0px 20px;
+padding: 0px 30px;
+font-size: 18px;
 }
+
+.navbar-light .navbar-nav .nav-link:focus {
+    color:white;
+    outline: none;
+}
+
+.navbar-light .navbar-nav .nav-link.active{
+    border-bottom: solid 3px #019fb6; 
+    color: white;
+   
+}
+.navbar-light .navbar-nav .nav-link:hover{
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link:after {
+    display:block;
+    padding-bottom: 8px;
+    content: '';
+    border-bottom: solid 3px #019fb6;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+  }
+  .navbar-light .navbar-nav .nav-link:hover:after 
+  { 
+      transform: scaleX(1); 
+    }
+
+
+
+
 
 .navbar-collapse {
     margin-left: 300px;
 }
 
-.bg-light.scrolled {  
+.bg-dark.scrolled {  
     background-image: -webkit-linear-gradient(left, #1b48aa 0%, #59b6d3 50%, #2868b1 100%);
     background-image: -o-linear-gradient(left, #285fb1 0%, #45bbd8 50%, #287fb1 100%);
     background-image: linear-gradient(to right, #285fb1 0%, #2298b6 50%, #5cb8f6 100%);
     transition: background-color 500ms linear;
+} 
+.btn-outline-info.scrolled{
+    border: 1px solid white;
+   
+}
+.btn-outline-info.scrolled:hover{
+    background-color: white;
+    color: rgb(56, 56, 56) !important;
+}
+
+@media only screen and (max-width: 1196px)
+{
+    .navbar-collapse {
+        margin-left: 100px;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .bg-dark{
+        background-image: -webkit-linear-gradient(left, #1b48aa 0%, #59b6d3 50%, #2868b1 100%);
+        background-image: -o-linear-gradient(left, #285fb1 0%, #45bbd8 50%, #287fb1 100%);
+        background-image: linear-gradient(to right, #285fb1 0%, #2298b6 50%, #5cb8f6 100%);
+    }
+    .navbar-collapse {
+        margin-left: 0px;
+    }
 }
 
 /* Navbar ends */
@@ -495,19 +559,24 @@ footer i{
 /* card buttons */
 
 .button{
-    background-color:rgb(59, 155, 170) ;
+    /* background-color:rgb(59, 155, 170) ; */
+    background: rgb(58,89,180);
+    background: linear-gradient(90deg, rgba(58,89,180,1) 22%, rgba(69,156,252,1) 82%, rgba(29,233,253,1) 100%);
     border-radius: 40px;	
 	padding: 8px 15px;
 	color: rgb(255, 255, 255);
 	text-decoration: none; 
 	bottom: 2px ;   
+    transition:0.5s;
 }
 
 .button:hover{
-    background-color: rgb(26, 122, 134) ;
+    /* background-color: rgb(26, 122, 134) ; */
+    background: rgb(29,233,253);
+background: linear-gradient(90deg, rgba(29,233,253,1) 0%, rgba(69,156,252,1) 14%, rgba(58,89,180,1) 82%);
     color: rgb(255, 255, 255);
-    box-shadow: 0 0 8px rgb(247, 252, 255);
-	transition: 0.3s ease;
+    box-shadow: 0 0 15px rgb(0, 0, 0);
+	
 }
 
 /* card button ends */
