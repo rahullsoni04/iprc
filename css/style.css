@@ -32,6 +32,12 @@ p {
     color: #fff;
 }
 
+.logo img{
+    position: relative;
+    left: auto;
+	width:auto;
+	height: 55px;
+}
 
 .main-text h1 {
     color: white;
@@ -108,7 +114,7 @@ p {
 
 /* Navbar */
  .bg-dark {
-    padding: 15px 50px;
+    padding: 15px 30px;
     transition: 500ms ease;
     font-family:  system-ui;
     background-color: transparent !important;
@@ -171,6 +177,7 @@ font-size: 18px;
     background-image: linear-gradient(to right, #285fb1 0%, #2298b6 50%, #5cb8f6 100%);
     transition: background-color 500ms linear;
 } 
+/* 
 .btn-outline-info.scrolled{
     border: 1px solid white;
    
@@ -178,7 +185,7 @@ font-size: 18px;
 .btn-outline-info.scrolled:hover{
     background-color: white;
     color: rgb(56, 56, 56) !important;
-}
+} */
 
 @media only screen and (max-width: 1196px)
 {
@@ -573,7 +580,7 @@ footer i{
 .button:hover{
     /* background-color: rgb(26, 122, 134) ; */
     background: rgb(29,233,253);
-background: linear-gradient(90deg, rgba(29,233,253,1) 0%, rgba(69,156,252,1) 14%, rgba(58,89,180,1) 82%);
+    background: linear-gradient(90deg, rgba(29,233,253,1) 0%, rgba(69,156,252,1) 14%, rgba(58,89,180,1) 82%);
     color: rgb(255, 255, 255);
     box-shadow: 0 0 15px rgb(0, 0, 0);
 	

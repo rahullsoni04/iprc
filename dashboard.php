@@ -20,11 +20,11 @@
         <a class="active" href="#home">IPR Home</a>
         <a href="#news">Dashboard</a>
         <a href="#news">Copyright</a>
-        <a href="#contact">Patient</a>
+        <a href="#contact">Patent</a>
         <a href="#about">Certifications</a>
     </div>
     <div class="logo">
-        <img src="/images/logo.png">
+       <img src="/images/logo.png">
 
     </div>
     <div class="text-center content">
@@ -34,7 +34,7 @@
             dolores eum!</p>
         <div class="main-buttons">
             <button type="button" class="btn">Apply Noc</button>
-            <button type="button" class="btn">Vedio Tutorial</button>
+            <button type="button" class="btn">Video Tutorial</button>
             <button type="button" class="btn">Contact Us</button>
         </div>
         <div class="table">
