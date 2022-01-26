@@ -1,6 +1,5 @@
 <?php
- require_once 'requirements.php';
-// echo var_dump($conn);
+require_once '../requirements.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <title>IPR</title>
 </head>
 
@@ -20,11 +19,11 @@
         <a class="active" href="#home">IPR Home</a>
         <a href="#news">Dashboard</a>
         <a href="#news">Copyright</a>
-        <a href="#contact">Patent</a>
+        <a href="#contact">Patient</a>
         <a href="#about">Certifications</a>
     </div>
     <div class="logo">
-       <img src="/images/logo.png">
+        <img src="/images/logo.png">
 
     </div>
     <div class="text-center content">
@@ -34,7 +33,7 @@
             dolores eum!</p>
         <div class="main-buttons">
             <button type="button" class="btn">Apply Noc</button>
-            <button type="button" class="btn">Video Tutorial</button>
+            <button type="button" class="btn">Vedio Tutorial</button>
             <button type="button" class="btn">Contact Us</button>
         </div>
         <div class="table">
@@ -43,10 +42,10 @@
                 $sql = "SELECT * FROM `ipr_copyrights` WHERE 1";
                 $query = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_all($query, MYSQLI_BOTH);
-                ?>               
+                ?>
                 <thead>
                     <tr>
-                        <th scope="col">Select</th>
+                        <th scope="col">Review</th>
                         <th scope="col">Presenter</th>
                         <th scope="col">Title</th>
                         <th scope="col">Description</th>
@@ -60,12 +59,14 @@
                     for ($i = 0; $i < mysqli_num_rows($query); $i++) {
                     ?>
                         <tr>
-                            <td><button type="button" class="btn">Select</button></td>
-                            <td>useer id = <?php echo $row[$i]['presenter']; ?></td>
-                            <td><?php echo $row[$i]['title']; ?></td>
-                            <td><?php echo $row[$i]['description']; ?></td>
-                            <td><?php echo $row[$i]['diary_no']; ?></td>
-                            <td><?php echo $row[$i]['status']; ?></td>
+                            <form action="letter.php" method="post">
+                                <td><button name="cpRecordId" value="<?php echo "1" ?>" type="submit" class="btn">Review</button></td>
+                                <td><?php echo $row[$i]['presenter']; ?></td>
+                                <td><?php echo $row[$i]['title']; ?></td>
+                                <td><?php echo $row[$i]['description']; ?></td>
+                                <td><?php echo $row[$i]['diary_no']; ?></td>
+                                <td><?php echo $row[$i]['status']; ?></td>
+                            </form>
                             <td><button type="button" class="btn">Download Noc</button></td>
                         </tr>
                     <?php

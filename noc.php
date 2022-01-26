@@ -31,26 +31,26 @@
                 <div class="col-lg-12" id="form">
                     <div class="form__group field">
 
-                        <input type="input" class="txt form__field" id="title" name="title" placeholder="Title">
+                        <input type="input" class="txt form__field" id="title" name="title" placeholder="Title" required>
 
                     </div>
                     <div class="form__group field">
 
-                        <input type="input" class="txt form__field" id="des" name="des" placeholder="Description">
+                        <input type="input" class="txt form__field" id="des" name="des" placeholder="Description" required>
 
                     </div>
                     <div class="form__group field">
 
-                        <input type="input" class="txt form__field " id="dairyno" name="dairyno" placeholder="Dairy Number">
+                        <input type="input" class="txt form__field " id="dairyno" name="dairyno" placeholder="Dairy Number" required>
 
                     </div>
                     <div id="inputFormRow">
                         <div class="form__group field">
-                            <input type="input" name="name_applicant[]" class="txt form__field" placeholder="Name of Applicant" autocomplete="off">
+                            <input type="input" name="name_applicant[]" class="txt form__field" placeholder="Name of Applicant" autocomplete="off" required>
 
                         </div>
                         <div class="form__group field">
-                            <input type="input" name="email_applicant[]" class="txt form__field" placeholder="Email" autocomplete="off">
+                            <input type="email" name="email_applicant[]" class="txt form__field" placeholder="Email" autocomplete="off" required>
 
                         </div>
                         <div class="form__group field">
@@ -161,17 +161,16 @@
                 $dairy_no = $_POST['dairyno'];
                 $role = $_POST['role'];
                 $designation = $_POST['designation'];
+                
+                $sql = "INSERT INTO `ipr_copyrights` ( `title`, `description`, `presenter`, `diary_no`, `status`) VALUES ('$title', '$desc', '$p_name[$i]', '$p_email[$i]', '$dairy_no', 'filed');";
+                mysqli_query($db, $sql);
 
-                // for ($i = 0; $i < count($p_name); $i++) {
-                //     if ($p_name[$i] != "" && $p_email[$i] != "" && $role[$i] != "" && $designation[$i] != "") {
-                //         if ($i == 0) {
-                //             $sql = "INSERT INTO `ipr_copyrights` ( `title`, `description`, `presenter_name`, `presenter_email`, `diary_no`, `status`) VALUES ('$title', '$desc', '$p_name[$i]', '$p_email[$i]', '$dairy_no', 'filed');";
-                //             mysqli_query($db, $sql);
-                //         }
-                //         $sql2 = "INSERT INTO `ipr_cp_applicant` ( `diary_no`, `name`, `email`, `role`, `designation`) VALUES ('$dairy_no', '$p_name[$i]',  '$p_email[$i]', '$role[$i]', '$designation[$i]');";
-                //         mysqli_query($db, $sql2);
-                //     }
-                // }
+                for ($i = 0; $i < count($p_name); $i++) {
+                    if ($p_name[$i] != "" && $p_email[$i] != "" && $role[$i] != "" && $designation[$i] != "") {
+                        $sql2 = "INSERT INTO `ipr_cp_applicant` (`name`, `email`, `role`, `designation`) VALUES ('$dairy_no', '$p_name[$i]',  '$p_email[$i]', '$role[$i]', '$designation[$i]');";
+                        mysqli_query($db, $sql2);
+                    }
+                }
 
                 include('pdf.php');
                 //first pdf
