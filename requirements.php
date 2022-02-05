@@ -50,7 +50,7 @@ function dbquery($conn, $sql)
 
  function Alert($msg){
     echo "<script>
-    alert('s');
+    alert('$msg');
     document.getElementById('notify').innerHTML='Test';
     </script>";
  }

@@ -1,5 +1,5 @@
 body {
-    background-image: url(/images/bg1.jpg);
+    background-image: url(../images/bg1.jpg);
 	height: 100vh;
 	background-size: cover;
 	background-position: center;
@@ -24,3 +24,19 @@ body {
     border-collapse: collapse;
 }
 
+.btn{
+    background-color: rgb(44, 124, 134);
+    border-radius: 5px;
+	border: 2px solid rgb(38, 101, 121);
+	padding:5px 10px;
+	color: rgb(255, 255, 255);
+	text-decoration: none; 
+	bottom: 2px ;   
+}	
+
+.btn:hover{
+	background-color:  rgb(59, 155, 170);
+    color: rgb(255, 255, 255);
+    box-shadow: 0 0 6px rgb(125, 198, 240);
+	transition: 0.3s ease;
+}

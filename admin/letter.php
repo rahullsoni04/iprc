@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cpRecordId'])) {
         <h3 style="text-align: center;">NOC Letter</h3>
         <hr>
         <div id="letter">
+            <img src="../images/man.png" alt="">
             <p>To<br>
                 The Principal,<br>
                 Shah and Anchor Kutchhi Engineering College,<br>
@@ -56,6 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cpRecordId'])) {
             <p>Respected Sir,</p>
             <p>I/We request you to kindly grant me/us the permission to carry out the work. The details of the work and
                 applicants are mentioned below. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio a eos enim fugit dolorum quibusdam veniam, maxime esse, earum dolores obcaecati vero et nisi recusandae quo consectetur temporibus quam fugiat.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit fuga qui sapiente repellendus nam consequuntur distinctio.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit fuga qui sapiente repellendus nam consequuntur distinctio.</p>
             <strong>
                 <p>Details of the work:</p>
             </strong>
@@ -127,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cpRecordId'])) {
                 if ($row['status'] == "accepted") {
                 ?>
                     <h2>you accepted the request</h2>
-                    <button id="printApplication" class="btn" onclick="Convert_HTML_To_PDF();">Print Application</button>
+                    <button id="printApplication" class="btn" onclick="Letter.print()">Print Application</button>
                 <?php
                 } else if ($row['status'] == "rejected") {
                 ?>
