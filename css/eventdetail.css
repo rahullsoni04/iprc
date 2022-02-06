@@ -9,7 +9,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 350px;
+    height: 45vh;
     width: auto;
     text-align: center;
 }
@@ -167,6 +167,11 @@ font-size: 18px;
 
 .banner{
     height: 150px;
+    width: auto;
+    cursor: pointer;
 }
-
+.banner-popup {
+    width: -webkit-fill-available;
+    height: auto;
+}
 /* event details end */
