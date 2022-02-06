@@ -32,13 +32,14 @@
         } else if (!(empty($_POST['emailid']) || empty($_POST['password']))) {
             $username = $_POST['emailid'];
             $password = $_POST['password'];
-            $sql = "SELECT `email_id`, `password` FROM `ipr_users` WHERE `email_id`= '$username'";
+            $sql = "SELECT `email_id`, `password`,`name` FROM `ipr_users` WHERE `email_id`= '$username'";
             $query = mysqli_query($conn, $sql);
             $count = mysqli_num_rows($query);
             if ($count) {
                 $rows = mysqli_fetch_assoc($query);
                 if ($rows['password'] == $password) {
                     $_SESSION['email'] = $username;
+                    $_SESSION['user_name']=$rows['name'];
                     RedirectAfterMsg('Login Successfull','index.php');
                 } else {
                     echo "<div class='alert alert-danger'>

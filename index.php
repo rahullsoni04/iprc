@@ -578,7 +578,31 @@
     </section>
     <!-- News ends -->
 
-
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['contactUs'])) {
+        unset($_POST['contactUs']);
+        if(isset($_SESSION['email'])){
+            $email = $_SESSION['email'];
+            $name=$_SESSION['user_name'];
+        }else{
+            $email = $_POST['email'];
+            $name=$_POST['name'];
+        }
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
+        $sql = "INSERT INTO `ipr_contact_us`(`name`, `emailId`, `subject`, `query`) VALUES ('$name','$email','$subject','$message')";
+        $query = mysqli_query($conn, $sql);
+        // $to = "rahullsoni04@gmail.com";
+        // $headers = "From: guptvan96@gmail.com" . "\r\n"."CC: rahul.soni_19@sakec.ac.in";
+        // $txt = "You have received a new message from " . $name . "." . "\r\n" . "Here is the message: " . "\r\n" . $message;
+        // $test=mail($to, $subject, $txt, $headers);
+        if ($query ) {
+            echo "<script>alert('Your Query has been sent successfully')</script>";
+        } else {
+            echo "<script>alert('Your Query has not been sent successfully')</script>";
+        }
+    }
+    ?>
     <!-- Footer -->
     <footer class="footer" id="footer">
         <div class="container">
@@ -610,19 +634,24 @@
                 <div class="col-sm-3">
                     <h2>Get In Touch For Any Query</h2>
                     <hr>
-
-                    <form>
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
+                        <?php
+                        if (!isset($_SESSION['email'])) {
+                            echo '<div class="mb-3 form-group">';
+                            echo '<input type="text" class="form-control" name="name" aria-describedby="emailHelp" placeholder="Your Name">';
+                            echo '</div>';
+                            echo '<div class="mb-3 form-group">';
+                            echo '<input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Your Email">';
+                            echo '</div>';
+                        }
+                        ?>
                         <div class="mb-3 form-group">
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name">
+                            <input type="text" class="form-control" name="subject" placeholder="Subject">
                         </div>
                         <div class="mb-3 form-group">
-                            <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
+                            <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3" placeholder="Your Query"></textarea>
                         </div>
-                        <div class="mb-3 form-group">
-                            <!-- <textarea name="message" id="" placeholder="Your query"></textarea> -->
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your Query"></textarea>
-                        </div>
-                        <button type="submit" class="mb-2 btnp">Send Message</button>
+                        <button type="submit" name="contactUs" class="mb-2 btnp">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -694,7 +723,24 @@
             });
         });
     </script>
-
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+    <script type="text/javascript">
+        function sendEmail() {
+            Email.send({
+                    Host: "smtp.gmail.com",
+                    Username: "sender@email_address.com",
+                    Password: "Enter your password",
+                    To: 'receiver@email_address.com',
+                    From: "sender@email_address.com",
+                    Subject: "Sending Email using javascript",
+                    Body: "Well that was easy!!",
+                })
+                .then(function(message) {
+                    alert("mail sent successfully")
+                });
+        }
+    </script>
 </body>
 
 </html>

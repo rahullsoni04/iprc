@@ -172,29 +172,29 @@
                     }
                 }
 
-                include('pdf.php');
-                //first pdf
-                $file_name = $dairy_no . '.pdf';
-                $pdf = new Pdf();
-                $html = $_POST['previewpdf1'];
-                $pdf->load_html($html);
-                $pdf->render();
-                $pdf->output();
-                // $pdf->stream("", array("Attachment" => false));
-                // exit(0);
-                $file = $pdf->output();
-                file_put_contents($file_name, $file);
+                // include('pdf.php');
+                // //first pdf
+                // $file_name = $dairy_no . '.pdf';
+                // $pdf = new Pdf();
+                // $html = $_POST['previewpdf1'];
+                // $pdf->load_html($html);
+                // $pdf->render();
+                // $pdf->output();
+                // // $pdf->stream("", array("Attachment" => false));
+                // // exit(0);
+                // $file = $pdf->output();
+                // file_put_contents($file_name, $file);
 
-                $file_name1 = $dairy_no . 'noc.pdf';
-                $pdf1 = new Pdf();
-                $html1 = $_POST['previewpdf2'];
-                $pdf1->load_html($html);
-                $pdf1->render();
-                $pdf1->output();
-                // $pdf->stream("", array("Attachment" => false));
-                // exit(0);
-                $file1 = $pdf1->output();
-                file_put_contents($file_name1, $file1);
+                // $file_name1 = $dairy_no . 'noc.pdf';
+                // $pdf1 = new Pdf();
+                // $html1 = $_POST['previewpdf2'];
+                // $pdf1->load_html($html);
+                // $pdf1->render();
+                // $pdf1->output();
+                // // $pdf->stream("", array("Attachment" => false));
+                // // exit(0);
+                // $file1 = $pdf1->output();
+                // file_put_contents($file_name1, $file1);
             }
             ?>
         </form>
@@ -270,7 +270,8 @@
             last.innerHTML = lastvar;
             last1.innerHTML = lastvar1;
             document.getElementById('previewpdf1').value = document.getElementById('previewForm1').innerHTML;
-            document.getElementById('previewpdf2').value = document.getElementById('previewForm2').innerHTML;
+            window.print('previewpdf1');
+            //document.getElementById('previewpdf2').value = document.getElementById('previewForm2').innerHTML;
             // console.log(document.getElementById('previewpdf').value.trim());
         })
         // add row
