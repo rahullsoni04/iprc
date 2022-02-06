@@ -1,0 +1,257 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+   background:  #3b8294;
+    font-family:  system-ui;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+.heading{
+    padding: 10px;
+    color: #505050;
+    background-color: #0badb9;
+}
+.new-section{
+    padding: 40px 0px;
+}
+
+
+/* Tabs styliing */
+/* Tabs Name Container */
+.tabs-container{
+    position: relative;
+    background:#3b8294;
+    width: 120px;
+    height: 100vh;
+    float: left;
+    z-index: 20;
+  
+ }
+ /* Tabs Names Label */
+ .tabs-container label{
+    position: relative;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: block;
+    font-size: 13px;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+ }
+  
+ /* Hover effect on tabs names */
+ .tabs-container label:hover{
+   background: #276879;
+   border-right-style: inset;
+    border-right: 4px solid #ff214f;
+ }
+ /* Content area for tabs */
+.tab-content{
+    position: relative;
+    background: #eee;
+    width: calc(100% - 120px);
+    min-height: 100vh;
+    padding: 15px;
+    float: left;
+    box-sizing: border-box;
+    z-index: 19;
+    display: none;
+ }
+  
+ .tab-content:after{
+    content: "";
+    clear: both;
+  
+ }
+ /* Hide input radio from users */
+input[name="tab"]{
+    display: none;
+ }
+ /* Show tab when input checked */
+ input[name="tab"]:checked + .tab-content{
+    display: block;
+    animation: slide 0.5s forwards;
+ }
+  
+ /* Slide animation for tab contents */
+ @keyframes slide{
+    from{
+      left: -100%;
+      opacity: 0;
+    }
+    to{
+      left: 0;
+      opacity: 1;
+    }
+ } 
+
+/* Style the tab */
+  
+
+
+/* Tabs styliing */
+textarea {
+    margin-top: 10px;
+    width: 500px;
+    height: 100px;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+    border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+    border-image: none;
+    border-radius: 6px 6px 6px 6px;
+    border-style: none solid solid none;
+    border-width: medium 1px 1px medium;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+    color: #555555;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 1em;
+    line-height: 1.4em;
+    padding: 5px 8px;
+    transition: background-color 0.2s ease 0s;
+  }
+  
+  
+  textarea:focus {
+      background: none repeat scroll 0 0 #FFFFFF;
+      outline-width: 0;
+  }
+
+  input[type=text]{
+    margin-top: 10px;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+    border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+    border-image: none;
+    border-radius: 6px 6px 6px 6px;
+    border-style: none solid solid none;
+    border-width: medium 1px 1px medium;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+    color: #555555;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 1em;
+    line-height: 1.4em;
+    padding: 5px 8px;
+    transition: background-color 0.2s ease 0s;
+  }
+  input:focus {
+    background: none repeat scroll 0 0 #FFFFFF;
+    outline-width: 0;
+}
+ select{
+    margin-top: 10px;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+    border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+    border-image: none;
+    border-radius: 6px 6px 6px 6px;
+    border-style: none solid solid none;
+    border-width: medium 1px 1px medium;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+    color: #555555;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 1em;
+    line-height: 1.4em;
+    padding: 5px 8px;
+    transition: background-color 0.2s ease 0s;
+  }
+  select:focus {
+    background: none repeat scroll 0 0 #FFFFFF;
+    outline-width: 0;
+}
+
+
+/* testimonials */
+
+#testimonial{
+    background-color: #faf5f5 ;
+}
+
+.testimonial-img {
+    height: 100px;
+    width: 100px !important;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.testimonial-symbol {
+    height: 30px;
+    width: auto !important;
+    margin: 0 auto;
+}
+
+.testimonial-name {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: -3px;
+
+}
+
+.trestimonial-designition {
+    text-transform: uppercase;
+    font-size: 17px;
+
+}
+
+.testim {
+    background-color: rgb(255, 255, 255);   
+    padding: 20px;
+    margin: 0px 5px;
+
+}
+.slick-prev:before, .slick-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: #afafaf;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+/* testimonial ends */
+
+/* Teams */
+
+.blue-line {
+    color: #0b5e6d;
+}
+
+.social-team a {
+    padding: 8px;
+}
+
+.fab-facebook {
+    color: #2867ee;
+}
+
+.fab-instagram {
+    color: #d338b1;
+}
+
+.fab-linkedin {
+    color: #0e76a8;
+}
+
+.fab-envelope {
+    color: #137006;
+}
+/* Teams ends */
+
+/* media queries */
+@media only screen and (max-width: 576px){
+    textarea{
+        width: 250px;
+    }
+}

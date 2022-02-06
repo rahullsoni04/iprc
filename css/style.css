@@ -315,6 +315,15 @@ font-size: 18px;
     margin: 0px 5px;
 
 }
+.slick-prev:before, .slick-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: #afafaf;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
 
 /* .testim-1 p {
