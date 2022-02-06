@@ -113,7 +113,7 @@ require_once 'requirements.php'
                 <td><?php echo $row['query']; ?></td>
                 <td>
                   <div id="<?php echo 'reply' . $row['id']; ?>">
-                    <button type="button" onClick="<?php echo 'addTextArea(' . $row['id'] . ');'; ?>" class="btn btn-primary">Reply</button>
+                    <button type="button" onClick="<?php echo 'addTextArea(' . $row['id'] . ');'; ?>" class="btn">Reply</button>
                   </div>
                   <div id="<?php echo 'textArea' . $row['id']; ?>" style="display : none;">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">

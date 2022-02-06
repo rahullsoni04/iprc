@@ -12,10 +12,133 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- banner -->
+    <!-- Navbar -->
    
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+            <div class="logo">
+                <img src="/images/IPR logo.png">    
+             </div>&nbsp; &nbsp;
+          <a class="navbar-brand" href="#">SAKEC IPR</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link active" href="#"  >
+                    Events
+                </a>
+               
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link " href="#"  >
+                Our Team
+                </a>
+               
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link " href="#"  >
+                 Contact Us
+                </a>
+               
+              </li>
+             
+            </ul>
+            <div class="d-flex justify-content-center">
+                <a class="button" style=" padding: 5px 15px; color: white;">Back</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    <!-- navbar ends -->
+
+    <!-- banner -->
+    <div id="detail">  
+      <div class="content">
+        <div class="main-text">
+        <h1>Patent Drawing</h1>   
+        <p>Event 2021-2022</p>
+       
+      </div>              
+      </div>        
+    </div>
     <!-- banner ends -->
 
+     <!-- Event Details section -->
+    
+     <section>
+        <div class="about-content text-left"> 
+          <div class="container">
+            <div class="row">
+              <div class="col">
+          <br>
+            <p><i class="fas fa-calendar-alt"></i><span class="event_date">&nbsp; 24th </span>
+              <span class="event_date">January 2022 <br><br>
+                    <i class="fas fa-clock"></i>&nbsp; 3:00pm - 5:00pm    
+              </span></p>
+                </div>
+                <div class="col"><br>
+                
+                </div>
+                  <div class="col">
+                    <br><br>
+                    <a class="register" type="submit">Register</a>
+                  </div>
+                  </div></div>
+          <br>
+          <hr>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8">
+               
+              <h4>Event Overview</h4>
+                
+                <p class="my-4">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                  when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                  It has survived not only five centuries, but also the leap into electronic typesetting,
+                  remaining essentially unchanged. 
+                  It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                  and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+              </p>
+             
+              </div>
+              
+              <div class="col-sm-4">
+                <img src="/images/Banner.png" alt="banner" class="banner"><br>
+                <br><p>In hac habitasse platea dictumst.
+                  Sed non nisl porta, malesuada sem a, rutrum arcu. 
+                  Donec lacinia nulla efficitur, lobortis nisi ut, consequat turpis.
+                  Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                  Maecenas porttitor et nunc id condimentum. 
+                  orbi justo nibh, consequat sit amet volutpat pretium, consectetur et justo. 
+                  Aliquam blandit erat vel volutpat lobortis.</p>
+                  <p><strong>Venue : </strong> Microsoft Teams</p>
+                  <strong>Follow Us : </strong> &nbsp;
+                  <i class="fab fa-facebook-square"></i>&nbsp; &nbsp;
+                  <i class="fab fa-instagram"></i>&nbsp; &nbsp;
+                  <i class="fab fa-linkedin"></i>&nbsp; &nbsp;
+                  <i class="fab fa-youtube"></i>
+              
+              </div>
+            </div>
+          </div>              
+            
+            
+    </section>
+    <hr>
+    <!-- Event Details ends -->
+
+    
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -23,5 +146,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"
         integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script>
+          $(function () {
+  $(document).scroll(function () {
+    var $nav = $(".bg-dark");
+    var $navbtn = $(".btn-outline-info");
+    $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+    $navbtn.toggleClass('scrolled', $(this).scrollTop() > $navbtn.height());
+  });
+});
+        </script>
 </body>
 </html>
