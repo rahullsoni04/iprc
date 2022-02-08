@@ -33,14 +33,15 @@
             debitis, autem similique minima labore suscipit sapiente qui. Eius laboriosam adipisci quibusdam molestias
             dolores eum!</p>
         <div class="main-buttons">
-            <button type="button" class="btn">Apply Noc</button>
+            <a type="button" href="noc.php" class="btn">Apply Noc</a>
             <button type="button" class="btn">Video Tutorial</button>
             <button type="button" class="btn">Contact Us</button>
         </div>
         <div class="table">
             <table class="table table-bordered">
+                
                 <?php
-                $sql = "SELECT * FROM `ipr_copyrights` WHERE 1";
+                $sql = 'SELECT * FROM `ipr_copyrights` as `cp`,`ipr_users` as `users` WHERE users.email_id="ipradmin@sakec.ac.in" and users.id=cp.presenter';
                 $query = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_all($query, MYSQLI_BOTH);
                 ?>               
@@ -61,7 +62,7 @@
                     ?>
                         <tr>
                             <td><button type="button" class="btn">Select</button></td>
-                            <td>useer id = <?php echo $row[$i]['presenter']; ?></td>
+                            <td><?php echo $row[$i]['name']; ?></td>
                             <td><?php echo $row[$i]['title']; ?></td>
                             <td><?php echo $row[$i]['description']; ?></td>
                             <td><?php echo $row[$i]['diary_no']; ?></td>
@@ -75,7 +76,6 @@
             </table>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>

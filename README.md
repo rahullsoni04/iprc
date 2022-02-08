@@ -18,6 +18,10 @@ js-html2pdf (openbase.com) => https://openbase.com/js/js-html2pdf/documentation
 html to canvas => https://html2canvas.hertzen.com/features
 
 
+//  To create word from html
+// https://phppot.com/javascript/how-to-export-html-to-word-document-with-javascript/
+
+
 SEND MAIL USING JS=>https://www.geeksforgeeks.org/how-to-send-an-email-from-javascript/
 
 edit profile page
@@ -27,3 +31,4 @@ testimonial
 noc process
 login
 event
+search

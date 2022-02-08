@@ -133,3 +133,10 @@ function Convert_HTML_To_PDF() {
             win.print();
         }
     }
+    const  notify=(msg)=>{
+      let notifyAt=document.querySelector('#notification')
+      notifyAt.innerHTML=msg;
+      setTimeout(()=>{
+          notifyAt.innerHTML='';
+      },3000);
+  }
