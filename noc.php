@@ -6,18 +6,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>NOC</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css"
-    integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" /> 
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="css/forms.css?v=<?php echo time(); ?>">
-    
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <?php
-// include("config.php");
+    // include("config.php");
 
 
-?>
+    ?>
 </head>
 
 <body>
@@ -78,7 +76,7 @@
 
                     <div id="newRow"></div>
                     <button id="addRow" type="button" class="btnp btn-sm btn-info">Add Member</button>
-                    
+
                 </div>
                 <input type="text" id="previewpdf1" name="previewpdf1" style="display:none;">
                 <input type="text" id="previewpdf2" name="previewpdf2" style="display: none;">
@@ -144,9 +142,16 @@
 
                     </div>
                 </div>
+                <br><br>
                 <div class="row text-center">
-                    <div class="col-sm-6"> <button class="btnp btn btn-sm mt-3" name="submit">Submit</button></div>
-                    <div class="col-sm-6"> <a class="btnp btn btn-sm mt-3" name="preview" id="preview">Preview</a></div>                                 
+                    <div class="col-sm-6">
+                        <input type="checkbox" id="termsChkbx" onchange="isChecked(this,'submit');isChecked(this,'preview');" /> <b style="color:aliceblue;">check onces filled</b>
+                    </div>
+                </div>
+                <div class="row text-center">
+
+                    <div class="col-sm-6"> <button class="btnp btn btn-sm mt-3" name="submit" id="submit" disabled="disabled">Submit</button></div>
+                    <div class="col-sm-6"> <button class="btnp btn btn-sm mt-3" name="preview" id="preview" disabled="disabled">Preview</button></div>
                 </div>
             </div>
 
@@ -161,7 +166,7 @@
                 $dairy_no = $_POST['dairyno'];
                 $role = $_POST['role'];
                 $designation = $_POST['designation'];
-                
+
                 $sql = "INSERT INTO `ipr_copyrights` ( `title`, `description`, `presenter`, `diary_no`, `status`) VALUES ('$title', '$desc', '$p_name[$i]', '$p_email[$i]', '$dairy_no', 'filed');";
                 mysqli_query($db, $sql);
 
@@ -200,6 +205,17 @@
         </form>
     </div>
 
+    <script>
+        function isChecked(chk, sub1) {
+            console.log(sub1);
+            var myLayer = document.getElementById(sub1);
+            if (chk.checked == true) {
+                myLayer.disabled = false;
+            } else {
+                myLayer.disabled = true;
+            };
+        }
+    </script>
     <script type="text/javascript">
         var previewForm = document.getElementById("previewForm");
         // var previewForm1 = document.getElementById("previewForm1");
@@ -270,7 +286,7 @@
             last.innerHTML = lastvar;
             last1.innerHTML = lastvar1;
             document.getElementById('previewpdf1').value = document.getElementById('previewForm1').innerHTML;
-            window.print('previewpdf1');
+            // window.print('previewpdf1');
             //document.getElementById('previewpdf2').value = document.getElementById('previewForm2').innerHTML;
             // console.log(document.getElementById('previewpdf').value.trim());
         })
@@ -319,4 +335,5 @@
         });
     </script>
 </body>
+
 </html>
