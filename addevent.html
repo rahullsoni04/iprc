@@ -14,38 +14,58 @@
 </head>
 
 <body>
- 
-  <div class="col-sm-12 text-center  heading">
-    <h2>Edit Testimonials section for Homepage</h2>
-</div>
 
     <div class="container my-4 new-section">
-        <div class="wrapper ">
-            <h5> Event Banner</h5>
-            <input type="file" id="upload" />
+      <div class="text-center heading">
+        <h2>Add a New Event</h2>
+    </div><hr>
+    <div class="spacer" style="height: 20px;"></div>
+      <div class="container-upload">
+
+      <p> Event Banner :
+        <div class="button-wrap">         
+
+            <label class="button" for="upload">Upload File</label>
+            <input id="upload" type="file"></p>
         </div>
+      </div>
         <div class="spacer" style="height: 20px;"></div>
 
-        <h5>Event Description</h5>
+        <p>Event Description :
         <textarea placeholder="Write description here..." rows="20" name="comment[text]" id="comment_text"
             class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list"
-            aria-haspopup="true"></textarea>
+            aria-haspopup="true"></textarea></p>
         <div class="spacer" style="height: 20px;"></div>
-        <h5>Venue</h5>
+        <p>Venue :
         <textarea placeholder="Venue of the event..." rows="15" name="comment[text]" id="comment_text"
             class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list"
-            aria-haspopup="true"></textarea>
+            aria-haspopup="true"></textarea></p>
         <div class="spacer" style="height: 20px;"></div>
-        <h5>Event Date</h5>
-        <input type="date" id="birthday" name="birthday">   
+        <p>Event Date :
+        <input type="date" class="txt" id="birthday" name="birthday"> </p>  
         <div class="spacer" style="height: 20px;"></div> 
-        <h5>Start Time</h5>
-        <input type="time" id="appt" name="appt">
+        <p>Start Time :
+        <input type="time" class="txt" id="appt" name="appt"></p>
         <div class="spacer" style="height: 20px;"></div> 
-        <h5>End Time</h5>
-        <input type="time" id="appt" name="appt">
-        <div class="spacer" style="height: 40px;"></div> 
-        <button class="btn btn-success">Submit</button>
+        <p>End Time :
+        <input type="time" class="txt" id="appt" name="appt"></p>
+        <div class="spacer" style="height: 22px;"></div> 
+        <div class="input-group input-group-sm mb-3">
+       <p> Name of Speaker : <input type="text" placeholder="Enter Name" class="txt"></p><br><br>
+       <p> Designation of Speaker : <input type="" placeholder="Enter Designation" class="txt"></p>
+      <div class="container-upload">
+        <p> Speaker's Image : 
+         <div class="button-wrap">         
+
+        <label class="button" for="upload">Upload File</label>
+        <input id="upload" type="file"></p>
+    </div> 
+    <div class="spacer" style="height: 20px;"></div>
+  
+        </div>
+      </div>
+      <p>Registeration Link : <input type="url" placeholder="Enter Link" class="txt"></p>
+        <button class="btnp">Submit</button>
     </div>  
 
 
