@@ -18,7 +18,17 @@
     echo (isset($_SESSION['email']));
     //echo preg_match('#sakec.ac.in$#', $_SESSION['email']);
     if (!(isset($_SESSION['email'])) || !(preg_match('#sakec.ac.in$#', $_SESSION['email']))) {
-        RedirectAfterMsg("Please login with SAKEC email to access this page","login.php");
+        RedirectAfterMsg("Please login with SAKEC email to access this page", "login.php");
+    }
+    $email = $_SESSION['email'];
+    $name='';
+    $id;
+    $sql = "SELECT * FROM `ipr_users` WHERE email_id='$email';";
+    $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $name = $row['name'];
+        $role = $row['role'];
+        $id = $row['id'];
     }
     ?>
 </head>
@@ -49,29 +59,29 @@
                     </div>
                     <div id="inputFormRow">
                         <div class="form__group field">
-                            <input type="input" name="name_applicant[]" class="txt form__field" placeholder="Name of Applicant" autocomplete="off" required>
+                            <input type="input" name="name_applicant[]" class="txt form__field" value="<?php echo $name ?>" placeholder="Name of Applicant" autocomplete="off" required>
 
                         </div>
                         <div class="form__group field">
-                            <input type="email" name="email_applicant[]" class="txt form__field" placeholder="Email" autocomplete="off" required>
+                            <input type="email" name="email_applicant[]" class="txt form__field" value="<?php echo $email ?>" placeholder="Email" autocomplete="off" required>
 
                         </div>
                         <div class="form__group field">
 
-                            <select id="role_applicant" class="txt form__field" name="role[]">
+                            <select id="role_applicant" class="txt form__field" name="role[]" >
                                 <option value="" disabled selected hidden>Select your Role</option>
-                                <option value="Author">Author</option>
-                                <option value="Applicant">Applicant</option>
-                                <option value="Both">Both</option>
+                                <option value="Author" style="color:black;">Author</option>
+                                <option value="Applicant" style="color:black;">Applicant</option>
+                                <option value="Both" style="color:black;">Both</option>
                             </select>
                         </div>
                         <div class="form__group field">
 
                             <select id="designation" class="txt form__field" name="designation[]">
                                 <option value="" disabled selected hidden>Select your Designation</option>
-                                <option value="asst. prof">Asst . Prof</option>
-                                <option value="asso. prof">Asso . Prof</option>
-                                <option value="student">Student</option>
+                                <option value="asst. prof" style="color:black;">Asst . Prof</option>
+                                <option value="asso. prof" style="color:black;">Asso . Prof</option>
+                                <option value="student" style="color:black;" <?php if ($role == '2') { echo "Selected"; } ?>>Student</option>
                             </select>
                         </div>
                         <div class="input-group-append mb-3">
@@ -150,14 +160,14 @@
                 <br><br>
                 <div class="row text-center">
                     <div class="col-sm-12">
-                        <input type="radio" id="termsChkbx" onchange="isChecked(this,'submit');isChecked(this,'preview');" /> 
+                        <input type="radio" id="termsChkbx" onchange="isChecked(this,'submit');isChecked(this,'preview');" />
                         <b style="color:aliceblue;">I Acknowledge that the above information is true and correct as per best of knowledge <br> Also I Acknowledge that the data cannot be editted by any means after submitted</b>
                     </div>
                 </div>
                 <div class="row text-center">
 
                     <div class="col-sm-6"> <button class="btnp btn btn-sm mt-3" name="submit" id="submit" disabled="disabled">Submit Application</button></div>
-                    <div class="col-sm-6"> <button class="btnp btn btn-sm mt-3" name="preview" id="preview" disabled="disabled">Preview Application</button></div>
+                    <div class="col-sm-6"> <button class="btnp btn btn-sm mt-3" type="button" name="preview" id="preview" disabled="disabled">Preview Application</button></div>
                 </div>
             </div>
 
@@ -171,15 +181,22 @@
                 $role = $_POST['role'];
                 $designation = $_POST['designation'];
 
-                $sql = "INSERT INTO `ipr_copyrights` ( `title`, `description`, `presenter`, `diary_no`, `status`) VALUES ('$title', '$desc', '$p_name[$i]', '$p_email[$i]', '$dairy_no', 'filed');";
-                mysqli_query($db, $sql);
+                $sql = "INSERT INTO `ipr_copyrights`(`title`, `description`, `diary_no`, `status`, `presenter`) VALUES ('$title','$desc','$dairy_no','filed','$id')";
+                mysqli_query($conn, $sql);
+
+                $sql1="select * from ipr_copyrights where diary_no='$dairy_no' and presenter = '$id';";
+                $result1=mysqli_query($conn, $sql1);
+                while ($row = mysqli_fetch_assoc($result1)) {
+                    $cid = $row['id'];
+                }
 
                 for ($i = 0; $i < count($p_name); $i++) {
                     if ($p_name[$i] != "" && $p_email[$i] != "" && $role[$i] != "" && $designation[$i] != "") {
-                        $sql2 = "INSERT INTO `ipr_cp_applicant` (`name`, `email`, `role`, `designation`) VALUES ('$dairy_no', '$p_name[$i]',  '$p_email[$i]', '$role[$i]', '$designation[$i]');";
-                        mysqli_query($db, $sql2);
+                        $sql2 = "INSERT INTO `ipr_cp_applicant`(`cid`, `name`, `email`, `role`, `designation`) VALUES ('$cid','$p_name[$i]','$p_email[$i]','$role[$i]','$designation[$i]')";
+                        mysqli_query($conn, $sql2);
                     }
                 }
+                echo "<script>alert('$title,$desc,$dairy_no')</script>";
 
                 // include('pdf.php');
                 // //first pdf
@@ -312,17 +329,17 @@
                         <div class="form__group field">
                         <select id="role_applicant" class="txt form__field" name="role[]">
                             <option value="" disabled selected hidden>Select your Role</option>
-                            <option >Author</option>
-                            <option>Applicant</option>
-                            <option>Both</option>
+                            <option value="Author" style="color:black;">Author</option>
+                            <option value="Applicant" style="color:black;">Applicant</option>
+                            <option value="Both" style="color:black;">Both</option>
                         </select>
                         </div>
                         <div class="form__group field">
                         <select id="designation" class="txt form__field" name="designation[]">
                             <option value="" disabled selected hidden>Select your Designation</option>
-                            <option >Asst . Prof</option>
-                            <option>Asso . Prof</option>
-                            <option>Student</option>
+                            <option value="Asst. Prof" style="color:black;">Asst . Prof</option>
+                            <option value="Asso. Prof" style="color:black;">Asso . Prof</option>
+                            <option value="Student" style="color:black;">Student</option>
                         </select>
                         </div>
                         <div class="input-group-append mb-3">                

@@ -81,7 +81,7 @@ session_start();
                                     ?>
                                     <?php echo $rows['name']; ?>
                                 </td>
-                                <td><?php echo $i; ?></td>
+                                <!-- <td><?php //echo $i; ?></td> -->
                                 <td><?php echo $rows['email_id']; ?></td>
                                 <td><?php echo $row[$i]['title']; ?></td>
                                 <td><?php echo $row[$i]['description']; ?></td>

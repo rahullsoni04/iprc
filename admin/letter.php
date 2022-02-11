@@ -4,9 +4,8 @@ session_start();
 $id = 0;
 if (isset($_POST['cpRecordId'])) {
     $id = $_POST['cpRecordId'];
-} 
-else {
-    RedirectAfterMsg("Record not found check id","dashboard.php");
+} else {
+    RedirectAfterMsg("Record not found check id", "dashboard.php");
 }
 ?>
 <!doctype html>
@@ -43,7 +42,7 @@ else {
     $row = mysqli_fetch_assoc($query);
 
     ?>
-    <div class="container" id="notification"><?php (isset($_SESSION['msg']))?"heeloo":"world"; ?></div>
+    <div class="container" id="notification"><?php (isset($_SESSION['msg'])) ? "heeloo" : "world"; ?></div>
     <div class="main">
         <h3 style="text-align: center;">NOC Letter</h3>
         <hr>
@@ -58,8 +57,8 @@ else {
             <p>Respected Sir,</p>
             <p>I/We request you to kindly grant me/us the permission to carry out the work. The details of the work and
                 applicants are mentioned below. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio a eos enim fugit dolorum quibusdam veniam, maxime esse, earum dolores obcaecati vero et nisi recusandae quo consectetur temporibus quam fugiat.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit fuga qui sapiente repellendus nam consequuntur distinctio.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit fuga qui sapiente repellendus nam consequuntur distinctio.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit fuga qui sapiente repellendus nam consequuntur distinctio.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit fuga qui sapiente repellendus nam consequuntur distinctio.</p>
             <strong>
                 <p>Details of the work:</p>
             </strong>
@@ -95,14 +94,25 @@ else {
             </table>
             <br>
             <p>Thanking You.</p><br>
-            <p>1. Pallavi Ramanuj Pandey</p>
+            <!-- <p>1. Pallavi Ramanuj Pandey</p> -->
+
+            <?php
+            $i = 1;
+            $query1 = mysqli_query($conn, $sql);
+            while ($rows = mysqli_fetch_assoc($query1)) {
+            ?>
+                <p><?php echo $i++ . ". " . $rows['name']; ?></p>
+            <?php
+            }
+            ?>
         </div>
         <hr>
         <?php
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (isset($_POST['accept'])) {
                 $id = $_POST['accept'];
-                $sql = "UPDATE `ipr_copyrights` SET `status`='accepted' ,`action_by`='".$_SESSION['user_name']."' WHERE `id`=$id";
+                // $sql = "UPDATE `ipr_copyrights` SET `status`='accepted',`action_by`='" . $_SESSION['user_name'] . "' WHERE `id`=$id";
+                $sql = "UPDATE `ipr_copyrights` SET `status`='accepted' WHERE `id`=$id";
                 $query = mysqli_query($conn, $sql);
                 $row['status'] = "accepted";
                 // Notify("You accepted the request");
@@ -111,7 +121,8 @@ else {
                 $id = $_POST['reject'];
                 $reason = $_POST['rejectionMsg'];
                 //sql will contain query that will update database to reuject the request
-                $sql = "UPDATE `ipr_copyrights` SET `status`='rejected',`action_by`='".$_SESSION['user_name']."' WHERE `id`=$id";
+                // $sql = "UPDATE `ipr_copyrights` SET `status`='rejected',`action_by`='" . $_SESSION['user_name'] . "' WHERE `id`=$id";
+                $sql = "UPDATE `ipr_copyrights` SET `status`='rejected' WHERE `id`=$id";
                 $query = mysqli_query($conn, $sql);
                 $sql = "INSERT INTO `ipr_cp_reject`(`cp_id`, `reason`) 
                                                 VALUES ($id,'$reason')";
@@ -130,7 +141,7 @@ else {
                 <?php
                 if ($row['status'] == "accepted") {
                 ?>
-                <h4>Status</h4>
+                    <h4>Status</h4>
                     <h5>This Request is accepted</h5>
                     <button id="printApplication" class="btn" onclick="Letter.print()">Print Application</button>
                 <?php
@@ -144,20 +155,20 @@ else {
                     <div id="alert" style="display: none;margin-top:20px; margin-bottom :20px">
                         <h2>Are you sure want to accept</h2>
                         <div class="row">
-                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="post">
-                            <input type="hidden" name="cpRecordId" value="<?php echo $id;?>">
-                            <button name="accept" value="<?php echo $id ?>" class="btn btn-danger">Yes</button>
-                        </form>
-                        <button id="acceptCancel" class="btn btn-primary">No</button>
+                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+                                <input type="hidden" name="cpRecordId" value="<?php echo $id; ?>">
+                                <button name="accept" value="<?php echo $id ?>" class="btn btn-danger">Yes</button>
+                            </form>
+                            <button id="acceptCancel" class="btn btn-primary">No</button>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <button id="acceptDialogue" class="btn">Accept</button>
-                    <button id="rejectBtn" class="btn">Reject</button>
-                </div>
-                <div id="rejectReason" style="display: none;margin-top:20px; margin-bottom :20px">
-                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-                        <input type="hidden" name="cpRecordId" value="<?php echo $id;?>">
+                    <div class="row">
+                        <button id="acceptDialogue" class="btn">Accept</button>
+                        <button id="rejectBtn" class="btn">Reject</button>
+                    </div>
+                    <div id="rejectReason" style="display: none;margin-top:20px; margin-bottom :20px">
+                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                            <input type="hidden" name="cpRecordId" value="<?php echo $id; ?>">
                             <textarea name="rejectionMsg" class="form-control" id="rejectionMsg" rows="3" placeholder="Reason for rejection" required></textarea>
                             <div class="row">
                                 <div class="form-check">
