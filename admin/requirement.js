@@ -136,7 +136,8 @@ function Convert_HTML_To_PDF() {
     const  notify=(msg)=>{
       let notifyAt=document.querySelector('#notification')
       notifyAt.innerHTML=msg;
+      notifyAt.style.backgroundColor = "#AA0000";
       setTimeout(()=>{
           notifyAt.innerHTML='';
-      },3000);
+      },5000);
   }

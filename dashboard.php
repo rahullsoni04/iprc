@@ -1,5 +1,5 @@
 <?php
- require_once 'requirements.php';
+require_once 'requirements.php';
 // echo var_dump($conn);
 ?>
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
         <a href="#about">Certifications</a>
     </div>
     <div class="logo">
-       <img src="/images/logo.png">
+        <img src="/images/logo.png">
 
     </div>
     <div class="text-center content">
@@ -38,42 +38,46 @@
             <button type="button" class="btn">Contact Us</button>
         </div>
         <div class="table">
-            <table class="table table-bordered">
-                
-                <?php
-                $sql = 'SELECT * FROM `ipr_copyrights` as `cp`,`ipr_users` as `users` WHERE users.email_id="ipradmin@sakec.ac.in" and users.id=cp.presenter';
-                $query = mysqli_query($conn, $sql);
-                $row = mysqli_fetch_all($query, MYSQLI_BOTH);
-                ?>               
-                <thead>
-                    <tr>
-                        <th scope="col">Select</th>
-                        <th scope="col">Presenter</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Diary No</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Download Noc</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    for ($i = 0; $i < mysqli_num_rows($query); $i++) {
-                    ?>
+            <?php
+            $sql = 'SELECT * FROM `ipr_copyrights` as `cp`,`ipr_users` as `users` WHERE users.email_id='.$_SESSION['email'].' and users.id=cp.presenter';
+            $query = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_all($query, MYSQLI_BOTH);
+            if (!mysqli_num_rows($query)) {
+                echo '<h3>No Records Found</h3>';
+            } else {
+            ?>
+                <table class="table table-bordered">
+
+                    <thead>
                         <tr>
-                            <td><button type="button" class="btn">Select</button></td>
-                            <td><?php echo $row[$i]['name']; ?></td>
-                            <td><?php echo $row[$i]['title']; ?></td>
-                            <td><?php echo $row[$i]['description']; ?></td>
-                            <td><?php echo $row[$i]['diary_no']; ?></td>
-                            <td><?php echo $row[$i]['status']; ?></td>
-                            <td><button type="button" class="btn">Download Noc</button></td>
+                            <th scope="col">Id</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Diary No</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Download Noc</th>
                         </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php
+                        for ($i = 0; $i < mysqli_num_rows($query); $i++) {
+                        ?>
+                            <tr>
+                                <td><?php echo ($i+1); ?></td>
+                                <td><?php echo $row[$i]['title']; ?></td>
+                                <td><?php echo $row[$i]['description']; ?></td>
+                                <td><?php echo $row[$i]['diary_no']; ?></td>
+                                <td><?php echo $row[$i]['status']; ?></td>
+                                <td><button type="button" class="btn">Download Noc</button></td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            <?php
+            }
+            ?>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

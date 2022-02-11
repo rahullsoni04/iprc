@@ -1,11 +1,12 @@
 <?php
 require_once '../requirements.php';
+session_start();
 $id = 0;
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cpRecordId'])) {
+if (isset($_POST['cpRecordId'])) {
     $id = $_POST['cpRecordId'];
-} else {
-    //RedirectAfterMsg("Select proper record","../index.html");
-    $id = 1;
+} 
+else {
+    RedirectAfterMsg("Record not found check id","dashboard.php");
 }
 ?>
 <!doctype html>
@@ -42,11 +43,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cpRecordId'])) {
     $row = mysqli_fetch_assoc($query);
 
     ?>
+    <div class="container" id="notification"><?php (isset($_SESSION['msg']))?"heeloo":"world"; ?></div>
     <div class="main">
         <h3 style="text-align: center;">NOC Letter</h3>
         <hr>
         <div id="letter">
-            <img src="../images/man.png" alt="">
             <p>To<br>
                 The Principal,<br>
                 Shah and Anchor Kutchhi Engineering College,<br>
@@ -101,22 +102,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cpRecordId'])) {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (isset($_POST['accept'])) {
                 $id = $_POST['accept'];
-                $sql = "UPDATE `ipr_copyrights` SET `status`='accepted' WHERE `id`=$id";
+                $sql = "UPDATE `ipr_copyrights` SET `status`='accepted' ,`action_by`='".$_SESSION['user_name']."' WHERE `id`=$id";
                 $query = mysqli_query($conn, $sql);
                 $row['status'] = "accepted";
                 // Notify("You accepted the request");
-                Alert("test");
+                PushNotification("You Accepted the Message");
             } else if (isset($_POST['reject'])) {
                 $id = $_POST['reject'];
                 $reason = $_POST['rejectionMsg'];
                 //sql will contain query that will update database to reuject the request
-                $sql = "UPDATE `ipr_copyrights` SET `status`='rejected' WHERE `id`=$id";
+                $sql = "UPDATE `ipr_copyrights` SET `status`='rejected',`action_by`='".$_SESSION['user_name']."' WHERE `id`=$id";
                 $query = mysqli_query($conn, $sql);
                 $sql = "INSERT INTO `ipr_cp_reject`(`cp_id`, `reason`) 
                                                 VALUES ($id,'$reason')";
                 $query = mysqli_query($conn, $sql);
                 $row['status'] = "rejected";
-                Notify("You rejected the request");
+                PushNotification("You Rejected the Message");
             }
         }
         ?>
@@ -129,12 +130,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cpRecordId'])) {
                 <?php
                 if ($row['status'] == "accepted") {
                 ?>
-                    <h2>you accepted the request</h2>
+                <h4>Status</h4>
+                    <h5>This Request is accepted</h5>
                     <button id="printApplication" class="btn" onclick="Letter.print()">Print Application</button>
                 <?php
                 } else if ($row['status'] == "rejected") {
                 ?>
-                    <h2>You rejected the request</h2>
+                    <h5>This Request is accepted</h5>
                 <?php
                 } else {
                     // if ($row['status'] != "accepted"&&$row['status'] != "rejected") { 
@@ -142,18 +144,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cpRecordId'])) {
                     <div id="alert" style="display: none;margin-top:20px; margin-bottom :20px">
                         <h2>Are you sure want to accept</h2>
                         <div class="row">
-                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-                                <button name="accept" value="<?php echo $id ?>" class="btn btn-danger">Yes</button>
-                            </form>
-                            <button id="acceptCancel" class="btn btn-primary">No</button>
-                        </div>
+                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="post">
+                            <input type="hidden" name="cpRecordId" value="<?php echo $id;?>">
+                            <button name="accept" value="<?php echo $id ?>" class="btn btn-danger">Yes</button>
+                        </form>
+                        <button id="acceptCancel" class="btn btn-primary">No</button>
                     </div>
-                    <div class="row">
-                        <button id="acceptDialogue" class="btn">Accept</button>
-                        <button id="rejectBtn" class="btn">Reject</button>
-                    </div>
-                    <div id="rejectReason" style="display: none;margin-top:20px; margin-bottom :20px">
-                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                </div>
+                <div class="row">
+                    <button id="acceptDialogue" class="btn">Accept</button>
+                    <button id="rejectBtn" class="btn">Reject</button>
+                </div>
+                <div id="rejectReason" style="display: none;margin-top:20px; margin-bottom :20px">
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                        <input type="hidden" name="cpRecordId" value="<?php echo $id;?>">
                             <textarea name="rejectionMsg" class="form-control" id="rejectionMsg" rows="3" placeholder="Reason for rejection" required></textarea>
                             <div class="row">
                                 <div class="form-check">

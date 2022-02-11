@@ -13,8 +13,13 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <?php
     // include("config.php");
-
-
+    require_once "requirements.php";
+    session_start();
+    echo (isset($_SESSION['email']));
+    //echo preg_match('#sakec.ac.in$#', $_SESSION['email']);
+    if (!(isset($_SESSION['email'])) || !(preg_match('#sakec.ac.in$#', $_SESSION['email']))) {
+        RedirectAfterMsg("Please login with SAKEC email to access this page","login.php");
+    }
     ?>
 </head>
 
@@ -144,21 +149,20 @@
                 </div>
                 <br><br>
                 <div class="row text-center">
-                    <div class="col-sm-6">
-                        <input type="checkbox" id="termsChkbx" onchange="isChecked(this,'submit');isChecked(this,'preview');" /> <b style="color:aliceblue;">check onces filled</b>
+                    <div class="col-sm-12">
+                        <input type="radio" id="termsChkbx" onchange="isChecked(this,'submit');isChecked(this,'preview');" /> 
+                        <b style="color:aliceblue;">I Acknowledge that the above information is true and correct as per best of knowledge <br> Also I Acknowledge that the data cannot be editted by any means after submitted</b>
                     </div>
                 </div>
                 <div class="row text-center">
 
-                    <div class="col-sm-6"> <button class="btnp btn btn-sm mt-3" name="submit" id="submit" disabled="disabled">Submit</button></div>
-                    <div class="col-sm-6"> <button class="btnp btn btn-sm mt-3" name="preview" id="preview" disabled="disabled">Preview</button></div>
+                    <div class="col-sm-6"> <button class="btnp btn btn-sm mt-3" name="submit" id="submit" disabled="disabled">Submit Application</button></div>
+                    <div class="col-sm-6"> <button class="btnp btn btn-sm mt-3" name="preview" id="preview" disabled="disabled">Preview Application</button></div>
                 </div>
             </div>
 
             <?php
             if (isset($_POST['submit'])) {
-
-
                 $title = $_POST['title'];
                 $desc = $_POST['des'];
                 $p_name = $_POST['name_applicant'];

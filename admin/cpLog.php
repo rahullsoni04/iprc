@@ -33,13 +33,13 @@ session_start();
             debitis, autem similique minima labore suscipit sapiente qui. Eius laboriosam adipisci quibusdam molestias
             dolores eum!</p>
         <div class="main-buttons">
-            <button type="button" class="btn">Copyrights Log</button>
+            <a href="dashboard.php" type="button" class="btn">Dashboard</a>
             <button type="button" class="btn">Vedio Tutorial</button>
             <button type="button" class="btn">Contact Us</button>
         </div>
         <?php
         //Dsplay the copyright content with status filed
-        $sql = 'SELECT * FROM `ipr_copyrights` WHERE `status`="filed"';
+        $sql = 'SELECT * FROM `ipr_copyrights` WHERE `status`<>"filed"';
         $query = mysqli_query($conn, $sql);
         $row = mysqli_fetch_all($query, MYSQLI_BOTH);
         // print_r($row);
@@ -51,42 +51,38 @@ session_start();
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">Review</th>
+                            <th scope="col">Sr. No</th>
                             <th scope="col">Presenter</th>
                             <th scope="col">Presenter Email</th>
                             <th scope="col">Title</th>
                             <th scope="col">Description</th>
                             <th scope="col">Diary No</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Action By</th>
                             <th scope="col">Download Noc</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $noOfRow=mysqli_num_rows($query);
-                        for ($i = 0; $i < $noOfRow; $i++) {
+                        for ($i = 0; $i <= mysqli_num_rows($query); $i++) {
                         ?>
                             <tr>
-                                <td>
-                                    <form action="letter.php" method="post">
-                                        <button name="cpRecordId" value="<?php echo $row[$i]['id']; ?>" type="submit" class="btn">Review</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <?php
-                                    $pid = $row[$i]['presenter'];
-                                    $sql = "SELECT `id`, `name`, `email_id`, `department`, `reg_no` FROM `ipr_users` WHERE `id`=" . $pid;
-                                    $query = mysqli_query($conn, $sql);
-                                    $rows = mysqli_fetch_assoc($query);
-                                    ?>
-                                    <?php echo $rows['name']; ?>
-                                </td>
-                                <td><?php echo $i; ?></td>
-                                <td><?php echo $rows['email_id']; ?></td>
-                                <td><?php echo $row[$i]['title']; ?></td>
-                                <td><?php echo $row[$i]['description']; ?></td>
-                                <td><?php echo $row[$i]['diary_no']; ?></td>
-                                <td><?php echo $row[$i]['status']; ?></td>
+                                    <td><?php echo $i+1;?></td>
+                                    <td>
+                                        <?php
+                                        $pid = $row[$i]['presenter'];
+                                        $sql = "SELECT `id`, `name`, `email_id`, `department`, `reg_no` FROM `ipr_users` WHERE `id`=" . $pid;
+                                        $query = mysqli_query($conn, $sql);
+                                        $rows = mysqli_fetch_assoc($query);
+                                        ?>
+                                        <?php echo $rows['name']; ?>
+                                    </td>
+                                    <td><?php echo $rows['email_id']; ?></td>
+                                    <td><?php echo $row[$i]['title']; ?></td>
+                                    <td><?php echo $row[$i]['description']; ?></td>
+                                    <td><?php echo $row[$i]['diary_no']; ?></td>
+                                    <td><?php echo $row[$i]['status']; ?></td>
+                                    <td><?php echo $row[$i]['action_by']; ?></td>
                                 <td><button type="button" class="btn">Download Noc</button></td>
                             </tr>
                         <?php

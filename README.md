@@ -16,7 +16,8 @@ html2Pdf github repo => https://github.com/eKoopmans/html2pdf.js#cdn
 js-html2pdf (openbase.com) => https://openbase.com/js/js-html2pdf/documentation
 
 html to canvas => https://html2canvas.hertzen.com/features
-
+to store the data into drive -> https://stackoverflow.com/questions/25707891/google-drive-php-api-simple-file-upload
+    
 
 //  To create word from html
 // https://phppot.com/javascript/how-to-export-html-to-word-document-with-javascript/
@@ -25,10 +26,12 @@ html to canvas => https://html2canvas.hertzen.com/features
 SEND MAIL USING JS=>https://www.geeksforgeeks.org/how-to-send-an-email-from-javascript/
 
 edit profile page
+noc process
 signup frontend
 reply button in query page
 testimonial
-noc process
 login
 event
 search
+teams
+gallery

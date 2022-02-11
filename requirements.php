@@ -193,7 +193,7 @@ function PushNotification($msg){
         notifyAt.innerHTML=msg;
         setTimeout(()=>{
             notifyAt.innerHTML='';
-        },3000);
+        },5000);
     }
     notifyMsg(msg);
     </script>";
