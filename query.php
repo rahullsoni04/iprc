@@ -104,6 +104,7 @@ require_once 'requirements.php'
           $query = mysqli_query($conn, $sql);
           if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_assoc($query)) {
+              $rid = $row['id'];
           ?>
               <tr>
                 <td><?php echo $id++; ?></td>
@@ -112,24 +113,40 @@ require_once 'requirements.php'
                 <td><?php echo $row['subject']; ?></td>
                 <td><?php echo $row['query']; ?></td>
                 <td>
-                  <div id="<?php echo 'reply' . $row['id']; ?>">
-                    <button type="button" onClick="<?php echo 'addTextArea(' . $row['id'] . ');'; ?>" class="btn">Reply</button>
+                  <div id="<?php echo 'reply' . $id; ?>">
+                    <button type="button" name="<?php echo 'reply' . $id; ?>" onClick="<?php echo 'addTextArea(' . $id . ');'; ?>" class="btn">Reply</button>
                   </div>
-                  <div id="<?php echo 'textArea' . $row['id']; ?>" style="display : none;">
+                  <div id="<?php echo 'textArea' . $id; ?>" style="display : none;">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                       <textarea rows='5' cols='50' name='Msg'></textarea>
                       <br>
-                      <input type="hidden" name="reply_id" value="<?php echo $row['id']; ?>">
-                      <button type="submit" name="send" class="btn btn-success">Send</button>
+                      <input type="hidden" name="reply_id" value="<?php echo $id; ?>">
+                      <button type="submit" name="<?php echo 'send' . $id; ?>" class="btn btn-success">Send</button>
 
-                      <button type="button" onClick="<?php echo 'addTextArea(' . $row['id'] . ');'; ?>" class="btn btn-danger">Cancel</button>
+                      <button type="button" onClick="<?php echo 'addTextArea(' . $id . ');'; ?>" class="btn btn-danger">Cancel</button>
                     </form>
+                    <?php
+                    if (isset($_POST['send' . $id])) {
+                      $msg = $_POST['Msg'];
+                      
+                      $sql5 = "update ipr_contact_us set replyMsg='$msg',replyStatus='1' where id = '$rid';";
+                      mysqli_query($conn, $sql5);
+                      echo "<script>alert('Query replied'); window.location='query.php'</script>";
+                    }
+                    ?>
 
                   </div>
                 </td>
-                <td><button type="button" class="btn"><i class="far fa-trash-alt"></i>&nbsp; Delete</button></td>
+                <td>
+                  <form method="POST"><button type="submit" name="<?php echo 'delete' . $id; ?>" class="btn"><i class="far fa-trash-alt"></i>&nbsp; Delete</button></form>
+                </td>
               </tr>
           <?php
+              if (isset($_POST['delete' . $id])) {
+                $sql6 = "DELETE FROM `ipr_contact_us` WHERE id = $rid";
+                mysqli_query($conn, $sql6);
+                echo "<script>window.location='query.php'</script>";
+              }
             }
           }
           ?>
@@ -149,6 +166,17 @@ require_once 'requirements.php'
         $navbtn.toggleClass('scrolled', $(this).scrollTop() > $navbtn.height());
       });
     });
+  </script>
+
+  <script>
+    function addTextArea(textID) {
+      var x = document.getElementById('textArea' + textID);
+      if (x.style.display == 'none') {
+        x.style.display = 'block';
+      } else {
+        x.style.display = 'none';
+      }
+    }
   </script>
 
 </body>
