@@ -1,0 +1,213 @@
+body {
+    margin: 0;
+	background-image: url(../images/bg1.jpg);
+	height: 100vh;
+    background-attachment: fixed;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: auto;
+    font-family: "Sofia", sans-serif;
+}
+
+
+/* Navbar */
+.bg-dark {
+    padding: 10px 10px;
+    transition: 500ms ease;
+    font-family:  system-ui;
+    background-color: rgba(130, 201, 211, 0.753) !important;
+}
+.navbar-light .navbar-brand  {
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+}
+.navbar-light .navbar-brand:hover{
+    color: rgb(0, 0, 0);
+}
+
+
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show>.nav-link {
+color: rgba(0, 0, 0, 0.9);
+padding: 0px 30px;
+font-size: 18px;
+}
+
+.navbar-light .navbar-nav .nav-link:focus {
+    color:rgb(0, 0, 0);
+    outline: none;
+}
+
+.navbar-light .navbar-nav .nav-link.active{
+    border-bottom: solid 3px #d3dddf; 
+    color: rgb(0, 0, 0);
+   
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+    color: rgb(0, 0, 0);
+}
+
+.navbar-light .navbar-nav .nav-link:after {
+    display:block;
+    padding-bottom: 8px;
+    content: '';
+    border-bottom: solid 3px #d3dddf;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+  }
+  .navbar-light .navbar-nav .nav-link:hover:after 
+  { 
+      transform: scaleX(1); 
+    }
+
+.navbar-collapse {
+    margin-left: 200px;
+}
+
+.bg-dark.scrolled {  
+    background-image: -webkit-linear-gradient(left, #1b48aa 0%, #59b6d3 50%, #2868b1 100%);
+    background-image: -o-linear-gradient(left, #285fb1 0%, #45bbd8 50%, #287fb1 100%);
+    background-image: linear-gradient(to right, #285fb1 0%, #2298b6 50%, #5cb8f6 100%);
+    transition: background-color 500ms linear;
+} 
+/* 
+.btn-outline-info.scrolled{
+    border: 1px solid white;
+   
+}
+.btn-outline-info.scrolled:hover{
+    background-color: white;
+    color: rgb(56, 56, 56) !important;
+} */
+
+@media only screen and (max-width: 1196px)
+{
+    .navbar-collapse {
+        margin-left: 100px;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .bg-dark{
+        background-image: -webkit-linear-gradient(left, #1b48aa 0%, #59b6d3 50%, #2868b1 100%);
+        background-image: -o-linear-gradient(left, #285fb1 0%, #45bbd8 50%, #287fb1 100%);
+        background-image: linear-gradient(to right, #285fb1 0%, #2298b6 50%, #5cb8f6 100%);
+    }
+    .navbar-collapse {
+        margin-left: 0px;
+    }
+}
+/* Search Button */
+form.example input[type=text] {
+    padding: 7px;
+    font-size: 15px;
+    border: 1px solid grey;
+    box-shadow: 0 0 5px rgb(87, 100, 99);
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+  }
+  
+  form.example button {
+    float: left;
+    width: 20%;
+    padding: 7px;
+    background:  rgba(68, 170, 184, 0.925);
+    box-shadow: 0 0 5px rgb(87, 100, 99);
+    color: white;
+    font-size: 15px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  form.example button:hover {
+    background: rgba(70, 188, 206, 0.849);
+  }
+  
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+/* Navbar ends */
+
+div.content {
+    /* margin-left: 200px; */
+    padding: 1px 16px;
+}
+
+.content h2 {
+    font-size: 50px;
+    text-shadow: 3px 3px 3px #ababab;
+    margin-top: 80px;
+    color: rgb(0, 0, 0);
+}
+
+/* button */
+
+.btn{
+    margin: 0px 20px;
+    background-color: rgba(68, 170, 184, 0.925);
+    border-radius: 5px;
+	border: 2px solid rgb(67, 143, 167);
+	padding:5px 20px;
+	color: rgb(255, 255, 255);
+	text-decoration: none; 
+	bottom: 2px ;   
+}	
+
+.btn:hover{
+	background-color:  rgba(70, 188, 206, 0.849);
+    color: rgb(255, 255, 255);
+    box-shadow: 0 0 6px rgb(35, 44, 49);
+	transition: 0.3s ease;
+}
+
+.main-buttons {
+    margin: 20px;
+}
+
+.table>thead {
+    vertical-align: bottom;
+    background:  #4291a5;
+    color: white;
+    text-align: center;
+}
+
+.table{
+    border: #3fa6c0;
+    color: rgb(0, 0, 0);
+}
+
+.logo img{
+    position: relative;
+    left: auto;
+	width:auto;
+	height: 55px;
+}
+
+@media screen and (max-width: 800px) {
+
+    div.content {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .content {
+        top: 40%;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+    .main-buttons .btn {
+        margin: 13px;
+    }
+
+}

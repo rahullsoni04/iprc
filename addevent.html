@@ -10,7 +10,8 @@
     integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/addevent.css">
-  <title>Document</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <title>Add Event</title>
 </head>
 
 <body>
@@ -44,30 +45,62 @@
         <p>Event Date :
         <input type="date" class="txt" id="birthday" name="birthday"> </p>  
         <div class="spacer" style="height: 20px;"></div> 
+
+
         <p>Start Time :
         <input type="time" class="txt" id="appt" name="appt"></p>
         <div class="spacer" style="height: 20px;"></div> 
+
+        
         <p>End Time :
         <input type="time" class="txt" id="appt" name="appt"></p>
-        <div class="spacer" style="height: 22px;"></div> 
-        <div class="input-group input-group-sm mb-3">
-       <p> Name of Speaker : <input type="text" placeholder="Enter Name" class="txt"></p><br><br>
-       <p> Designation of Speaker : <input type="" placeholder="Enter Designation" class="txt"></p>
-      <div class="container-upload">
-        <p> Speaker's Image : 
-         <div class="button-wrap">         
+                 
+      <div id="newRow"></div>
+      <button id="addCord" type="button" class="btnp">Add Coordinator</button>
 
-        <label class="button" for="upload">Upload File</label>
-        <input id="upload" type="file"></p>
-    </div> 
-    <div class="spacer" style="height: 20px;"></div>
-  
-        </div>
-      </div>
+      <div class="spacer" style="height: 20px;"></div> 
+      <div class="spacer" style="height: 20px;"></div> 
+      <!-- <div id="inputFormRow">
+        <hr><h5>Speaker Details</h5><hr>
+                <div class="form__group field">
+                    <p> Name of Speaker : <input type="text" name="name_speaker[]" placeholder="Speaker Name" class="txt"></p><br><br>
+                    </div>
+
+                <div class="form__group field">
+                <p> Designation of Speaker : 
+                    <input type="input" name="designation_speaker[]" class="txt form__field" placeholder="Speaker Description" autocomplete="off">
+                </div></p>
+
+                <div class="container-upload">
+                <div class="button-wrap"> 
+                <p> Speaker Image :         
+                <label class="button" for="upload">Upload File</label>
+                <input id="upload" type="file"></p>
+                </div> 
+                </div>
+
+                <div class="form__group field">
+                <p> Speaker Description : 
+                    <input type="input" name="LinkedIn_speaker[]" class="txt form__field" placeholder="Designation of Speaker" autocomplete="off">
+                </div></p>
+
+                <div class="form__group field">
+                <p> Speaker LinkedIn : 
+                    <input type="input" name="LinkedIn_speaker[]" class="txt form__field" placeholder="Speaker LinkedIn" autocomplete="off">
+                </div></p>
+
+                <div class="input-group-append mb-3">                
+                    <button id="removeRow" type="button" class="btnp" >Remove</button>
+                </div>
+                </div> -->
+      <div id="newRow"></div>
+      <button id="addSpeak" type="button" class="btnp">Add Speaker</button>
+      <div class="spacer" style="height: 20px;"></div> 
+      <div class="spacer" style="height: 20px;"></div> 
       <p>Registeration Link : <input type="url" placeholder="Enter Link" class="txt"></p>
         <button class="btnp">Submit</button>
     </div>  
-
+</div>
 
 
 
@@ -79,6 +112,98 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
+    <script type="text/javascript">
+    // Add Coordinator  
+        let count = 0;
+        $("#addCord").click(function() {
+            // count++;
+            var html = '';
+
+            html += `<div id="inputFormRow">
+                    <hr><h5>Coordinator Details</h5><hr>
+                        <div class="form__group field"><p>Coordinator Type : 
+                        <select id="type_coordinator" class="txt form__field" name="role[]">
+                            <option value="" disabled selected hidden>Select your Type</option>
+                            <option value="Author" style="color:black;">Staff</option>
+                            <option value="Applicant" style="color:black;">Student</option>                            
+                        </select></p>
+                        </div>
+                        <div class="form__group field">
+                            <p>Phone Number : <input type="input" name="contact_coordinator[]" class="txt form__field" placeholder="Phone Number" autocomplete="off"></p>
+                        </div>
+                        <div class="form__group field">
+                            
+                            <p>Contact Name : <input type="input" name="name_coordinator[]" class="txt form__field" placeholder="Contact Name" autocomplete="off"></p>
+                            
+                        </div>
+
+                        <div class="input-group-append mb-3">                
+                            <button id="removeRow" type="button" class="btnp" >Remove</button>
+                        </div>
+                        </div>`
+
+            $('#newRow').append(html);
+        });
+
+        // remove row
+        $(document).on('click', '#removeRow', function() {
+            $(this).closest('#inputFormRow').remove();
+            count--;
+        });
+        
+    </script>
+
+    //Add Speaker
+    <script type="text/javascript">
+      
+        let count = 0;
+        $("#addSpeak").click(function() {
+            // count++;
+            var html = '';
+
+            html += `<div id="inputFormRow">
+                <hr><h5>Speaker Details</h5><hr>
+                        <div class="form__group field">
+                            <p> Name of Speaker : <input type="text" name="name_speaker[]" placeholder="Speaker Name" class="txt"></p><br><br>
+                            </div>
+
+                        <div class="form__group field">
+                        <p> Designation of Speaker : 
+                            <input type="input" name="designation_speaker[]" class="txt form__field" placeholder="Designation of Speaker" autocomplete="off">
+                        </div></p>
+
+                        <div class="container-upload">
+                        <div class="button-wrap"> 
+                        <p> Speaker Image :         
+                        <label class="button" for="upload">Upload File</label>
+                        <input id="upload" type="file"></p>
+                        </div> 
+                        </div>
+
+                        <div class="form__group field">
+                        <p> Speaker Description : 
+                            <input type="input" name="LinkedIn_speaker[]" class="txt form__field" placeholder="Speaker Description" autocomplete="off">
+                        </div></p>
+
+                        <div class="form__group field">
+                        <p> Speaker LinkedIn : 
+                            <input type="input" name="LinkedIn_speaker[]" class="txt form__field" placeholder="Speaker LinkedIn" autocomplete="off">
+                        </div></p>
+
+                        <div class="input-group-append mb-3">                
+                            <button id="removeRow" type="button" class="btnp" >Remove</button>
+                        </div>
+                        </div>`
+
+            $('#newRow').append(html);
+        });
+
+        // remove row
+        $(document).on('click', '#removeRow', function() {
+            $(this).closest('#inputFormRow').remove();
+            count--;
+        });
+    </script>
 </body>
 
 </html>
