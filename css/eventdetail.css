@@ -166,7 +166,7 @@ font-size: 18px;
 }
 
 .banner{
-    height: 150px;
+    height: 190px;
     width: auto;
     cursor: pointer;
 }
@@ -174,4 +174,28 @@ font-size: 18px;
     width: -webkit-fill-available;
     height: auto;
 }
+.speaker-img{
+    height: 240px;
+    margin-top: 10px;
+    width: auto;
+    cursor: pointer;
+}
+.speaker-name{
+    font-weight:600;
+    font-size: 18px;
+}
+.speaker-designation{
+    font-weight: 500;
+    margin-top: -5px;
+   
+}
+.speaker-description{
+    margin-top: -5px;
+   
+}
+.new-row{
+    height: 3px !important;
+    color: #1b2d62;
+}
+
 /* event details end */

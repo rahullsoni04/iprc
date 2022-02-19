@@ -10,6 +10,11 @@ body {
     width: auto;
     font-family: "Sofia", sans-serif;
 }
+/* table */
+.table td a{
+    text-decoration: none;
+    color: black;
+}
 
 
 /* Navbar */
