@@ -153,14 +153,18 @@ if (isset($_POST['cpRecordId'])) {
                     // if ($row['status'] != "accepted"&&$row['status'] != "rejected") { 
                 ?>
                     <div id="alert" style="display: none;margin-top:20px; margin-bottom :20px">
-                        <h2>Are you sure want to accept</h2>
-                        <div class="row">
-                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
-                                <input type="hidden" name="cpRecordId" value="<?php echo $id; ?>">
-                                <button name="accept" value="<?php echo $id ?>" class="btn btn-danger">Yes</button>
-                            </form>
-                            <button id="acceptCancel" class="btn btn-primary">No</button>
-                        </div>
+                        <div class="col-md-12">
+                                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+                                    <p class="text-center">Are you sure want to accept</p>
+                                    <input type="hidden" name="cpRecordId" value="<?php echo $id; ?>">
+                                    <textarea name="accept_url" class="form-control" id="accept_url" rows="1" placeholder="URL of document" required></textarea>
+
+
+                                    <button name="accept" value="<?php echo $id ?>" class="btn btn-danger my-2">Yes</button>
+                                    <button id="acceptCancel" class="btn btn-primary  ">Cancel</button>
+                                </form>
+                                
+                            </div>
                     </div>
                     <div class="row">
                         <button id="acceptDialogue" class="btn">Accept</button>
