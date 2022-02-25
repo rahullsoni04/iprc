@@ -2,12 +2,12 @@
 require_once '../requirements.php';
 session_start();
 $id = 0;
-if (isset($_POST['cpRecordId'])) {
-    $id = $_POST['cpRecordId'];
-} else {
-    RedirectAfterMsg("Record not found check id", "dashboard.php");
-}
-?>
+// if (isset($_POST['cpRecordId'])) {
+//     $id = $_POST['cpRecordId'];
+// } else {
+//     RedirectAfterMsg("Record not found check id", "dashboard.php");
+// }
+// ?>
 <!doctype html>
 <html lang="en">
 
@@ -37,10 +37,14 @@ if (isset($_POST['cpRecordId'])) {
 
 <body>
     <?php
+    // $id = (isset($_GET['cpRecordId']) ? $_GET['cpRecordId'] : '');
+    $id = ''; 
+if( isset( $_POST['cpRecordId'])) {
+    $id = $_POST['cpRecordId']; 
+}
     $sql = "SELECT * FROM `ipr_copyrights` WHERE `id`=$id";
     $query = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($query);
-
     ?>
     <div class="container" id="notification"><?php (isset($_SESSION['msg'])) ? "heeloo" : "world"; ?></div>
     <div class="main">
@@ -67,7 +71,7 @@ if (isset($_POST['cpRecordId'])) {
             </strong> <?php echo $row['title']; ?></p>
             <strong>
                 <p>Description:
-            </strong> <?php echo $row['description']; ?></p>
+            </strong> <?php echo $row['description'];  ?></p>
 
             <table class="table_applicant">
 
@@ -78,6 +82,7 @@ if (isset($_POST['cpRecordId'])) {
                     <th scope="col">Role</th>
                 </tr>
                 <?php
+                // $id = (isset($_GET['cpRecordId']) ? $_GET['cpRecordId'] : '');
                 $sql = "SELECT * FROM `ipr_cp_applicant` WHERE `cid`=$id";
                 $query = mysqli_query($conn, $sql);
                 $i = 1;
@@ -110,9 +115,10 @@ if (isset($_POST['cpRecordId'])) {
         <?php
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (isset($_POST['accept'])) {
+                $link_document=$_POST['accept_url'];
                 $id = $_POST['accept'];
                 // $sql = "UPDATE `ipr_copyrights` SET `status`='accepted',`action_by`='" . $_SESSION['user_name'] . "' WHERE `id`=$id";
-                $sql = "UPDATE `ipr_copyrights` SET `status`='accepted' WHERE `id`=$id";
+                $sql = "UPDATE `ipr_copyrights` SET `status`='accepted', `link`='$link_document' WHERE `id`=$id";
                 $query = mysqli_query($conn, $sql);
                 $row['status'] = "accepted";
                 // Notify("You accepted the request");
@@ -124,9 +130,8 @@ if (isset($_POST['cpRecordId'])) {
                 // $sql = "UPDATE `ipr_copyrights` SET `status`='rejected',`action_by`='" . $_SESSION['user_name'] . "' WHERE `id`=$id";
                 $sql = "UPDATE `ipr_copyrights` SET `status`='rejected' WHERE `id`=$id";
                 $query = mysqli_query($conn, $sql);
-                $sql = "INSERT INTO `ipr_cp_reject`(`cp_id`, `reason`) 
-                                                VALUES ($id,'$reason')";
-                $query = mysqli_query($conn, $sql);
+                $sql1 = "INSERT INTO `ipr_cp_reject`(`cp_id`, `reason`) VALUES ($id,'$reason')";
+                $query = mysqli_query($conn, $sql1);
                 $row['status'] = "rejected";
                 PushNotification("You Rejected the Message");
             }

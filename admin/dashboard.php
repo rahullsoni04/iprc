@@ -71,6 +71,7 @@ session_start();
                                     <form action="letter.php" method="post">
                                         <button name="cpRecordId" value="<?php echo $row[$i]['id']; ?>" type="submit" class="btn">Review</button>
                                     </form>
+                                   
                                 </td>
                                 <td>
                                     <?php
