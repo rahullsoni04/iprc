@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="../plugins/slick-master/slick/slick.scss" />
     <link rel="stylesheet" type="text/css" href="../plugins/slick-master/slick/slick-theme.css" />
-    <link rel="stylesheet" href="../css/admin-edit.css">
+    <link rel="stylesheet" href="../css/admin-edit.css?v=<?php echo time(); ?>">
     <title>Homepage - edit</title>
     <?php
     require_once '../requirements.php';
@@ -19,7 +19,7 @@
 
 <body>
     <!-- sidebar -->
-    <section class="tabs-container">
+    <section class="tabs-container"><br><br>
         <label for="tab1"> About Us </label>
         <label for="tab2"> Our Team </label>
         <label for="tab3"> Testimonials </label>

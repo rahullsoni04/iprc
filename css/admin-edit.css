@@ -4,18 +4,18 @@
     box-sizing: border-box;
 }
 body{
-   background:  #3b8294;
+    background:  #65b5c9;
     font-family:  system-ui;
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
 .heading{
-    padding: 10px;
-    color: #505050;
-    background-color: #0badb9;
+    padding: 5px;
+    color: #202020;
+    background-color: #75d4dd;
 }
 .new-section{
-    padding: 40px 0px;
+    padding: 10px 0px;
 }
 
 
@@ -23,8 +23,8 @@ body{
 /* Tabs Name Container */
 .tabs-container{
     position: relative;
-    background:#3b8294;
-    width: 120px;
+    background:#65b5c9;
+    width: 210px;
     height: 100vh;
     float: left;
     z-index: 20;
@@ -33,18 +33,20 @@ body{
  /* Tabs Names Label */
  .tabs-container label{
     position: relative;
-    padding: 10px;
+    padding: 21px;
+    align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     display: block;
-    font-size: 13px;
+    font-size: 17px;
     color: #fff;
     cursor: pointer;
     user-select: none;
  }
   
+ 
  /* Hover effect on tabs names */
  .tabs-container label:hover{
-   background: #276879;
+   background: #41acc7;
    border-right-style: inset;
     border-right: 4px solid #ff214f;
  }
@@ -52,10 +54,10 @@ body{
 .tab-content{
     position: relative;
     background: #eee;
-    width: calc(100% - 120px);
+    width: calc(100% - 210px);
     min-height: 100vh;
-    padding: 15px;
-    float: left;
+    padding: 15px 45px;
+    float: right;
     box-sizing: border-box;
     z-index: 19;
     display: none;
