@@ -216,6 +216,19 @@ button.btn{
     transform: translateX(20%);
 }
 
+.alert {
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    top: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    position: fixed;
+}
+
 
 ::-webkit-input-placeholder { /* Edge */
     color: rgb(0, 0, 0);
@@ -273,5 +286,23 @@ button.btn{
         border-radius: 20px;
         box-shadow: 0 0 5px rgba(94, 101, 105, 0.884);
     }
-
+    .alert{
+        bottom: 0;
+        top: auto;
+        position: fixed;
+    left: 3%;
+    transform: translateX(0%);
+    }
+    
   }
+
+  @media screen and (min-width: 600px){
+    .forgot-password {
+        background: transparent !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+  }   

@@ -10,12 +10,65 @@
     <link rel="stylesheet" href="css/signup.css?v=<?php echo time(); ?>">
     <title>IPR | Signup | Login</title>
 </head>
-
-
+<?php
+    require_once 'requirements.php';
+    session_start();
+?>
 <body>
-    <div class="container" id="container">       
+    <div class="container" id="container">   
+        <!-- sinUp PHP starts here -->
+        <?php
+        if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['signup'])) {
+            //optionally checking all the input fields are not empty because html can get manipulated
+            unset($_POST['signup']);
+            if (!(empty($_POST['lname']) || empty($_POST['fname']) || empty($_POST['mname'])) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['confirmPassword'])) {
+                $name = $_POST['lname'] . " " . $_POST['fname'] . " " . $_POST['mname'] . " ";
+                $email = $_POST['email'];
+                $sql = "SELECT * FROM `ipr_users` WHERE `email_id`='$email'";
+                $result = mysqli_query($conn, $sql);
+                $count = mysqli_num_rows($result);
+                if (!$count) {
+                    $password = $_POST['password'];
+                    $confirmPassword = $_POST['confirmPassword'];
+                    if ($password == $confirmPassword) {
+                        $department = $_POST['department'];
+                        $role = (preg_match('#sakec.ac.in$#', $email)) ? '2' : '3';
+                        $regNo = (preg_match('#sakec.ac.in$#', $email)) ? $_POST['regNo'] : 'NULL';
+                        // insert into database
+                        $sql = "INSERT INTO `ipr_users` (`name`, `email_id`, `password`, `department`, `role`, `reg_no`) VALUES ('$name','$email','$password','$department','$role','$regNo')";
+                        $result = mysqli_query($conn, $sql);
+                        if ($result) {
+                            echo "<div class='alert alert-danger'>
+                <strong>Success!</strong> You have been registered successfully.
+                </div>";
+                            Alert("You have been registered successfully.");
+                        } else {
+                            echo "<div class='alert alert-danger'>
+                <strong>Error!</strong> You have not been registered successfully.
+                </div>";
+                        }
+                    } else {
+                        echo "<div class='alert alert-danger'>
+            <strong>Error!</strong> Password and Confirm Password does not match.
+            </div>";
+                    }
+                } else if ($count) {
+                    echo "<div class='alert alert-danger'>
+        <strong>Error!</strong> User Exist <br> Contact admin if you think this is a mistake.
+        </div>";
+                }
+            } else {
+                echo "<div class='alert alert-danger'>
+    <strong>Error!</strong> inputs cannot be empty.
+    </div>";
+            }
+        }
+        ?>
+        
+
+
         <div class="form-container sign-up-container col-sm-12">     
-            <form action="#" method="POST">                
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">                
                             <h1>SIGN UP</h1>
                             <p>Please enter all the fields carefully</p>
                             
@@ -59,21 +112,60 @@
                            <!-- Login starts -->
 
                            <div class="form-container sign-in-container">
-                            <form action ="#">
+<!-- Login PHP -->
+                           <?php
+    if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['loginbtn'])) {
+        unset($_POST['loginbtn']);
+        if (isset($_SESSION['email'])) {
+            echo "<div class='alert alert-danger'>
+        <strong>Error!</strong> You are already logged \n Please log out before logging to another account.
+        </div>";
+        } else if (!(empty($_POST['emailid']) || empty($_POST['password']))) {
+            $username = $_POST['emailid'];
+            $password = $_POST['password'];
+            $sql = "SELECT `email_id`, `password`,`name` FROM `ipr_users` WHERE `email_id`= '$username'";
+            $query = mysqli_query($conn, $sql);
+            $count = mysqli_num_rows($query);
+            if ($count) {
+                $rows = mysqli_fetch_assoc($query);
+                if ($rows['password'] == $password) {
+                    $_SESSION['email'] = $username;
+                    $_SESSION['user_name']=$rows['name'];
+                    RedirectAfterMsg('Login Successfull','index.php');
+                } else {
+                    echo "<div class='alert alert-danger'>
+            <strong>Error!</strong> Invalid Password.
+            </div>";
+                }
+            } else {
+                echo "<div class='alert alert-danger'>
+                <strong>Error!</strong> Invalid credentials <br> Account Does not exist .
+                </div>";
+            }
+        } else {
+            echo "<div class='alert alert-danger'>
+    <strong>Error!</strong> inputs empty found.
+    </div>";
+        }
+    }
+
+    ?>
+                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
                                 <h1>LOGIN</h1>
                                 <input type="email" name="emailid" class="form__field" placeholder="Enter Username" id='username' required />
                             
                                 <input type="password" name="password" class="form__field" placeholder="Enter Password" id='name' required />
 
-                                <button value="login" name="loginbtn" >Login</button>
+                                <button value="login" name="loginbtn" href="#">Login</button>
+                                   
+                            </form>
                                 <div class="spacer" style="height: 20px;"></div>
                                 <div class="small-device">
                                 <p>Don't have an Account? </p>
                                 <a class="btn" id="signUp">Create Now</a>
                                 </div>
                              
-                            
-                            </form>
+                         
                            </div>
                            <div class="overlay-container">
                             <div class="overlay">
@@ -87,7 +179,7 @@
                                     <h1>Welcome Back!</h1>
                                     <p>To keep connected with us please login with your personal information.</p>                                                                      
                                     <p>Don't have an Account? </p>
-                                    <button class="btn" id="signUp-big">Create Now</button>
+                                    <button  class="btn" id="signUp-big">Create Now</button>
                                 </div>
                             </div>
                         </div>
