@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>IPR</title>
     <?php
-    require_once 'requirements.php';
-    session_start();
+        require_once 'requirements.php';
     ?>
 </head>
 

@@ -1,13 +1,11 @@
 <?php
-require_once '../requirements.php';
-session_start();
-$id = 0;
-// if (isset($_POST['cpRecordId'])) {
-//     $id = $_POST['cpRecordId'];
-// } else {
-//     RedirectAfterMsg("Record not found check id", "dashboard.php");
-// }
-// ?>
+    require_once '../requirements.php';
+    if (isset($_POST['cpRecordId'])) {
+        $id = $_POST['cpRecordId'];
+    } else {
+        RedirectAfterMsg("Record not found check id", "dashboard.php");
+    }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -37,20 +35,16 @@ $id = 0;
 
 <body>
     <?php
-    // $id = (isset($_GET['cpRecordId']) ? $_GET['cpRecordId'] : '');
-    $id = ''; 
-if( isset( $_POST['cpRecordId'])) {
-    $id = $_POST['cpRecordId']; 
-}
-    $sql = "SELECT * FROM `ipr_copyrights` WHERE `id`=$id";
-    $query = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($query);
+        $sql = "SELECT * FROM `ipr_copyrights` WHERE `id`=$id";
+        $query = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($query);
     ?>
-    <div class="container" id="notification"><?php (isset($_SESSION['msg'])) ? "heeloo" : "world"; ?></div>
+    <div class="container" id="notification"></div>
     <div class="main">
         <h3 style="text-align: center;">NOC Letter</h3>
         <hr>
         <div id="letter">
+            <br><br><br><br><br>
             <p>To<br>
                 The Principal,<br>
                 Shah and Anchor Kutchhi Engineering College,<br>
@@ -74,8 +68,6 @@ if( isset( $_POST['cpRecordId'])) {
             </strong> <?php echo $row['description'];  ?></p>
 
             <table class="table_applicant">
-
-
                 <tr>
                     <th scope="col">Sr No.</th>
                     <th scope="col">Name</th>
@@ -83,10 +75,10 @@ if( isset( $_POST['cpRecordId'])) {
                 </tr>
                 <?php
                 // $id = (isset($_GET['cpRecordId']) ? $_GET['cpRecordId'] : '');
-                $sql = "SELECT * FROM `ipr_cp_applicant` WHERE `cid`=$id";
-                $query = mysqli_query($conn, $sql);
+                $sql_applicant = "SELECT * FROM `ipr_cp_applicant` WHERE `cid`=$id";
+                $query_applicant = mysqli_query($conn, $sql_applicant);
                 $i = 1;
-                while ($rows = mysqli_fetch_assoc($query)) {
+                while ($rows = mysqli_fetch_assoc($query_applicant)) {
                 ?>
                     <tr>
                         <td><?php echo $i++; ?></td>
@@ -103,7 +95,7 @@ if( isset( $_POST['cpRecordId'])) {
 
             <?php
             $i = 1;
-            $query1 = mysqli_query($conn, $sql);
+            $query1 = mysqli_query($conn, $sql_applicant);
             while ($rows = mysqli_fetch_assoc($query1)) {
             ?>
                 <p><?php echo $i++ . ". " . $rows['name']; ?></p>
@@ -114,28 +106,54 @@ if( isset( $_POST['cpRecordId'])) {
         <hr>
         <?php
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $sql_user = "SELECT `id`, `name`, `email_id` FROM `ipr_users` WHERE `id`=".$row['presenter'];
+            $query_user = mysqli_query($conn, $sql_user);
+            $row_user = mysqli_fetch_assoc($query_user);
+            $to = $row_user['email_id'];
+            $headers = "From:IPR admin";
+
             if (isset($_POST['accept'])) {
-                $link_document=$_POST['accept_url'];
+                $link_document = $_POST['accept_url'];
                 $id = $_POST['accept'];
                 // $sql = "UPDATE `ipr_copyrights` SET `status`='accepted',`action_by`='" . $_SESSION['user_name'] . "' WHERE `id`=$id";
-                $sql = "UPDATE `ipr_copyrights` SET `status`='accepted', `link`='$link_document' WHERE `id`=$id";
+                $sql = "UPDATE `ipr_copyrights` SET `status`='accepted', `link`='$link_document' ,`action_by`='".$_SESSION['email']."' WHERE `id`=$id";
                 $query = mysqli_query($conn, $sql);
                 $row['status'] = "accepted";
-                // Notify("You accepted the request");
-                PushNotification("You Accepted the Message");
+                if($query){
+                    $subject = "NOC Letter";
+                    $message = "Your NOC Letter is ready\nPlease visit website or click below link to download the NOC Letter\n\n" . $link_document;
+                    $mail_status=mail($to, $subject, $message, $headers);
+                    if($mail_status){
+                        RedirectAfterMsg("You accpeted the request","dashboard.php");
+                    }else{
+                        RedirectAfterMsg("Request Accepted Email Sending Failed Something went wrong","dashboard.php");
+                    }
+                }
+                RedirectAfterMsg("Something went wrong Error updating status","dashboard.php");
             } else if (isset($_POST['reject'])) {
                 $id = $_POST['reject'];
                 $reason = $_POST['rejectionMsg'];
                 //sql will contain query that will update database to reuject the request
                 // $sql = "UPDATE `ipr_copyrights` SET `status`='rejected',`action_by`='" . $_SESSION['user_name'] . "' WHERE `id`=$id";
-                $sql = "UPDATE `ipr_copyrights` SET `status`='rejected' WHERE `id`=$id";
+                $sql = "UPDATE `ipr_copyrights` SET `status`='rejected',`action_by`='".$_SESSION['email']."' WHERE `id`=$id";
                 $query = mysqli_query($conn, $sql);
                 $sql1 = "INSERT INTO `ipr_cp_reject`(`cp_id`, `reason`) VALUES ($id,'$reason')";
                 $query = mysqli_query($conn, $sql1);
                 $row['status'] = "rejected";
-                PushNotification("You Rejected the Message");
-            }
+                if($query){
+                    $subject = "Regarding NOC Letter";
+                    $message = "Your NOC Letter is rejected because of following reason : \n".$reason."\nPlease visit website or contact admin to know more";
+                    $mail_status=mail($to, $subject, $message, $headers);
+                    if($mail_status){
+                        RedirectAfterMsg("You rejected the request","dashboard.php");
+                    }else{
+                        RedirectAfterMsg("Request Rejected, Email Sending Failed Something went wrong","dashboard.php");
+                    }
+                    //PushNotification("You Rejected the Request");
+                }
+                RedirectAfterMsg("Something went wrong Error updating status","dashboard.php");
         }
+    }
         ?>
         <div class="container">
             <!-- <div>
@@ -147,29 +165,29 @@ if( isset( $_POST['cpRecordId'])) {
                 if ($row['status'] == "accepted") {
                 ?>
                     <h4>Status</h4>
-                    <h5>This Request is accepted</h5>
+                    <h5>This Request is Accepted</h5>
                     <button id="printApplication" class="btn" onclick="Letter.print()">Print Application</button>
                 <?php
                 } else if ($row['status'] == "rejected") {
                 ?>
-                    <h5>This Request is accepted</h5>
+                    <h5>This Request is Rejected</h5>
                 <?php
                 } else {
                     // if ($row['status'] != "accepted"&&$row['status'] != "rejected") { 
                 ?>
                     <div id="alert" style="display: none;margin-top:20px; margin-bottom :20px">
                         <div class="col-md-12">
-                                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
-                                    <p class="text-center">Are you sure want to accept</p>
-                                    <input type="hidden" name="cpRecordId" value="<?php echo $id; ?>">
-                                    <textarea name="accept_url" class="form-control" id="accept_url" rows="1" placeholder="URL of document" required></textarea>
+                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+                                <p class="text-center">Are you sure want to accept</p>
+                                <input type="hidden" name="cpRecordId" value="<?php echo $id; ?>">
+                                <textarea name="accept_url" class="form-control" id="accept_url" rows="1" placeholder="URL of document" required></textarea>
 
 
-                                    <button name="accept" value="<?php echo $id ?>" class="btn btn-danger my-2">Yes</button>
-                                    <button id="acceptCancel" class="btn btn-primary  ">Cancel</button>
-                                </form>
-                                
-                            </div>
+                                <button name="accept" value="<?php echo $id ?>" class="btn btn-danger my-2">Yes</button>
+                                <button id="acceptCancel" class="btn btn-primary  ">Cancel</button>
+                            </form>
+
+                        </div>
                     </div>
                     <div class="row">
                         <button id="acceptDialogue" class="btn">Accept</button>
@@ -242,7 +260,6 @@ if( isset( $_POST['cpRecordId'])) {
         document.addEventListener('DOMContentLoaded', (event) => {
             console.log('DOM fully loaded and parsed');
         });
-
         function convertPdf() {
             console.log("button clicked");
         }

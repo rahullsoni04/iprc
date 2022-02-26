@@ -13,7 +13,6 @@
     <title>Homepage - edit</title>
     <?php
     require_once '../requirements.php';
-    session_start();
     ?>
 </head>
 

@@ -5,16 +5,23 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);*/
 
-$hostname = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'iprc';
-$conn = mysqli_connect($hostname, $username, $password, $database);
+define('hostname', 'localhost');
+define('username','root');
+define('password','');
+define('database','iprc');
+
+$conn = mysqli_connect(hostname, username, password, database);
 
 if (!$conn) {
   Notify("Database connectivity failed contat admin");
   die();
 }
+
+
+// Start session 
+if(!session_id()) session_start(); 
+ 
+
 //To send pop up msg to user
 function Notify($message)
 {

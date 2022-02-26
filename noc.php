@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,10 +11,7 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <?php
-    // include("config.php");
     require_once "requirements.php";
-    session_start();
-    echo (isset($_SESSION['email']));
     //echo preg_match('#sakec.ac.in$#', $_SESSION['email']);
     if (!(isset($_SESSION['email'])) || !(preg_match('#sakec.ac.in$#', $_SESSION['email']))) {
         RedirectAfterMsg("Please login with SAKEC email to access this page", "login.php");
@@ -23,12 +19,15 @@
     $email = $_SESSION['email'];
     $name='';
     $id;
+    $requestHandler="ipradmin@sakec.ac.in";
+    $handlerName="admin";
     $sql = "SELECT * FROM `ipr_users` WHERE email_id='$email';";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
         $name = $row['name'];
         $role = $row['role'];
         $id = $row['id'];
+        $department=$row['department'];
     }
     ?>
 </head>
@@ -161,7 +160,7 @@
                 <div class="row text-center">
                     <div class="col-sm-12">
                         <input type="radio" id="termsChkbx" onchange="isChecked(this,'submit');isChecked(this,'preview');" />
-                        <b style="color:aliceblue;">I Acknowledge that the above information is true and correct as per best of knowledge <br> Also I Acknowledge that the data cannot be editted by any means after submitted</b>
+                        <b style="color:aliceblue;">I Acknowledge that the above information is true and correct as per best of my knowledge <br> Also I Acknowledge that the data cannot be editted by any means after submitted</b>
                     </div>
                 </div>
                 <div class="row text-center">
@@ -180,8 +179,13 @@
                 $dairy_no = $_POST['dairyno'];
                 $role = $_POST['role'];
                 $designation = $_POST['designation'];
-
-                $sql = "INSERT INTO `ipr_copyrights`(`title`, `description`, `diary_no`, `status`, `presenter`) VALUES ('$title','$desc','$dairy_no','filed','$id')";
+                $query=mysqli_query($conn,"SELECT * FROM `ipr_noc_handler` WHERE `department`='$department'");
+                if(mysqli_num_rows($query)>0){
+                    $row=mysqli_fetch_assoc($query);
+                    $requestHandler=$row['email'];
+                    $handlerName=$row['name'];
+                }
+                $sql = "INSERT INTO `ipr_copyrights`(`title`, `description`, `diary_no`, `status`, `presenter`,`request_handler`) VALUES ('$title','$desc','$dairy_no','filed','$id','$requestHandler')";
                 mysqli_query($conn, $sql);
 
                 $sql1="select * from ipr_copyrights where diary_no='$dairy_no' and presenter = '$id';";
@@ -189,15 +193,21 @@
                 while ($row = mysqli_fetch_assoc($result1)) {
                     $cid = $row['id'];
                 }
-
                 for ($i = 0; $i < count($p_name); $i++) {
                     if ($p_name[$i] != "" && $p_email[$i] != "" && $role[$i] != "" && $designation[$i] != "") {
                         $sql2 = "INSERT INTO `ipr_cp_applicant`(`cid`, `name`, `email`, `role`, `designation`) VALUES ('$cid','$p_name[$i]','$p_email[$i]','$role[$i]','$designation[$i]')";
                         mysqli_query($conn, $sql2);
                     }
                 }
-                echo "<script>alert('$title,$desc,$dairy_no')</script>";
-
+                $applicantmail=mail($p_email[0], "Application for No Objection Certificate", "Dear $p_name[0],\n\nYou have successfully filed an application for No Objection Certificate.\nOur Coordinators will get back to you\nThank you for your patience\n\nRegards,\n\nShah & Anchor Kutchhi Engineering College", "From:rahul.dummy04@gmail.com");
+                $systemmail=mail($requestHandler, "Application for No Objection Certificate", "Dear $handlerName,\n\nWe have a new noc request from your department \nPlease visit website for more details\n\nRegards,\n\nShah & Anchor Kutchhi Engineering College", "From:rahul.dummy04@gmail.com");
+                // echo "<script>alert('$title,$desc,$dairy_no')</script>";
+                if($applicantmail && $systemmail){
+                    RedirectAfterMsg("Application Submitted Successfully Check Email for details","dashboard.php");
+                }
+                else{
+                    RedirectAfterMsg("Error Sending mail check Email id","dashboard.php");
+                }
                 // include('pdf.php');
                 // //first pdf
                 // $file_name = $dairy_no . '.pdf';

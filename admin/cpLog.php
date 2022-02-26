@@ -1,6 +1,5 @@
 <?php
 require_once '../requirements.php';
-session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,13 +57,14 @@ session_start();
                             <th scope="col">Description</th>
                             <th scope="col">Diary No</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Action By</th>
-                            <th scope="col">Download Noc</th>
+                            <th scope="col">Handled By</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        for ($i = 0; $i <= mysqli_num_rows($query); $i++) {
+                            $noOfRow=mysqli_num_rows($query);
+                            for ($i = 0; $i < $noOfRow; $i++) {
                         ?>
                             <tr>
                                     <td><?php echo $i+1;?></td>
@@ -83,7 +83,24 @@ session_start();
                                     <td><?php echo $row[$i]['diary_no']; ?></td>
                                     <td><?php echo $row[$i]['status']; ?></td>
                                     <td><?php echo $row[$i]['action_by']; ?></td>
-                                <td><button type="button" class="btn">Download Noc</button></td>
+                                    <td>
+                                    <?php 
+                                        if($row[$i]['link']!="" && $row[$i]['link']!=NULL&&!strcasecmp("accepted",$row[$i]['status'])){
+                                            echo '<a class="btn" href="'.$row[$i]['link'].'" target="_blank">Download NOC</a>';
+                                        }else if (!strcasecmp("rejected",$row[$i]['status'])) {
+                                            $rejection_sql = "SELECT `reason` FROM `ipr_cp_reject` WHERE `cp_id`='".$row[$i]['id']."'";
+                                            $rejection_query = mysqli_query($conn, $rejection_sql);
+                                            $rejection_row = mysqli_fetch_assoc($rejection_query);
+                                            (mysqli_num_rows($rejection_query)>0)?$reason = $rejection_row['reason']:$reason = "Some Error Occured";
+                                            //Notify($rejection_row['rejection_reason']);
+                                            ?>
+                                            <button class="btn" onclick="alert('<?php echo $reason; ?>')">Rejection Reason</button>
+                                            <?php
+                                        }else{
+                                            echo '<p>Pending Request</p=>';
+                                        }
+                                    ?>
+                                </td>
                             </tr>
                         <?php
                         }

@@ -1,0 +1,9 @@
+Visit below links to setup google project (drive api,loggin api, etc)
+Getting started page -> https://developers.google.com/docs/api/quickstart/php
+
+Project creation page -> https://developers.google.com/workspace/guides/create-project
+
+help section -> https://support.google.com/cloud/answer/9028764?hl=en&authuser=3&ref_topic=3473162
+
+codex world -> https://www.codexworld.com/upload-file-to-google-drive-using-php/
+

@@ -12,7 +12,6 @@
 </head>
 <?php
     require_once 'requirements.php';
-    session_start();
 ?>
 
 <body>

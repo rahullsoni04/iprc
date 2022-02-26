@@ -1,5 +1,8 @@
 <?php
 require_once 'requirements.php';
+if (!isset($_SESSION['email'])) {
+    RedirectAfterMsg('Login to continue', 'login.php');
+}
 // echo var_dump($conn);
 ?>
 <!DOCTYPE html>
@@ -24,7 +27,7 @@ require_once 'requirements.php';
         <a href="#about">Certifications</a>
     </div>
     <div class="logo">
-        <img src="/images/logo.png">
+        <!-- <img src="/images/logo.png"> -->
 
     </div>
     <div class="text-center content">
@@ -39,15 +42,14 @@ require_once 'requirements.php';
         </div>
         <div class="table">
             <?php
-            $sql = 'SELECT * FROM `ipr_copyrights` as `cp`,`ipr_users` as `users` WHERE users.email_id='.$_SESSION['email'].' and users.id=cp.presenter';
+            $sql = 'SELECT *,cp.id as cpid FROM `ipr_copyrights` as `cp`,`ipr_users` as `users` WHERE users.email_id="' . $_SESSION['email'] . '" and users.id=cp.presenter';
             $query = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_all($query, MYSQLI_BOTH);
             if (!mysqli_num_rows($query)) {
                 echo '<h3>No Records Found</h3>';
             } else {
-            ?>
+                ?>
                 <table class="table table-bordered">
-
+                    
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
@@ -55,20 +57,38 @@ require_once 'requirements.php';
                             <th scope="col">Description</th>
                             <th scope="col">Diary No</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Download Noc</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
+                        $row = mysqli_fetch_all($query, MYSQLI_BOTH);
                         for ($i = 0; $i < mysqli_num_rows($query); $i++) {
                         ?>
                             <tr>
-                                <td><?php echo ($i+1); ?></td>
+                                <td><?php echo ($i + 1); ?></td>
                                 <td><?php echo $row[$i]['title']; ?></td>
                                 <td><?php echo $row[$i]['description']; ?></td>
                                 <td><?php echo $row[$i]['diary_no']; ?></td>
                                 <td><?php echo $row[$i]['status']; ?></td>
-                                <td><button type="button" class="btn">Download Noc</button></td>
+                                <td>
+                                    <?php 
+                                        if($row[$i]['link']!="" && $row[$i]['link']!=NULL&&!strcasecmp("accepted",$row[$i]['status'])){
+                                            echo '<button class="btn" href="'.$row[$i]['link'].'" target="_blank">Download NOC</button>';
+                                        }else if (!strcasecmp("rejected",$row[$i]['status'])) {
+                                            $rejection_sql = "SELECT `reason` FROM `ipr_cp_reject` WHERE `cp_id`='".$row[$i]['cpid']."'";
+                                            $rejection_query = mysqli_query($conn, $rejection_sql);
+                                            $rejection_row = mysqli_fetch_assoc($rejection_query);
+                                            (mysqli_num_rows($rejection_query)>0)?$reason = $rejection_row['reason']:$reason = "Some Error Occured";
+                                            //Notify($rejection_row['rejection_reason']);
+                                            ?>
+                                            <button class="btn" onclick="alert('<?php echo $reason; ?>')">Rejection Reason</button>
+                                            <?php
+                                        }else{
+                                            echo '<p>Pending Request</p=>';
+                                        }
+                                    ?>
+                                </td>
                             </tr>
                         <?php
                         }

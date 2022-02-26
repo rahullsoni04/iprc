@@ -15,8 +15,7 @@
 
     use FontLib\Table\Type\post;
 
-    require_once 'requirements.php';
-    session_start();
+        require_once 'requirements.php';
     ?>
 
 </head>
