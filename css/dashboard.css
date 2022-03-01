@@ -1,6 +1,7 @@
 body {
     margin: 0;
-	background-image: url(../images/bg1.jpg);
+	/* background-image: url(../images/bg3.jpg); */
+    background-color: #cceaf5b8;
 	height: 100vh;
 	background-size: cover;
 	background-position: center;

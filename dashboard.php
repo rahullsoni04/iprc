@@ -27,14 +27,12 @@ if (!isset($_SESSION['email'])) {
         <a href="#about">Certifications</a>
     </div>
     <div class="logo">
-        <!-- <img src="/images/logo.png"> -->
+        <img src="./images/logo.png">
 
     </div>
     <div class="text-center content">
         <h2>Dashboard for IPR</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis accusantium deleniti quam id tenetur dolore
-            debitis, autem similique minima labore suscipit sapiente qui. Eius laboriosam adipisci quibusdam molestias
-            dolores eum!</p>
+        <p></p>
         <div class="main-buttons">
             <a type="button" href="noc.php" class="btn">Apply Noc</a>
             <button type="button" class="btn">Video Tutorial</button>

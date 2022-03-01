@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2022 at 04:06 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.7
+-- Generation Time: Mar 01, 2022 at 12:44 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -80,16 +80,24 @@ CREATE TABLE `ipr_copyrights` (
   `description` text NOT NULL,
   `diary_no` varchar(50) NOT NULL,
   `status` varchar(100) NOT NULL,
-  `presenter` int(11) NOT NULL
+  `presenter` int(11) NOT NULL,
+  `filing_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `request_handler` int(11) NOT NULL,
+  `action_by` varchar(100) NOT NULL DEFAULT 'Pending Request',
+  `link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ipr_copyrights`
 --
 
-INSERT INTO `ipr_copyrights` (`id`, `title`, `description`, `diary_no`, `status`, `presenter`) VALUES
-(1, 'Project xyz', 'this is a test', 'abc1234xyz', 'accepted', 1),
-(2, 'protect test', 'this is a test project', 'xyz123', 'accepted', 1);
+INSERT INTO `ipr_copyrights` (`id`, `title`, `description`, `diary_no`, `status`, `presenter`, `filing_date`, `request_handler`, `action_by`, `link`) VALUES
+(1, 'test1', 'this is a test', 'abc1234xyz', 'accepted', 16, '2022-02-11 01:34:06', 0, 'test', 'test.com'),
+(2, 'test2', 'this is a test project', 'xyz123', 'filed', 1, '2022-01-11 01:34:06', 0, 'test', ''),
+(3, 'test3', 'dssd', '', 'filed', 1, '2022-02-11 03:48:37', 0, 'Pending Request', ''),
+(4, 'unit test', 'test', '5555', 'filed', 16, '2022-02-15 20:43:06', 0, 'Pending Request', ''),
+(5, 'unit test', 'test', '5555', 'filed', 16, '2022-02-16 05:10:45', 0, 'Pending Request', ''),
+(7, 'Testing Noc', 'Testing website', 'test1234', 'filed', 16, '2022-02-26 06:29:33', 0, 'Pending Request', '');
 
 -- --------------------------------------------------------
 
@@ -111,7 +119,13 @@ CREATE TABLE `ipr_cp_applicant` (
 --
 
 INSERT INTO `ipr_cp_applicant` (`id`, `cid`, `name`, `email`, `role`, `designation`) VALUES
-(1, 1, 'xyz', 'xyz@gmail.com', 'author', 'student');
+(1, 1, 'xyz', 'xyz@gmail.com', 'author', 'student'),
+(2, 4, 'test', 'a@sakec.ac.in', 'Author', 'student'),
+(3, 4, 'Soni Rahul Lalchand', 'rahl@kjjsndd.ksns', 'Author', 'Asst. Prof'),
+(4, 5, 'test', 'a@sakec.ac.in', 'Author', 'student'),
+(5, 5, 'Soni Rahul Lalchand', 'rahl@kjjsndd.ksns', 'Author', 'Asst. Prof'),
+(8, 7, 'test', 'rahul.soni_19@sakec.ac.in', 'Author', 'asst. prof'),
+(9, 7, 'Test user', 'testuser@gmail.com', 'Applicant', 'Asst. Prof');
 
 -- --------------------------------------------------------
 
@@ -165,7 +179,66 @@ INSERT INTO `ipr_cp_reject` (`id`, `cp_id`, `date`, `reason`) VALUES
 (32, 1, '2022-01-07 22:24:35', 'dfffd'),
 (33, 1, '2022-01-07 22:25:04', 'dfffd'),
 (34, 1, '2022-01-07 22:27:32', 'dfffd'),
-(35, 1, '2022-01-07 22:28:49', 'dfffd');
+(35, 1, '2022-01-07 22:28:49', 'dfffd'),
+(36, 1, '2022-02-11 03:43:52', 'test'),
+(37, 1, '2022-02-11 03:47:04', 'sscccscc'),
+(38, 2, '2022-02-11 04:10:14', 'testing');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ipr_events`
+--
+
+CREATE TABLE `ipr_events` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `from_date` date NOT NULL,
+  `to_date` date NOT NULL,
+  `from_time` time NOT NULL,
+  `to_time` time NOT NULL,
+  `venue` varchar(50) NOT NULL,
+  `banner` mediumblob NOT NULL,
+  `reg_link` varchar(100) NOT NULL,
+  `permission_letter` mediumblob NOT NULL,
+  `report` mediumblob NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ipr_event_coordinator`
+--
+
+CREATE TABLE `ipr_event_coordinator` (
+  `id` int(11) NOT NULL,
+  `event_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `contact` int(11) NOT NULL,
+  `type` varchar(20) NOT NULL DEFAULT 'Student'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ipr_noc_handler`
+--
+
+CREATE TABLE `ipr_noc_handler` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `department` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ipr_noc_handler`
+--
+
+INSERT INTO `ipr_noc_handler` (`id`, `name`, `email`, `department`) VALUES
+(1, 'rahul', 'test@gmail.com', 'comps');
 
 -- --------------------------------------------------------
 
@@ -194,6 +267,41 @@ INSERT INTO `ipr_role` (`id`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ipr_speakers`
+--
+
+CREATE TABLE `ipr_speakers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `event_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `designation` varchar(100) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `linkedin` varchar(50) DEFAULT NULL,
+  `facebook` varchar(50) DEFAULT NULL,
+  `instagram` varchar(50) DEFAULT NULL,
+  `img` mediumblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ipr_team`
+--
+
+CREATE TABLE `ipr_team` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `designation` varchar(100) DEFAULT NULL,
+  `facebook` varchar(100) DEFAULT '#',
+  `instagram` varchar(100) DEFAULT NULL,
+  `linkedIn` varchar(100) DEFAULT NULL,
+  `img` text NOT NULL DEFAULT 'iprlogo.jpg'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ipr_users`
 --
 
@@ -213,7 +321,8 @@ CREATE TABLE `ipr_users` (
 
 INSERT INTO `ipr_users` (`id`, `name`, `email_id`, `password`, `department`, `role`, `reg_no`) VALUES
 (1, 'admin', 'ipradmin@sakec.ac.in', 'admin123', 'iprc', 1, '00000'),
-(2, 'XYZ', 'test@gmail.com', 'test', 'testing', 2, '00000');
+(2, 'XYZ', 'test@gmail.com', 'test', 'testing', 4, '00000'),
+(16, 'test', 'a@sakec.ac.in', '123', '', 1, '');
 
 --
 -- Indexes for dumped tables
@@ -253,10 +362,45 @@ ALTER TABLE `ipr_cp_reject`
   ADD KEY `ipr_cp_reject_ibfk_1` (`cp_id`);
 
 --
+-- Indexes for table `ipr_events`
+--
+ALTER TABLE `ipr_events`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `ipr_event_coordinator`
+--
+ALTER TABLE `ipr_event_coordinator`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `event_id` (`event_id`);
+
+--
+-- Indexes for table `ipr_noc_handler`
+--
+ALTER TABLE `ipr_noc_handler`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `ipr_role`
 --
 ALTER TABLE `ipr_role`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ipr_speakers`
+--
+ALTER TABLE `ipr_speakers`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `event_id` (`event_id`);
+
+--
+-- Indexes for table `ipr_team`
+--
+ALTER TABLE `ipr_team`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `foreign key` (`user_id`);
 
 --
 -- Indexes for table `ipr_users`
@@ -285,19 +429,37 @@ ALTER TABLE `ipr_contact_us`
 -- AUTO_INCREMENT for table `ipr_copyrights`
 --
 ALTER TABLE `ipr_copyrights`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `ipr_cp_applicant`
 --
 ALTER TABLE `ipr_cp_applicant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `ipr_cp_reject`
 --
 ALTER TABLE `ipr_cp_reject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `ipr_events`
+--
+ALTER TABLE `ipr_events`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ipr_event_coordinator`
+--
+ALTER TABLE `ipr_event_coordinator`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ipr_noc_handler`
+--
+ALTER TABLE `ipr_noc_handler`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ipr_role`
@@ -306,10 +468,22 @@ ALTER TABLE `ipr_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `ipr_speakers`
+--
+ALTER TABLE `ipr_speakers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ipr_team`
+--
+ALTER TABLE `ipr_team`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `ipr_users`
 --
 ALTER TABLE `ipr_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
@@ -332,6 +506,24 @@ ALTER TABLE `ipr_cp_applicant`
 --
 ALTER TABLE `ipr_cp_reject`
   ADD CONSTRAINT `ipr_cp_reject_ibfk_1` FOREIGN KEY (`cp_id`) REFERENCES `ipr_copyrights` (`id`);
+
+--
+-- Constraints for table `ipr_event_coordinator`
+--
+ALTER TABLE `ipr_event_coordinator`
+  ADD CONSTRAINT `ipr_event_coordinator_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `ipr_events` (`id`);
+
+--
+-- Constraints for table `ipr_speakers`
+--
+ALTER TABLE `ipr_speakers`
+  ADD CONSTRAINT `ipr_speakers_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `ipr_events` (`id`);
+
+--
+-- Constraints for table `ipr_team`
+--
+ALTER TABLE `ipr_team`
+  ADD CONSTRAINT `foreign key` FOREIGN KEY (`user_id`) REFERENCES `ipr_users` (`id`);
 
 --
 -- Constraints for table `ipr_users`
