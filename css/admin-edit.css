@@ -10,12 +10,12 @@ body{
     overflow-x: hidden;
 }
 .heading{
-    padding: 5px;
+    padding: 15px;
     color: #202020;
     background-color: #75d4dd;
 }
 .new-section{
-    padding: 10px 0px;
+   padding: 10px 0px;
 }
 
 
@@ -24,7 +24,7 @@ body{
 .tabs-container{
     position: relative;
     background:#65b5c9;
-    width: 210px;
+    width: 120px;
     height: 100vh;
     float: left;
     z-index: 20;
@@ -33,8 +33,7 @@ body{
  /* Tabs Names Label */
  .tabs-container label{
     position: relative;
-    padding: 21px;
-    align-items: center;
+    padding: 15px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     display: block;
     font-size: 17px;
@@ -54,10 +53,10 @@ body{
 .tab-content{
     position: relative;
     background: #eee;
-    width: calc(100% - 210px);
+   
     min-height: 100vh;
-    padding: 15px 45px;
-    float: right;
+    padding: 10px 15px;
+   
     box-sizing: border-box;
     z-index: 19;
     display: none;
@@ -257,3 +256,27 @@ textarea {
         width: 250px;
     }
 }
+
+@media screen and (max-width: 700px) {
+    .tabs-container {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .tabs-container label {float: left;}
+    div.tab-content {margin-left: 0;}
+
+    .heading{
+        margin-top: 110px;
+     }
+  }
+  
+  @media screen and (max-width: 400px) {
+    .tabs-container label {
+      text-align: center;
+      float: none;
+    }
+    .heading {
+        margin-top: 222px;
+    }
+  }
