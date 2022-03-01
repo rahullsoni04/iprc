@@ -100,7 +100,8 @@ require_once 'requirements.php'
                             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                                 <div class="posts">
                                     <div class="image-overlay-card">
-                                        <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid image">
+                                        <!-- <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid image"> -->
+                                        <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($eveRow['banner']) . '" alt="" class="img-fluid image" > '; ?>
                                         <div class="text-block">
                                             <h5><i class="fas fa-calendar-alt"></i> &nbsp;<?php echo date('d F, Y', mktime(0, 0, 0, $eveRow['month'], $eveRow['day'], $eveRow['year'])) ?></span></h4>
                                                 <p><i class="far fa-clock"></i> &nbsp; All Day</p>
@@ -171,7 +172,8 @@ require_once 'requirements.php'
                             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                                 <div class="posts">
                                     <div class="image-overlay-card">
-                                        <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid image">
+                                        <!-- <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid image"> -->
+                                        <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($eveRow['banner']) . '" alt="" class="img-fluid image" > '; ?>
                                         <div class="text-block">
                                             <h5><i class="fas fa-calendar-alt"></i> &nbsp;<?php echo date('d F, Y', mktime(0, 0, 0, $eveRow['month'], $eveRow['day'], $eveRow['year'])) ?></span></h4>
                                                 <p><i class="far fa-clock"></i> &nbsp; All Day</p>
