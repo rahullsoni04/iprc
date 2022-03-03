@@ -19,6 +19,11 @@ if(!isset($_SESSION['email'])){
 
 <body>
     <div class="sidebar">
+    <div onclick="update()" class="toggle-collapse">
+            <div class="toggle-icons text block">
+                <span><i class="fas fa-bars"></i></span>
+            </div>
+        </div>
         <a class="active" href="#home">IPR Home</a>
         <a href="#news">Dashboard</a>
         <a href="#news">Copyright</a>
@@ -26,7 +31,7 @@ if(!isset($_SESSION['email'])){
         <a href="#about">Certifications</a>
     </div>
     <div class="logo">
-        <img src="/images/logo.png">
+        <img src="../images/logo.png">
 
     </div>
     <div class="text-center content">
@@ -35,9 +40,9 @@ if(!isset($_SESSION['email'])){
             debitis, autem similique minima labore suscipit sapiente qui. Eius laboriosam adipisci quibusdam molestias
             dolores eum!</p>
         <div class="main-buttons">
-            <a href="cpLog.php" type="button" class="btn">Copyrights Log</a>
-            <button type="button" class="btn">Vedio Tutorial</button>
-            <button type="button" class="btn">Contact Us</button>
+            <a href="cpLog.php" type="button" class="btn btn1">Copyrights Log</a>
+            <button type="button" class="btn btn2">Vedio Tutorial</button>
+            <button type="button" class="btn btn3">Contact Us</button>
         </div>
         <?php
         //Dsplay the copyright content with status filed
@@ -70,7 +75,7 @@ if(!isset($_SESSION['email'])){
                             <tr>
                                 <td>
                                     <form action="letter.php" method="post">
-                                        <button name="cpRecordId" value="<?php echo $row[$i]['id']; ?>" type="submit" class="btn">Review</button>
+                                        <button name="cpRecordId" value="<?php echo $row[$i]['id']; ?>" type="submit" class="btn"><i class="fas fa-eye"></i>&nbsp; Review</button>
                                     </form>
                                 </td>
                                 <td>
@@ -97,11 +102,28 @@ if(!isset($_SESSION['email'])){
             <?php
         }
             ?>
+            <button type="button" class="btn"><i class="fas fa-arrow-left"></i>&nbsp; Preview</button>
+            <button type="button" class="btn">Next&nbsp;<i class="fas fa-arrow-right"></i></button>
             </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- sidebar collapse -->
+    <script>
+        const toggleCollapse = documnet.querySelector('.toggle-collapse span');
+        var sidebar = document.getElementsByClassName("sidebar");
+
+        //onclick event on toggle Collapsse span tag
+        toggleCollapse.addEventListener('click', function() {
+            alert("Hello!");
+          })
+
+          function update(){
+            sidebar.classList.toggle('collapse');
+          }
+    </script>
 </body>
 
 </html>

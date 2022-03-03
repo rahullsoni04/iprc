@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>NOC</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="css/forms.css?v=<?php echo time(); ?>">
@@ -83,13 +84,17 @@
                                 <option value="student" style="color:black;" <?php if ($role == '2') { echo "Selected"; } ?>>Student</option>
                             </select>
                         </div>
+                        
                         <div class="input-group-append mb-3">
-                            <button id="removeRow" type="button" class="btnp" hidden>Remove</button>
+                            
+                            <button id="removeRow" type="button" class="btn1" hidden><i class="fas fa-times"></i>&nbsp;&nbsp; Remove</button>
+                            
                         </div>
                     </div>
-
+                    
                     <div id="newRow"></div>
-                    <button id="addRow" type="button" class="btnp btn-sm btn-info">Add Member</button>
+                    <div class="spacer" style="height: 20px;"></div>
+                    <button id="addRow" type="button" class="btnp btn-sm btn-info"><i class="fas fa-plus"></i>&nbsp;&nbsp; Add Member</button>
 
                 </div>
                 <input type="text" id="previewpdf1" name="previewpdf1" style="display:none;">
@@ -157,6 +162,7 @@
                     </div>
                 </div>
                 <br><br>
+                <div class="spacer" style="height: 20px;"></div>
                 <div class="row text-center">
                     <div class="col-sm-12">
                         <input type="radio" id="termsChkbx" onchange="isChecked(this,'submit');isChecked(this,'preview');" />
@@ -352,8 +358,9 @@
                             <option value="Student" style="color:black;">Student</option>
                         </select>
                         </div>
+                        <div class="spacer" style="height: 20px;"></div>
                         <div class="input-group-append mb-3">                
-                            <button id="removeRow" type="button" class="btnp" >Remove</button>
+                            <button id="removeRow" type="button" class="btn1"><i class="fas fa-times"></i>&nbsp;&nbsp; Remove</button>
                         </div>`
 
             $('#newRow').append(html);
