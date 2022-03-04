@@ -621,14 +621,23 @@
                     <p>ipr@sakec.ac.in</p>
                     <p>ipr@sakec.ac.in</p>
                 </div>
+                <?php
+                $sql="SELECT`headlines`, `links` FROM `ipr_news` WHERE `live`='yes'";
+                $result=mysqli_query($conn,$sql);
+                ?>
                 <div class="col-sm-3">
                     <h2>Recent News and Courses</h2>
                     <hr>
-                    <p>ipr@sakec.ac.in</p>
-                    <p>ipr@sakec.ac.in</p>
-                    <p>ipr@sakec.ac.in</p>
-                    <p>ipr@sakec.ac.in</p>
-                    <p>ipr@sakec.ac.in</p>
+                    <?php
+                    while($news = mysqli_fetch_assoc($result)){
+
+                    
+                    ?>
+                   <p><a href="<?php  echo $news['links'];?>" target="new" style="text-decoration: none;"><?php  echo $news['headlines'];?></a></p> 
+                   
+                    <?php
+                    }
+                    ?>
                 </div>
                 <div class="col-sm-3">
                     <h2>Get In Touch For Any Query</h2>
