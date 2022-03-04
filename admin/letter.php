@@ -40,11 +40,10 @@
         $row = mysqli_fetch_assoc($query);
     ?>
     <div class="container" id="notification"></div>
-    <div class="main">
+    <div class="main new-section">
         <h3 style="text-align: center;">NOC Letter</h3>
         <hr>
-        <div id="letter">
-            <br><br><br><br><br>
+        <div id="letter">            
             <p>To<br>
                 The Principal,<br>
                 Shah and Anchor Kutchhi Engineering College,<br>
@@ -180,18 +179,18 @@
                             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
                                 <p class="text-center">Are you sure want to accept</p>
                                 <input type="hidden" name="cpRecordId" value="<?php echo $id; ?>">
-                                <textarea name="accept_url" class="form-control" id="accept_url" rows="1" placeholder="URL of document" required></textarea>
+                                <input type="url" name="accept_url" class="form-control" id="accept_url" rows="1" placeholder="URL of document" required></input>
 
 
                                 <button name="accept" value="<?php echo $id ?>" class="btn btn-danger my-2">Yes</button>
-                                <button id="acceptCancel" class="btn btn-primary  ">Cancel</button>
+                                <button id="acceptCancel" class="btn btn-primary">Cancel</button>
                             </form>
 
                         </div>
                     </div>
                     <div class="row">
-                        <button id="acceptDialogue" class="btn">Accept</button>
-                        <button id="rejectBtn" class="btn">Reject</button>
+                        <button id="acceptDialogue" class="btnp">Accept</button>&nbsp;
+                        <button id="rejectBtn" class="btn1">Reject</button>
                     </div>
                     <div id="rejectReason" style="display: none;margin-top:20px; margin-bottom :20px">
                         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
@@ -204,7 +203,7 @@
                                         I confirm the above rejection message
                                     </label>
                                 </div>
-                                <button class="btn btn-primary my-2 mx-3" id="reject" name="reject" value="<?php echo $id ?>" disabled>Reject</button>
+                                <button class="btn btn-danger my-2 mx-3" id="reject" name="reject" value="<?php echo $id ?>" disabled>Reject</button>
                         </form>
                         <button class="btn btn-primary my-2 mx-3" id="cancel" name="cancel">Cancel</button>
                     </div>

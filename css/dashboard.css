@@ -8,7 +8,6 @@ body {
     font-family: "Sofia", sans-serif;
 }
 
-
 .sidebar {
     margin: 0;
     padding: 2px;
@@ -17,6 +16,7 @@ body {
     position: fixed;
     height: 100%;
     overflow: auto;
+
 }
 
 .sidebar a {
@@ -38,6 +38,25 @@ body {
     color: white;
 }
 
+.toggle-collapse{
+    cursor: pointer;
+}
+
+.toggle-collapse .toggle-icons{
+    display: none;
+    justify-content: flex-end;
+    padding: 1.4rem 4rem;
+}
+
+.toggle-collapse .toggle-icons i{
+    font-size: 1.2rem;
+    color: white;
+}
+
+.collapse{
+    height: 30rem;
+}
+
 div.content {
     margin-left: 200px;
     padding: 1px 16px;
@@ -45,9 +64,9 @@ div.content {
 }
 
 .content h2 {
-    font-size: 50px;
+    font-size: 40px;
     text-shadow: 3px 3px 3px #ababab;
-    margin-top: 60px;
+    margin-top: 30px;
     color: rgb(0, 0, 0);
 }
 
@@ -58,12 +77,12 @@ div.content {
 
 
 .logo img{
-    position: relative;
-	float: right;
-	width:100px;
+    position: absolute;
+    float: right;
+    width: 90px;
     top: 20px;
-    right:20px;
-	height: auto;
+    right: 30px;
+    height: auto;
 }
 
 /* button */
@@ -87,8 +106,7 @@ div.content {
 
 .main-buttons {
     max-width:1000px;
-    margin: 20px;
-    padding-inline: 3px;
+    margin: 20px 200px;
 }
 
 .table>thead {
@@ -103,7 +121,54 @@ div.content {
     color: rgb(0, 0, 0);
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1200px){
+    .table{
+        overflow-x: scroll;
+    }
+
+    .sidebar {
+        width: 150px;
+        height: 100%;       
+    }
+
+    .logo img{
+        width: 80px;
+    }
+
+    .content h2{
+        font-size: 45px;
+    }
+
+    div.content {
+        margin-left: 150px;
+        padding: 2px 16px;
+        height: 1000px;
+    }
+
+    .main-buttons {
+        padding: 0px 0px;
+        max-width:1000px;
+        margin: 20px;
+    }
+
+    .table td{
+        padding: 5px;
+        vertical-align: bottom;
+    }
+}
+
+
+@media screen and (max-width: 1100px) {
+    .logo img{
+        width: 70px;
+        top: 80px;
+        right: 40px;    
+    }
+
+    .content h2{
+        font-size: 35px;
+    }
+
     .sidebar {
         width: 100%;
         height: auto;
@@ -119,9 +184,71 @@ div.content {
     }
 }
 
-@media screen and (max-width: 400px) {
-    .sidebar a {
-        text-align: center;
-        float: none;
+@media screen and (max-width: 650px){
+    .sidebar{
+        overflow-y: hidden;
+        height: 0rem;
+        min-height: 8vh;    
+        display: block !important;
+    }
+
+    .toggle-collapse .toggle-icons{
+        display: flex;
+    }
+    
+    .content h2{
+        font-size: 30px;
+    }
+
+    .logo img{
+        width: 50px;
+        position: relative;
+        float: left;
+        top: 10px;
+        left: 20px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .sidebar{
+        width: 100%;
+        margin-right: 0;
+    }
+
+}
+
+@media screen and (max-width: 480px) {   
+    .main-buttons .btn3{
+        max-width:1000px;
+        margin: 8px;
+    }
+}
+
+@media screen and (max-width: 335px) {   
+    .content h2{
+        font-size: 20px;
+    }
+
+    .logo img{
+        width: 35px;
+        position: relative;
+        float: left;
+        top: 10px;
+        left: 20px;
+    }
+
+    .main-buttons .btn1{
+        max-width:1000px;
+        margin: 8px;
+    }
+
+    .main-buttons .btn2{
+        max-width:1000px;
+        margin: 8px;
+    }
+
+    .main-buttons .btn3{
+        max-width:1000px;
+        margin: 8px;
     }
 }
