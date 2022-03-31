@@ -171,10 +171,10 @@ if (isset($_POST['cpRecordId'])) {
                         echo "Congratulations! File Uploaded Successfully.";
                     }
                 }
-                // $link_document = $_POST['accept_url'];
+                $link_document = $path['filename'];
                 $id = $_POST['accept'];
                 // $sql = "UPDATE `ipr_copyrights` SET `status`='accepted',`action_by`='" . $_SESSION['user_name'] . "' WHERE `id`=$id";
-                $sql = "UPDATE `ipr_copyrights` SET `status`='accepted' ,`action_by`='" . $_SESSION['email'] . "' WHERE `id`=$id";
+                $sql = "UPDATE `ipr_copyrights` SET `status`='accepted', `link`='$link_document' ,`action_by`='" . $_SESSION['email'] . "' WHERE `id`=$id";
                 $query = mysqli_query($conn, $sql);
                 $row['status'] = "accepted";
                 if ($query) {
@@ -248,7 +248,7 @@ if (isset($_POST['cpRecordId'])) {
                     </div>
                     <div class="row">
                         <button id="acceptDialogue" class="btnp" onclick="print()">Print</button>&nbsp;
-                        <button id="acceptDialogue" class="btnp">Accept</button>&nbsp;
+                        <!-- <button id="acceptDialogue" class="btnp">Accept</button>&nbsp; -->
                         <button id="rejectBtn" class="btn1">Reject</button>
                     </div>
                     <div id="rejectReason" style="display: none;margin-top:20px; margin-bottom :20px">
