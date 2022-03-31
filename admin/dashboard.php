@@ -36,9 +36,6 @@ if(!isset($_SESSION['email'])){
     </div>
     <div class="text-center content">
         <h2>Dashboard for IPR</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis accusantium deleniti quam id tenetur dolore
-            debitis, autem similique minima labore suscipit sapiente qui. Eius laboriosam adipisci quibusdam molestias
-            dolores eum!</p>
         <div class="main-buttons">
             <a href="cpLog.php" type="button" class="btn btn1">Copyrights Log</a>
             <button type="button" class="btn btn2">Vedio Tutorial</button>

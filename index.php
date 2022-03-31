@@ -87,7 +87,7 @@
                 <p class="mt-4">
                     To create awareness about the rules and regulations of the IPR policy amongst the
                     students and faculty </p>
-                <a type="button" class="button btn btn-home">Upcoming Events <i class="fas fa-chevron-right"></i></a>
+                <a type="button" class="button btn-home">Upcoming Events <i class="fas fa-chevron-right"></i></a>
                 <!-- <a type="button" class="btn btn-second">How we work <i class="fas fa-chevron-right"></i></a> -->
             </div>
             <div class="model">
@@ -295,7 +295,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Testimonial ends -->
 
@@ -622,21 +621,21 @@
                     <p>ipr@sakec.ac.in</p>
                 </div>
                 <?php
-                $sql="SELECT`headlines`, `links` FROM `ipr_news` WHERE `live`='yes'";
-                $result=mysqli_query($conn,$sql);
+                // $sql="SELECT`headlines`, `links` FROM `ipr_news` WHERE `live`='yes'";
+                // $result=mysqli_query($conn,$sql);
                 ?>
                 <div class="col-sm-3">
                     <h2>Recent News and Courses</h2>
                     <hr>
                     <?php
-                    while($news = mysqli_fetch_assoc($result)){
+                    // while($news = mysqli_fetch_assoc($result)){
 
                     
                     ?>
-                   <p><a href="<?php  echo $news['links'];?>" target="new" style="text-decoration: none;"><?php  echo $news['headlines'];?></a></p> 
+                   <p><a href="<?php  //echo $news['links'];?>" target="new" style="text-decoration: none;"><?php  //echo $news['headlines'];?></a></p> 
                    
                     <?php
-                    }
+                    // }
                     ?>
                 </div>
                 <div class="col-sm-3">
