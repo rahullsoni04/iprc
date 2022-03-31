@@ -132,3 +132,42 @@ body {
         left: 40px;
     }
 }
+
+/* print */
+@media print {
+    .btnp {
+      display: none;
+    }
+    .btn1{
+        display: none;
+    }
+    .main{
+        font-size: 26px;
+        margin-left: 5%;
+        margin-right: 0%;
+        border: 0px ;
+        box-shadow: 0 0 0 rgb(141, 135, 135);
+        padding: 30px;
+    }
+    .horizontal_line{
+        display: none;
+    }
+    .heading{
+        display: none;
+    }
+    #preview-title{
+        display: none;
+    }
+    #last {page-break-after: always;}
+    html, body {
+        width: 210mm;
+        height: 297mm;
+      }
+      hr{display: none;}
+    #letter{
+        margin-top: 20%;
+    }
+    #letter1{
+        margin-top: 25%;
+    }
+  }

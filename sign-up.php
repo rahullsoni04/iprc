@@ -12,7 +12,7 @@
 </head>
 <?php
     require_once 'requirements.php';
-    session_start();
+    // session_start();
 ?>
 <body>
     <div class="container" id="container">   
