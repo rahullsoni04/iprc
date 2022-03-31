@@ -1,10 +1,10 @@
 <?php
-    require_once '../requirements.php';
-    if (isset($_POST['cpRecordId'])) {
-        $id = $_POST['cpRecordId'];
-    } else {
-        RedirectAfterMsg("Record not found check id", "dashboard.php");
-    }
+require_once '../requirements.php';
+if (isset($_POST['cpRecordId'])) {
+    $id = $_POST['cpRecordId'];
+} else {
+    RedirectAfterMsg("Record not found check id", "dashboard.php");
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -35,15 +35,17 @@
 
 <body>
     <?php
-        $sql = "SELECT * FROM `ipr_copyrights` WHERE `id`=$id";
-        $query = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($query);
+    $sql = "SELECT * FROM `ipr_copyrights` WHERE `id`=$id";
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($query);
+    $title = $row['title'];
     ?>
     <div class="container" id="notification"></div>
     <div class="main new-section">
-        <h3 style="text-align: center;">NOC Letter</h3>
+        <h3 style="text-align: center;" id="preview-title">NOC Letter</h3>
         <hr>
-        <div id="letter">            
+        <div id="letter">
+            <p align="right" id="date"><br></p>
             <p>To<br>
                 The Principal,<br>
                 Shah and Anchor Kutchhi Engineering College,<br>
@@ -90,69 +92,126 @@
             </table>
             <br>
             <p>Thanking You.</p><br>
-            <!-- <p>1. Pallavi Ramanuj Pandey</p> -->
-
-            <?php
-            $i = 1;
-            $query1 = mysqli_query($conn, $sql_applicant);
-            while ($rows = mysqli_fetch_assoc($query1)) {
-            ?>
-                <p><?php echo $i++ . ". " . $rows['name']; ?></p>
-            <?php
-            }
-            ?>
+            <ol id="last">
+                <?php
+                // $i = 1;
+                $query1 = mysqli_query($conn, $sql_applicant);
+                while ($rows = mysqli_fetch_assoc($query1)) {
+                ?>
+                    <li><?php echo $rows['name']; ?></li>
+                <?php
+                }
+                ?>
+            </ol>
         </div>
         <hr>
+        <div id="letter1">
+            <p align="right" id="date1"><br></p>
+            <p>
+                To,<br>
+                Registrar of Copyrights,<br>
+                Copyright Office,<br>
+                Department for Promotion of Industry and Internal Trade,<br>
+                Ministry of Commerce and Industry,<br>
+                Boudhik Sampada Bhawan,<br>
+                Plot No. 32, Sector 14, Dwarka,<br>
+                New Delhi-110078<br>
+                Email Address: copyright@nic.in<br>
+                Telephone No.: 011-28032496<br>
+            </p>
+            <p align="center">
+                <b>Subject: No Objection letter</b>
+            </p>
+            <p>
+                Respected Sir / Madam,
+            </p>
+            <p>
+                On behalf of Shah & Anchor Kutchhi Engineering College, the institute does not have any objection on filing copyright for the work with title <b><?php echo $title; ?></b> by the following Shah & Anchor Kutchhi Engineering College faculty members and students
+            </p>
+            <p align="right">
+                Dr.Bhavesh Patel<br>
+                Principal
+            </p>
+            <ol>
+                <?php
+                // $i = 1;
+                $query1 = mysqli_query($conn, $sql_applicant);
+                while ($rows = mysqli_fetch_assoc($query1)) {
+                ?>
+                    <li><?php echo $rows['name']; ?></li>
+                <?php
+                }
+                ?>
+            </ol>
+        </div>
         <?php
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $sql_user = "SELECT `id`, `name`, `email_id` FROM `ipr_users` WHERE `id`=".$row['presenter'];
+            $sql_user = "SELECT `id`, `name`, `email_id` FROM `ipr_users` WHERE `id`=" . $row['presenter'];
             $query_user = mysqli_query($conn, $sql_user);
             $row_user = mysqli_fetch_assoc($query_user);
             $to = $row_user['email_id'];
             $headers = "From:IPR admin";
 
             if (isset($_POST['accept'])) {
-                $link_document = $_POST['accept_url'];
-                $id = $_POST['accept'];
-                // $sql = "UPDATE `ipr_copyrights` SET `status`='accepted',`action_by`='" . $_SESSION['user_name'] . "' WHERE `id`=$id";
-                $sql = "UPDATE `ipr_copyrights` SET `status`='accepted', `link`='$link_document' ,`action_by`='".$_SESSION['email']."' WHERE `id`=$id";
-                $query = mysqli_query($conn, $sql);
-                $row['status'] = "accepted";
-                if($query){
-                    $subject = "NOC Letter";
-                    $message = "Your NOC Letter is ready\nPlease visit website or click below link to download the NOC Letter\n\n" . $link_document;
-                    $mail_status=mail($to, $subject, $message, $headers);
-                    if($mail_status){
-                        RedirectAfterMsg("You accpeted the request","dashboard.php");
-                    }else{
-                        RedirectAfterMsg("Request Accepted Email Sending Failed Something went wrong","dashboard.php");
+                if (($_FILES['fileToUpload']['name'] != "")) {
+                    // Where the file is going to be stored
+                    $target_dir = "noc/";
+                    $file = $_FILES['fileToUpload']['name'];
+                    $path = pathinfo($file);
+                    $filename = $path['filename'];
+                    $ext = $path['extension'];
+                    $temp_name = $_FILES['fileToUpload']['tmp_name'];
+                    $path_filename_ext = $target_dir . $filename . "." . $ext;
+
+                    // Check if file already exists
+                    if (file_exists($path_filename_ext)) {
+                        echo "Sorry, file already exists.";
+                    } else {
+                        move_uploaded_file($temp_name, $path_filename_ext);
+                        echo "Congratulations! File Uploaded Successfully.";
                     }
                 }
-                RedirectAfterMsg("Something went wrong Error updating status","dashboard.php");
+                $link_document = $path['filename'];
+                $id = $_POST['accept'];
+                // $sql = "UPDATE `ipr_copyrights` SET `status`='accepted',`action_by`='" . $_SESSION['user_name'] . "' WHERE `id`=$id";
+                $sql = "UPDATE `ipr_copyrights` SET `status`='accepted', `link`='$link_document' ,`action_by`='" . $_SESSION['email'] . "' WHERE `id`=$id";
+                $query = mysqli_query($conn, $sql);
+                $row['status'] = "accepted";
+                if ($query) {
+                    $subject = "NOC Letter";
+                    $message = "Your NOC Letter is ready\nPlease visit website or click below link to download the NOC Letter\n\n" . $link_document;
+                    $mail_status = mail($to, $subject, $message, $headers);
+                    if ($mail_status) {
+                        RedirectAfterMsg("You accpeted the request", "dashboard.php");
+                    } else {
+                        RedirectAfterMsg("Request Accepted Email Sending Failed Something went wrong", "dashboard.php");
+                    }
+                }
+                RedirectAfterMsg("Something went wrong Error updating status", "dashboard.php");
             } else if (isset($_POST['reject'])) {
                 $id = $_POST['reject'];
                 $reason = $_POST['rejectionMsg'];
                 //sql will contain query that will update database to reuject the request
                 // $sql = "UPDATE `ipr_copyrights` SET `status`='rejected',`action_by`='" . $_SESSION['user_name'] . "' WHERE `id`=$id";
-                $sql = "UPDATE `ipr_copyrights` SET `status`='rejected',`action_by`='".$_SESSION['email']."' WHERE `id`=$id";
+                $sql = "UPDATE `ipr_copyrights` SET `status`='rejected',`action_by`='" . $_SESSION['email'] . "' WHERE `id`=$id";
                 $query = mysqli_query($conn, $sql);
                 $sql1 = "INSERT INTO `ipr_cp_reject`(`cp_id`, `reason`) VALUES ($id,'$reason')";
                 $query = mysqli_query($conn, $sql1);
                 $row['status'] = "rejected";
-                if($query){
+                if ($query) {
                     $subject = "Regarding NOC Letter";
-                    $message = "Your NOC Letter is rejected because of following reason : \n".$reason."\nPlease visit website or contact admin to know more";
-                    $mail_status=mail($to, $subject, $message, $headers);
-                    if($mail_status){
-                        RedirectAfterMsg("You rejected the request","dashboard.php");
-                    }else{
-                        RedirectAfterMsg("Request Rejected, Email Sending Failed Something went wrong","dashboard.php");
+                    $message = "Your NOC Letter is rejected because of following reason : \n" . $reason . "\nPlease visit website or contact admin to know more";
+                    $mail_status = mail($to, $subject, $message, $headers);
+                    if ($mail_status) {
+                        RedirectAfterMsg("You rejected the request", "dashboard.php");
+                    } else {
+                        RedirectAfterMsg("Request Rejected, Email Sending Failed Something went wrong", "dashboard.php");
                     }
                     //PushNotification("You Rejected the Request");
                 }
-                RedirectAfterMsg("Something went wrong Error updating status","dashboard.php");
+                RedirectAfterMsg("Something went wrong Error updating status", "dashboard.php");
+            }
         }
-    }
         ?>
         <div class="container">
             <!-- <div>
@@ -176,20 +235,20 @@
                 ?>
                     <div id="alert" style="display: none;margin-top:20px; margin-bottom :20px">
                         <div class="col-md-12">
-                            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
-                                <p class="text-center">Are you sure want to accept</p>
-                                <input type="hidden" name="cpRecordId" value="<?php echo $id; ?>">
-                                <input type="url" name="accept_url" class="form-control" id="accept_url" rows="1" placeholder="URL of document" required></input>
+                            <form method="post" enctype="multipart/form-data">
+                                <input type="file" name="fileToUpload" id="fileToUpload" />
 
-
-                                <button name="accept" value="<?php echo $id ?>" class="btn btn-danger my-2">Yes</button>
+                                <button id="upload-button" class="btn btn-danger my-2" name="accept" value="<?php echo $id ?>"> Upload </button>
+                                <!-- <button name="accept" value="<?php //echo $id 
+                                                                    ?>" class="btn btn-danger my-2">Yes</button> -->
                                 <button id="acceptCancel" class="btn btn-primary">Cancel</button>
                             </form>
 
                         </div>
                     </div>
                     <div class="row">
-                        <button id="acceptDialogue" class="btnp">Accept</button>&nbsp;
+                        <button id="acceptDialogue" class="btnp" onclick="print()">Print</button>&nbsp;
+                        <!-- <button id="acceptDialogue" class="btnp">Accept</button>&nbsp; -->
                         <button id="rejectBtn" class="btn1">Reject</button>
                     </div>
                     <div id="rejectReason" style="display: none;margin-top:20px; margin-bottom :20px">
@@ -259,9 +318,21 @@
         document.addEventListener('DOMContentLoaded', (event) => {
             console.log('DOM fully loaded and parsed');
         });
+
         function convertPdf() {
             console.log("button clicked");
         }
+    </script>
+    <script>
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        var date = document.getElementById("date");
+        var date1 = document.getElementById("date1");
+        today = dd + '/' + mm + '/' + yyyy;
+        date1.innerHTML = 'Date: ' + today;
+        date.innerHTML = 'Date:' + today;
     </script>
 </body>
 

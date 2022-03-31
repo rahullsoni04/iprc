@@ -76,8 +76,8 @@ if (!isset($_SESSION['email'])) {
                                 <td><?php echo $row[$i]['status']; ?></td>
                                 <td>
                                     <?php 
-                                        if($row[$i]['link']!="" && $row[$i]['link']!=NULL&&!strcasecmp("accepted",$row[$i]['status'])){
-                                            echo '<button class="btn" href="'.$row[$i]['link'].'" target="_blank">Download NOC</button>';
+                                        if($row[$i]['link']!=""){
+                                            echo '<a class="btn" href="./admin/noc/'.$row[$i]['link'].'" download>Download NOC</a>';
                                         }else if (!strcasecmp("rejected",$row[$i]['status'])) {
                                             $rejection_sql = "SELECT `reason` FROM `ipr_cp_reject` WHERE `cp_id`='".$row[$i]['cpid']."'";
                                             $rejection_query = mysqli_query($conn, $rejection_sql);
