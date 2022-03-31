@@ -20,7 +20,7 @@ require_once 'requirements.php'
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
             <div class="logo">
-                <img src="/images/IPR logo.png">
+                <img src="./images/IPR logo.png">
             </div>&nbsp; &nbsp;
             <a class="navbar-brand" href="#">SAKEC IPR</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

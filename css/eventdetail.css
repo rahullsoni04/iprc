@@ -5,7 +5,7 @@
 }
 
 #detail{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/eventdetailbg");   
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/eventdetailbg.jpg");   
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -174,10 +174,12 @@ font-size: 18px;
     width: -webkit-fill-available;
     height: auto;
 }
+.speakers{
+    width: fit-content !important;
+}
 .speaker-img{
     height: 240px;
     margin-top: 10px;
-    width: auto;
     cursor: pointer;
 }
 .speaker-name{
