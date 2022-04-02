@@ -90,6 +90,11 @@ if (isset($_POST['cpRecordId'])) {
                 <?php
                 }
                 ?>
+                <tr>
+                    <td><?php echo $i; ?></td>
+                    <td>Shah and Anchor Kutchhi Engineering College</td>
+                    <td>Applicant</td>
+                </tr>
             </table>
             <br>
             <p>Thanking You.</p><br>
@@ -103,6 +108,7 @@ if (isset($_POST['cpRecordId'])) {
                 <?php
                 }
                 ?>
+                <li>Shah and Anchor Kutchhi Engineering College</li>
             </ol>
         </div>
         <hr>
@@ -129,6 +135,7 @@ if (isset($_POST['cpRecordId'])) {
             <p>
                 On behalf of Shah & Anchor Kutchhi Engineering College, the institute does not have any objection on filing copyright for the work with title <b><?php echo $title; ?></b> by the following Shah & Anchor Kutchhi Engineering College faculty members and students
             </p>
+            <p><br></p>
             <p align="right">
                 Dr.Bhavesh Patel<br>
                 Principal
@@ -143,6 +150,7 @@ if (isset($_POST['cpRecordId'])) {
                 <?php
                 }
                 ?>
+                <li>Shah and Anchor Kutchhi Engineering College</li>
             </ol>
         </div>
         <?php
@@ -172,7 +180,7 @@ if (isset($_POST['cpRecordId'])) {
                         echo "Congratulations! File Uploaded Successfully.";
                     }
                 }
-                $link_document = $filename.".".$path['extension'];
+                $link_document = $filename . "." . $path['extension'];
                 $id = $_POST['accept'];
                 // $sql = "UPDATE `ipr_copyrights` SET `status`='accepted',`action_by`='" . $_SESSION['user_name'] . "' WHERE `id`=$id";
                 $sql = "UPDATE `ipr_copyrights` SET `status`='accepted', `link`='$link_document' ,`action_by`='" . $_SESSION['email'] . "' WHERE `id`=$id";
@@ -237,7 +245,7 @@ if (isset($_POST['cpRecordId'])) {
                     <div id="alert" style="display: none;margin-top:20px; margin-bottom :20px">
                         <div class="col-md-12">
                             <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-                                <input type="file" name="fileToUpload" id="fileToUpload" accept="application/pdf"  />
+                                <input type="file" name="fileToUpload" id="fileToUpload" accept="application/pdf" />
 
                                 <button id="upload-button" class="btn btn-danger my-2" name="accept" value="<?php echo $id ?>"> Upload </button>
                                 <!-- <button name="accept" value="<?php //echo $id 
