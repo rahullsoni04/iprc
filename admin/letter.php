@@ -2,9 +2,10 @@
 require_once '../requirements.php';
 if (isset($_POST['cpRecordId'])) {
     $id = $_POST['cpRecordId'];
-} else {
-    RedirectAfterMsg("Record not found check id", "dashboard.php");
 }
+// } else {
+//     RedirectAfterMsg("Record not found check id", "dashboard.php");
+// }
 ?>
 <!doctype html>
 <html lang="en">
@@ -158,7 +159,7 @@ if (isset($_POST['cpRecordId'])) {
                     $target_dir = "noc/";
                     $file = $_FILES['fileToUpload']['name'];
                     $path = pathinfo($file);
-                    $filename = $path['filename'];
+                    $filename = md5(date('Y-m-d H:i:s:u'));;
                     $ext = $path['extension'];
                     $temp_name = $_FILES['fileToUpload']['tmp_name'];
                     $path_filename_ext = $target_dir . $filename . "." . $ext;
@@ -171,7 +172,7 @@ if (isset($_POST['cpRecordId'])) {
                         echo "Congratulations! File Uploaded Successfully.";
                     }
                 }
-                $link_document = $path['filename'];
+                $link_document = $filename.".".$path['extension'];
                 $id = $_POST['accept'];
                 // $sql = "UPDATE `ipr_copyrights` SET `status`='accepted',`action_by`='" . $_SESSION['user_name'] . "' WHERE `id`=$id";
                 $sql = "UPDATE `ipr_copyrights` SET `status`='accepted', `link`='$link_document' ,`action_by`='" . $_SESSION['email'] . "' WHERE `id`=$id";
@@ -235,20 +236,20 @@ if (isset($_POST['cpRecordId'])) {
                 ?>
                     <div id="alert" style="display: none;margin-top:20px; margin-bottom :20px">
                         <div class="col-md-12">
-                            <form method="post" enctype="multipart/form-data">
-                                <input type="file" name="fileToUpload" id="fileToUpload" />
+                            <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+                                <input type="file" name="fileToUpload" id="fileToUpload" accept="application/pdf"  />
 
                                 <button id="upload-button" class="btn btn-danger my-2" name="accept" value="<?php echo $id ?>"> Upload </button>
                                 <!-- <button name="accept" value="<?php //echo $id 
                                                                     ?>" class="btn btn-danger my-2">Yes</button> -->
-                                <button id="acceptCancel" class="btn btn-primary">Cancel</button>
                             </form>
+                            <button id="acceptCancel" class="btn btn-primary">Cancel</button>
 
                         </div>
                     </div>
                     <div class="row">
-                        <button id="acceptDialogue" class="btnp" onclick="print()">Print</button>&nbsp;
-                        <!-- <button id="acceptDialogue" class="btnp">Accept</button>&nbsp; -->
+                        <button class="btnp" onclick="print()" style="margin-right: 10px;">Print</button>&nbsp;
+                        <button id="acceptDialogue" class="btnp">Accept</button>&nbsp;
                         <button id="rejectBtn" class="btn1">Reject</button>
                     </div>
                     <div id="rejectReason" style="display: none;margin-top:20px; margin-bottom :20px">

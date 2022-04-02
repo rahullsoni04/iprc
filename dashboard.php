@@ -65,6 +65,7 @@ if (!isset($_SESSION['email'])) {
                     </thead>
                     <tbody>
                         <?php
+                        // $path_file;
                         $row = mysqli_fetch_all($query, MYSQLI_BOTH);
                         for ($i = 0; $i < mysqli_num_rows($query); $i++) {
                         ?>
@@ -76,7 +77,7 @@ if (!isset($_SESSION['email'])) {
                                 <td><?php echo $row[$i]['status']; ?></td>
                                 <td>
                                     <?php 
-                                        if($row[$i]['link']!=""){
+                                        if($row[$i]['link']!="" && $row[$i]['status']=="accepted"){
                                             echo '<a class="btn" href="./admin/noc/'.$row[$i]['link'].'" download>Download NOC</a>';
                                         }else if (!strcasecmp("rejected",$row[$i]['status'])) {
                                             $rejection_sql = "SELECT `reason` FROM `ipr_cp_reject` WHERE `cp_id`='".$row[$i]['cpid']."'";
