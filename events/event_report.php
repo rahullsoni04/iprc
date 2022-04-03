@@ -9,11 +9,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="./css/permissionLetter.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/permissionLetter.css?v=<?php echo time(); ?>">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <?php
-    require_once "requirements.php";
+    require_once "../requirements.php";
     // // Fetching Access Details
     // $access = NULL;
     // if (isset($_SESSION["role_id"])) {
@@ -141,22 +141,15 @@
                 on <?php if ($row['from_date'] == $row['to_date']) echo date("j F Y", strtotime($row['from_date']));
                     else echo date("j F Y", strtotime($row['from_date'])) . " to " . date("j F Y", strtotime($row['to_date'])); ?>. For the same, permission
                 is required to access to <b>{requirements}</b> as well as social media publicity.
-                Thus, kindly give us permission to access the above mentioned venue from <?php date("h:i A", strtotime($row['from_time'])) . " to " . date("h:i A", strtotime($row['from_time'])) ?> on <?php if ($row['from_date'] == $row['to_date']) echo date("j F Y", strtotime($row['from_date']));
-                                                                                                                                                                                                            else echo date("j F Y", strtotime($row['from_date'])) . " to " . date("j F Y", strtotime($row['to_date'])); ?>.
+                Thus, kindly give us permission to access the above mentioned venue from <?php date("h:i A", strtotime($row['from_time'])) . " to " . date("h:i A", strtotime($row['from_time'])) ?> on <?php if ($row['from_date'] == $row['to_date']) echo date("j F Y", strtotime($row['from_date']));                                                                                                                                                                                          else echo date("j F Y", strtotime($row['from_date'])) . " to " . date("j F Y", strtotime($row['to_date'])); ?>.
                 Thanking You.<br></div>
             <div><br></div>
             <div>Yours sincerely,<br></div>
-
-
-
             <div>{Sign of IPRC head}<br></div>
-
             <div>{Name of IPRC head}<br></div>
             <div>(IPR Cell SAKEC <?php echo substr($acyear, 0, 5) . substr($acyear, 7, 2); ?>)<br></div>
         </div>
     </div>
-
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
