@@ -1,8 +1,14 @@
 <?php
 require_once '../requirements.php';
-if(!isset($_SESSION['email'])){
-    RedirectAfterMsg('Login to continue','login.php');
+if (!isset($_SESSION['email'])) {
+    RedirectAfterMsg('Login to continue', 'login.php');
 }
+$email = $_SESSION['email'];
+$deptsql = "select * from ipr_users where email_id='$email';";
+$deptquery = mysqli_query($conn, $deptsql);
+$deptrow = mysqli_fetch_assoc($deptquery);
+
+$department = $deptrow['department'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +25,7 @@ if(!isset($_SESSION['email'])){
 
 <body>
     <div class="sidebar">
-    <div onclick="update()" class="toggle-collapse">
+        <div onclick="update()" class="toggle-collapse">
             <div class="toggle-icons text block">
                 <span><i class="fas fa-bars"></i></span>
             </div>
@@ -43,7 +49,11 @@ if(!isset($_SESSION['email'])){
         </div>
         <?php
         //Dsplay the copyright content with status filed
-        $sql = 'SELECT * FROM `ipr_copyrights` WHERE `status`="filed"';
+        if ($department == 'admin') {
+            $sql = "Select * from ipr_copyrights where status='filed'";
+        } else {
+            $sql = "SELECT cp.id,cp.presenter,cp.title,cp.description,cp.diary_no,cp.status FROM `ipr_users` as user join `ipr_copyrights` as cp where cp.presenter=user.id and cp.status='filed' and user.department='$department'";
+        }
         $query = mysqli_query($conn, $sql);
         $row = mysqli_fetch_all($query, MYSQLI_BOTH);
         // print_r($row);
@@ -66,7 +76,7 @@ if(!isset($_SESSION['email'])){
                     </thead>
                     <tbody>
                         <?php
-                        $noOfRow=mysqli_num_rows($query);
+                        $noOfRow = mysqli_num_rows($query);
                         for ($i = 0; $i < $noOfRow; $i++) {
                         ?>
                             <tr>
@@ -84,7 +94,8 @@ if(!isset($_SESSION['email'])){
                                     ?>
                                     <?php echo $rows['name']; ?>
                                 </td>
-                                <!-- <td><?php //echo $i; ?></td> -->
+                                <!-- <td><?php //echo $i; 
+                                            ?></td> -->
                                 <td><?php echo $rows['email_id']; ?></td>
                                 <td><?php echo $row[$i]['title']; ?></td>
                                 <td><?php echo $row[$i]['description']; ?></td>
@@ -115,11 +126,11 @@ if(!isset($_SESSION['email'])){
         //onclick event on toggle Collapsse span tag
         toggleCollapse.addEventListener('click', function() {
             alert("Hello!");
-          })
+        })
 
-          function update(){
+        function update() {
             sidebar.classList.toggle('collapse');
-          }
+        }
     </script>
 </body>
 
