@@ -63,7 +63,7 @@
     }
     ?>
 
-    <title>Permission Letter</title>
+    <title>Report</title>
 </head>
 
 <body>
@@ -126,28 +126,20 @@
             </ul>
         </div>
         <div id="output" contenteditable="true">
-            <div><img src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("admin/noc/3fea0b3e9997487d1cbf67269585dda1.pdf")); ?>" alt="IPR Logo" style="width:600px;"></div>
-            <div>REF:-<?php echo substr($acyear, 2, 3) . substr($acyear, 7, 2) . "/$current_event_no" . str_repeat("&nbsp; ", 26); ?> Date:- <?php echo date("d/m/Y", strtotime("now")) ?></div>
-            <div>To,<br></div>
-            <div>The Principal,</div>
-            <div>&nbsp;Shah &amp; Anchor Kutchhi Engineering College</div>
-            <div>Chembur, Mumbai 400088<br></div>
-            <div><br></div>
-            <div>Subject: <u>Permission to conduct an event on <?php echo $row['title']; ?></u>.<br></div>
-            <div><br></div>
-            <div>Respected Sir,<br></div>
-            <div><br></div>
-            <div>IPR Cell SAKEC is organizing an event on '<?php echo $row['title']; ?>' on
-                on <?php if ($row['from_date'] == $row['to_date']) echo date("j F Y", strtotime($row['from_date']));
-                    else echo date("j F Y", strtotime($row['from_date'])) . " to " . date("j F Y", strtotime($row['to_date'])); ?>. For the same, permission
-                is required to access to <b>{requirements}</b> as well as social media publicity.
-                Thus, kindly give us permission to access the above mentioned venue from <?php date("h:i A", strtotime($row['from_time'])) . " to " . date("h:i A", strtotime($row['from_time'])) ?> on <?php if ($row['from_date'] == $row['to_date']) echo date("j F Y", strtotime($row['from_date']));                                                                                                                                                                                          else echo date("j F Y", strtotime($row['from_date'])) . " to " . date("j F Y", strtotime($row['to_date'])); ?>.
-                Thanking You.<br></div>
-            <div><br></div>
-            <div>Yours sincerely,<br></div>
-            <div>{Sign of IPRC head}<br></div>
-            <div>{Name of IPRC head}<br></div>
-            <div>(IPR Cell SAKEC <?php echo substr($acyear, 0, 5) . substr($acyear, 7, 2); ?>)<br></div>
+            <header><div><img src="data:image/jpg;base64,<?php echo base64_encode(file_get_contents("../images/Report_img.jpg")); ?>" alt="IPR Logo" style="width:600px;"></div></header>
+            <div style="text-align: center;"><b>
+            IPR Cell Report
+            </b></div>
+            <div><b>Seminar on : <br></b></div>
+            <div><b>Conducted by : </b></div>
+            <div><b>Date & Time : </b></div>
+            <div><b>Banner : <br></b></div>
+            <div><br><br></div>
+            <div><b>Photos : </b></div>
+            <div><br></div>   
+            <div><b>Topics Covered : </b></div> 
+            <div>
+            
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
