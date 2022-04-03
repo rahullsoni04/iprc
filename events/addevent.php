@@ -1,5 +1,5 @@
 <?php
-require_once 'requirements.php';
+  require_once '../requirements.php';
 // Admin role to be added here
 if (!isset($_SESSION['email'])) {
     RedirectAfterMsg('Login to continue', 'login.php');
@@ -16,7 +16,7 @@ if (!isset($_SESSION['email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/addevent.css?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/addevent.css?php echo time(); ?>">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Add Event</title>
 </head>
