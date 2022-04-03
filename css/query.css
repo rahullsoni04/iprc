@@ -11,6 +11,25 @@ body {
     font-family: "Sofia", sans-serif;
 }
 
+select{
+    margin-top: 10px;
+    
+    border-image: none;
+    border-radius: 6px 6px 6px 6px;
+    
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+    color: #555555;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 1em;
+  
+    padding: 5px 8px;
+    transition: background-color 0.2s ease 0s;
+  }
+  select:focus {
+    background: none repeat scroll 0 0 #FFFFFF;
+    outline-width: 0;
+}
+
 
 /* Navbar */
 .bg-dark {
@@ -180,8 +199,16 @@ div.content {
 }
 
 .table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
     border: #3fa6c0;
     color: rgb(0, 0, 0);
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
 }
 
 .logo img{
@@ -208,6 +235,5 @@ div.content {
 @media only screen and (max-width: 400px) {
     .main-buttons .btn {
         margin: 13px;
-    }
-
+    }   
 }

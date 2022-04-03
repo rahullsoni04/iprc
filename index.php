@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>IPR</title>
     <?php
-        require_once 'requirements.php';
+    require_once 'requirements.php';
     ?>
 </head>
 
@@ -157,61 +157,180 @@
     <section id="events" class="new-section">
 
         <div class="container text-center">
-            <div class="col-sm-12  heading">
+            <div class="col-sm-12  heading ">
 
                 <h1>Events</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos ab facere accusantium corrupti, error
-                    deleniti quidem saepe odit quos atque, animi velit quia laudantium esse blanditiis. Magni animi
-                    eaque impedit?</p>
-            </div>
+                <br>
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Upcoming Events</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Past Events</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">All Events</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <div class="row ">
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                <div class="posts">
+                                    <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid">
+                                    <div class="blog-inner">
+                                        <h2><a href="blog-single.html">World of IOT with NODEMCU</a></h2>
+                                        <div class="mh-blog-post-info">
+                                            <p><strong>Event on </strong><span class="event_date"> 24 </span><span class="event_date">April 2021</span>
+                                        </div>
+                                        <p>Introduction to IoT, Basics of NodeMCU, Configuring LEDs with NodeMCU, using
+                                            different sensors like DHT11, The event
+                                            ended with an encouraging speech </p>
+                                        <a class="button" type="submit">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                <div class="posts">
+                                    <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid">
+                                    <div class="blog-inner">
+                                        <h2><a href="blog-single.html">World of IOT with NODEMCU</a></h2>
+                                        <div class="mh-blog-post-info">
+                                            <p><strong>Event on </strong><span class="event_date"> 24 </span><span class="event_date">April 2021</span>
+                                        </div>
+                                        <p>Introduction to IoT, Basics of NodeMCU, Configuring LEDs with NodeMCU, using
+                                            different sensors like DHT11, The event
+                                            ended with an encouraging speech </p>
+                                        <a class="button" type="submit">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                <div class="posts">
+                                    <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid">
+                                    <div class="blog-inner">
+                                        <h2><a href="blog-single.html">World of IOT with NODEMCU</a></h2>
+                                        <div class="mh-blog-post-info">
+                                            <p><strong>Event on </strong><span class="event_date"> 24 </span><span class="event_date">April 2021</span>
+                                        </div>
+                                        <p>Introduction to IoT, Basics of NodeMCU, Configuring LEDs with NodeMCU, using
+                                            different sensors like DHT11, The event
+                                            ended with an encouraging speech </p>
+                                        <a class="button" type="submit">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="row ">
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="posts">
-                        <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid">
-                        <div class="blog-inner">
-                            <h2><a href="blog-single.html">World of IOT with NODEMCU</a></h2>
-                            <div class="mh-blog-post-info">
-                                <p><strong>Event on </strong><span class="event_date"> 24 </span><span class="event_date">April 2021</span>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <div class="responsive-slides">
+                            <div class="row ">
+                                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                    <div class="posts">
+                                        <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid">
+                                        <div class="blog-inner">
+                                            <h2><a href="blog-single.html">World of IOT with NODEMCU</a></h2>
+                                            <div class="mh-blog-post-info">
+                                                <p><strong>Event on </strong><span class="event_date"> 24 </span><span class="event_date">April 2021</span>
+                                            </div>
+                                            <p>Introduction to IoT, Basics of NodeMCU, Configuring LEDs with NodeMCU, using
+                                                different sensors like DHT11, The event
+                                                ended with an encouraging speech </p>
+                                            <a class="button" type="submit">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                    <div class="posts">
+                                        <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid">
+                                        <div class="blog-inner">
+                                            <h2><a href="blog-single.html">World of IOT with NODEMCU</a></h2>
+                                            <div class="mh-blog-post-info">
+                                                <p><strong>Event on </strong><span class="event_date"> 24 </span><span class="event_date">April 2021</span>
+                                            </div>
+                                            <p>Introduction to IoT, Basics of NodeMCU, Configuring LEDs with NodeMCU, using
+                                                different sensors like DHT11, The event
+                                                ended with an encouraging speech </p>
+                                            <a class="button" type="submit">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                    <div class="posts">
+                                        <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid">
+                                        <div class="blog-inner">
+                                            <h2><a href="blog-single.html">World of IOT with NODEMCU</a></h2>
+                                            <div class="mh-blog-post-info">
+                                                <p><strong>Event on </strong><span class="event_date"> 24 </span><span class="event_date">April 2021</span>
+                                            </div>
+                                            <p>Introduction to IoT, Basics of NodeMCU, Configuring LEDs with NodeMCU, using
+                                                different sensors like DHT11, The event
+                                                ended with an encouraging speech </p>
+                                            <a class="button" type="submit">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <p>Introduction to IoT, Basics of NodeMCU, Configuring LEDs with NodeMCU, using
-                                different sensors like DHT11, The event
-                                ended with an encouraging speech </p>
-                            <a class="button" type="submit">Read More</a>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="posts">
-                        <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid">
-                        <div class="blog-inner">
-                            <h2><a href="blog-single.html">World of IOT with NODEMCU</a></h2>
-                            <div class="mh-blog-post-info">
-                                <p><strong>Event on </strong><span class="event_date"> 24 </span><span class="event_date">April 2021</span>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                            <div class="row ">
+                                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                    <div class="posts">
+                                        <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid">
+                                        <div class="blog-inner">
+                                            <h2><a href="blog-single.html">World of IOT with NODEMCU</a></h2>
+                                            <div class="mh-blog-post-info">
+                                                <p><strong>Event on </strong><span class="event_date"> 24 </span><span class="event_date">April 2021</span>
+                                            </div>
+                                            <p>Introduction to IoT, Basics of NodeMCU, Configuring LEDs with NodeMCU, using
+                                                different sensors like DHT11, The event
+                                                ended with an encouraging speech </p>
+                                            <a class="button" type="submit">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                    <div class="posts">
+                                        <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid">
+                                        <div class="blog-inner">
+                                            <h2><a href="blog-single.html">World of IOT with NODEMCU</a></h2>
+                                            <div class="mh-blog-post-info">
+                                                <p><strong>Event on </strong><span class="event_date"> 24 </span><span class="event_date">April 2021</span>
+                                            </div>
+                                            <p>Introduction to IoT, Basics of NodeMCU, Configuring LEDs with NodeMCU, using
+                                                different sensors like DHT11, The event
+                                                ended with an encouraging speech </p>
+                                            <a class="button" type="submit">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                                    <div class="posts">
+                                        <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid">
+                                        <div class="blog-inner">
+                                            <h2><a href="blog-single.html">World of IOT with NODEMCU</a></h2>
+                                            <div class="mh-blog-post-info">
+                                                <p><strong>Event on </strong><span class="event_date"> 24 </span><span class="event_date">April 2021</span>
+                                            </div>
+                                            <p>Introduction to IoT, Basics of NodeMCU, Configuring LEDs with NodeMCU, using
+                                                different sensors like DHT11, The event
+                                                ended with an encouraging speech </p>
+                                            <a class="button" type="submit">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                            <p>Introduction to IoT, Basics of NodeMCU, Configuring LEDs with NodeMCU, using
-                                different sensors like DHT11, The event
-                                ended with an encouraging speech </p>
-                            <a class="button" type="submit">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="posts">
-                        <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid">
-                        <div class="blog-inner">
-                            <h2><a href="blog-single.html">World of IOT with NODEMCU</a></h2>
-                            <div class="mh-blog-post-info">
-                                <p><strong>Event on </strong><span class="event_date"> 24 </span><span class="event_date">April 2021</span>
-                            </div>
-                            <p>Introduction to IoT, Basics of NodeMCU, Configuring LEDs with NodeMCU, using
-                                different sensors like DHT11, The event
-                                ended with an encouraging speech </p>
-                            <a class="button" type="submit">Read More</a>
                         </div>
                     </div>
                 </div>
             </div>
+            <?php
+            // $sql = "SELECT * FROM events";
+            // $query=mysqli_query($conn,$sql);
+            // $result=mysqli_fetch_all($query,MYSQLI_ASSOC);
+            ?>
 
         </div>
     </section>
@@ -579,12 +698,12 @@
     <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['contactUs'])) {
         unset($_POST['contactUs']);
-        if(isset($_SESSION['email'])){
+        if (isset($_SESSION['email'])) {
             $email = $_SESSION['email'];
-            $name=$_SESSION['user_name'];
-        }else{
+            $name = $_SESSION['user_name'];
+        } else {
             $email = $_POST['email'];
-            $name=$_POST['name'];
+            $name = $_POST['name'];
         }
         $subject = $_POST['subject'];
         $message = $_POST['message'];
@@ -594,7 +713,7 @@
         // $headers = "From: guptvan96@gmail.com" . "\r\n"."CC: rahul.soni_19@sakec.ac.in";
         // $txt = "You have received a new message from " . $name . "." . "\r\n" . "Here is the message: " . "\r\n" . $message;
         // $test=mail($to, $subject, $txt, $headers);
-        if ($query ) {
+        if ($query) {
             echo "<script>alert('Your Query has been sent successfully')</script>";
         } else {
             echo "<script>alert('Your Query has not been sent successfully')</script>";
@@ -630,10 +749,12 @@
                     <?php
                     // while($news = mysqli_fetch_assoc($result)){
 
-                    
+
                     ?>
-                   <p><a href="<?php  //echo $news['links'];?>" target="new" style="text-decoration: none;"><?php  //echo $news['headlines'];?></a></p> 
-                   
+                    <p><a href="<?php  //echo $news['links'];
+                                ?>" target="new" style="text-decoration: none;"><?php  //echo $news['headlines'];
+                                                                                ?></a></p>
+
                     <?php
                     // }
                     ?>

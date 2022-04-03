@@ -463,6 +463,16 @@ font-size: 18px;
     margin-left: 1px;
 }
 
+.nav{
+    text-align: center;
+    position: relative;
+    left: 25%;
+}
+
+.nav li{
+    padding: 0px 25px;
+}
+
 /* event section ends */
 
 /* News */
