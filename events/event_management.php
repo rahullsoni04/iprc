@@ -83,7 +83,7 @@
             ?>
               <tbody>
                 <tr>
-                  <td> <a href="admin_eventdetails.php"> <?php echo $row["title"]; ?> </a></td>
+                  <td> <a href="admin_eventdetails.php?id=<?php echo $row["id"]; ?>"> <?php echo $row["title"]; ?> </a></td>
 
                   <td><?php echo (strtotime($row["from_date"]) == strtotime($row["to_date"])) ? ($row["from_date"]) : ($row["from_date"]) . " to " . ($row["to_date"]); ?> </td>
                   <td>

@@ -24,8 +24,8 @@ if (!isset($_SESSION['email'])) {
 <body>
     <?php
     if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
-        // $banner = file_get_contents($_FILES['banner']['name']);
-        $banner = 1;
+        $banner = base64_encode(file_get_contents($_FILES['banner']['tmp_name']));
+        // $banner = 1;
         $title = $_POST['title'];
         $description = $_POST['description'];
         $venue = $_POST['venue'];
@@ -35,19 +35,19 @@ if (!isset($_SESSION['email'])) {
         $to_time = $_POST['to_time'];
         $reg_link = $_POST['reg_link'];
 
-
         $event_sql = "INSERT INTO `ipr_events`(`title`, `description`, `from_date`, `to_date`, `from_time`, `to_time`, `venue`, `banner`, `reg_link`, `status`) 
                                         VALUES ('$title','$description','$from_date','$to_date','$from_time','$to_time','$venue','$banner','$reg_link','0')";
         $event_query = mysqli_query($conn, $event_sql);
-
+        echo $event_sql;
         $event_id = mysqli_insert_id($conn);
+        Notify("Event Added Successfully $event_sql $event_id");
 
         if (isset($_POST['name'])) {
             $cord_type = $_POST['type'];
             $cord_contact = $_POST['contact'];
             $cord_name = $_POST['name'];
             for ($i = 0; $i < count(array($cord_name)); $i++) {
-                if ($cord_name[$i] != "" && $cord_contact[$i] != "" && $cord_type[$i] != "") {
+                if ($cord_name[$i] !== "" && $cord_contact[$i] !== "" && $cord_type[$i] !== "") {
                     $cord_sql = "INSERT INTO `ipr_event_coordinator`(`event_id`, `name`, `contact`, `type`)
                                                     VALUES ('$event_id','$cord_name[$i]','$cord_contact[$i]','$cord_type[$i]')";
                     $cord_query = mysqli_query($conn, $cord_sql);
@@ -88,41 +88,41 @@ if (!isset($_SESSION['email'])) {
                 <div class="button-wrap">
 
                     <label class="button" for="upload">Upload File</label>
-                    <input id="upload" type="file" name="banner" required></p>
+                    <input id="upload" type="file" name="banner" accept="image/*" requiredv></p>
                 </div>
             </div>
 
             <div class="spacer" style="height: 20px;"></div>
             <p>Event Title :
-                <input type="text" class="txt" placeholder="Enter Title" name="title" required>
+                <input type="text" class="txt" placeholder="Enter Title" name="title" requiredv>
             </p>
             <div class="spacer" style="height: 20px;"></div>
             <p>Event Description :
-                <textarea placeholder="Write description here..." rows="20" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" name="description" required></textarea>
+                <textarea placeholder="Write description here..." rows="20" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" name="description" requiredv></textarea>
             </p>
             <div class="spacer" style="height: 20px;"></div>
             <p>Venue :
-                <textarea placeholder="Venue of the event..." rows="15" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" name="venue" required></textarea>
+                <textarea placeholder="Venue of the event..." rows="15" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" name="venue" requiredv></textarea>
             </p>
             <div class="spacer" style="height: 20px;"></div>
             <p>Event Start Date :
-                <input type="date" class="txt" name="from_date" required>
+                <input type="date" class="txt" name="from_date" requiredv>
             </p>
             <div class="spacer" style="height: 20px;"></div>
 
             <p>Event End Date :
-                <input type="date" class="txt" name="to_date" required>
+                <input type="date" class="txt" name="to_date" requiredv>
             </p>
             <div class="spacer" style="height: 20px;"></div>
 
             <p>Start Time :
-                <input type="time" class="txt" name="from_time" required>
+                <input type="time" class="txt" name="from_time" requiredv>
             </p>
             <div class="spacer" style="height: 20px;"></div>
 
 
             <p>End Time :
-                <input type="time" class="txt" name="to_time" required>
+                <input type="time" class="txt" name="to_time" requiredv>
             </p>
 
             <div id="newRow"></div>
@@ -157,18 +157,18 @@ if (!isset($_SESSION['email'])) {
             html += `<div id="inputFormRow">
                     <hr><h5>Coordinator Details</h5><hr>
                         <div class="form__group field"><p>Coordinator Type : 
-                        <select id="type_coordinator" class="txt form__field" name="type" required>
+                        <select id="type_coordinator" class="txt form__field" name="type" requiredv>
                             <option value="" disabled selected hidden>Select your Type</option>
                             <option value="Author" style="color:black;">Staff</option>
                             <option value="Applicant" style="color:black;">Student</option>                            
                         </select></p>
                         </div>
                         <div class="form__group field">
-                            <p>Phone Number : <input type="input" name="contact" class="txt form__field" placeholder="Phone Number" autocomplete="off" required></p>
+                            <p>Phone Number : <input type="input" name="contact" class="txt form__field" placeholder="Phone Number" autocomplete="off" requiredv></p>
                         </div>
                         <div class="form__group field">
                             
-                            <p>Contact Name : <input type="input" name="name" class="txt form__field" placeholder="Contact Name" autocomplete="off" required></p>
+                            <p>Contact Name : <input type="input" name="name" class="txt form__field" placeholder="Contact Name" autocomplete="off" requiredv></p>
                             
                         </div>
 
@@ -199,12 +199,12 @@ if (!isset($_SESSION['email'])) {
             html += `<div id="inputFormRow">
         <hr><h5>Speaker Details</h5><hr>
                 <div class="form__group field">
-                    <p> Name of Speaker : <input type="text" name="speaker_name" placeholder="Speaker Name" class="txt" required></p><br><br>
+                    <p> Name of Speaker : <input type="text" name="speaker_name" placeholder="Speaker Name" class="txt" requiredv></p><br><br>
                     </div>
 
                 <div class="form__group field">
                 <p> Designation of Speaker : 
-                    <input type="input" name="designation" class="txt form__field" placeholder="Speaker Description" autocomplete="off" required>
+                    <input type="input" name="designation" class="txt form__field" placeholder="Speaker Description" autocomplete="off" requiredv>
                 </div></p>
 
                 <div class="container-upload">
@@ -217,17 +217,17 @@ if (!isset($_SESSION['email'])) {
 
                 <div class="form__group field">
                 <p> Speaker Description : 
-                    <input type="input" name="description" class="txt form__field" placeholder="Designation of Speaker" autocomplete="off" required>
+                    <input type="input" name="description" class="txt form__field" placeholder="Designation of Speaker" autocomplete="off" requiredv>
                 </div></p>
 
                 <div class="form__group field">
                 <p> Speaker Email : 
-                    <input type="email" name="email" class="txt form__field" placeholder="Designation of Speaker" autocomplete="off"required>
+                    <input type="email" name="email" class="txt form__field" placeholder="Designation of Speaker" autocomplete="off"requiredv>
                 </div></p>
 
                 <div class="form__group field">
                 <p> Speaker LinkedIn : 
-                    <input type="url" name="linkedin" class="txt form__field" placeholder="Speaker LinkedIn" autocomplete="off" required>
+                    <input type="url" name="linkedin" class="txt form__field" placeholder="Speaker LinkedIn" autocomplete="off" requiredv>
                 </div></p>
 
                 <div class="form__group field">

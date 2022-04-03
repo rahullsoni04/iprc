@@ -7,23 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" type="text/css" href="plugins/slick-master/slick/slick.css" />
-  <link rel="stylesheet" type="text/css" href="plugins/slick-master/slick/slick-theme.css" />
-  <link rel="stylesheet" href="../css/eventdetail.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="css/eventdetail.css">
   <title>Event Detail</title>
-</head>
-<?php
-  require_once '../requirements.php';
-  ?>
-<body>
-
   <?php
-  if(!isset($_GET['id'])) {
-    header("Location: events.php");
+  require_once 'requirements.php';
+  if (!isset($_GET['id'])) {
+    RedirectAfterMsg('Please select an event to view details.', 'events.php',);
+    die();
   }
   $id = $_GET['id'];
   // fetching from event table
-  $sql = 'SELECT * FROM `ipr_events` WHERE `id`= '.$id;
+  $sql = 'SELECT * FROM `ipr_events` WHERE `id`= ' . $id;
   $query = mysqli_query($conn, $sql);
   if (!mysqli_num_rows($query)) {
     echo '<h3>No Records Found</h3>';
@@ -32,7 +26,55 @@
   }
 
   ?>
+</head>
 
+<body>
+  <!-- Navbar -->
+
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+      <div class="logo">
+        <img src="/images/IPR logo.png">
+      </div>
+      <a class="navbar-brand" href="#">SAKEC IPR</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">
+              <i class="fas fa-home"></i> &nbsp;Home</a>
+          </li>
+
+          <li class="nav-item ">
+            <a class="nav-link active" href="#">
+              <i class="fas fa-envelope-open-text"></i> &nbsp; Permission Letter
+            </a>
+
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link " href="#">
+              <i class="fas fa-file-word"></i> &nbsp; Report
+            </a>
+
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link " href="#">
+              <i class="fas fa-clipboard-check"></i> &nbsp; Confirm Event Registeration
+            </a>
+
+          </li>
+
+        </ul>
+        <div class="d-flex justify-content-center">
+          <a class="button" style=" padding: 5px 15px; color: white;">Back</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- navbar ends -->
 
   <!-- banner -->
   <div id="detail">
@@ -147,7 +189,7 @@
                   </div>
                   <div class="modal-body">
                     <?php
-                    echo '<img  src="data:image/jpeg;base64,' . base64_decode($event_row['banner']) . '"  alt="banner" class="banner-popup" >';
+                    echo '<img  src="data:image/jpeg;base64,' . base64_encode($event_row['banner']) . '"  alt="banner" class="banner-popup" >';
 
                     ?>
 
@@ -159,13 +201,19 @@
             </div>
             <!-- Modal ends -->
 
+
+
+
+
             <div class="speaker-info text-center">
               <h4 class="mt-4">Speaker For the Event</h4>
 
               <div class="responsive-slides">
+
+
                 <?php
                 // fetching from event table
-                $sql = 'SELECT * FROM `ipr_speakers` WHERE `event_id`=`' . $id ;
+                $sql = 'SELECT * FROM `ipr_speakers` WHERE `event_id`= '.$id;
                 $query = mysqli_query($conn, $sql);
                 if (!mysqli_num_rows($query)) {
                   echo '<h3>No Records Found</h3>';
@@ -173,6 +221,7 @@
                   while ($event_speaker_row = mysqli_fetch_assoc($query)) {
                 ?>
                     <div class="speakers">
+
                       <?php
                       echo '<img  src="data:image/jpeg;base64,' . base64_encode($event_speaker_row['img']) . '"  alt="banner" class="speaker-img" >';
 
@@ -183,16 +232,13 @@
                       <i class="fab fa-facebook-square"> <a href=<?php echo $event_speaker_row['facebook']; ?>></i></a> &nbsp; &nbsp;
                       <i class="fab fa-instagram"> <a href=<?php echo $event_speaker_row['instagram']; ?>> </i></a> &nbsp; &nbsp;
                       <i class="fab fa-linkedin"><a href=<?php echo $event_speaker_row['linkedin']; ?>></i></a> &nbsp; &nbsp;
-                    </div>
-
+                    </div>x
                 <?php
                   }
                 }
                 ?>
               </div>
-
               <div class="spacer" style="height: 20px;"></div>
-
             </div>
           </div>
         </div>
