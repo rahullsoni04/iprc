@@ -14,9 +14,9 @@ if (!isset($_SESSION['email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/dashboard.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <title>IPR</title>
+    <title>Dashboard</title>
 </head>
 
 <body>
@@ -33,7 +33,7 @@ if (!isset($_SESSION['email'])) {
         <a href="#about">Certifications</a>
     </div>
     <div class="logo">
-        <img src="./images/logo.png">
+        <img src="./images/sakec blue logo.png">
 
     </div>
     <div class="content text-center">
@@ -51,7 +51,7 @@ if (!isset($_SESSION['email'])) {
             if (!mysqli_num_rows($query)) {
                 echo '<h3>No Records Found</h3>';
             } else {
-                ?>
+                ?>                
                 <table class="table table-bordered" id='myTable'>
                     
                     <thead>
@@ -100,9 +100,10 @@ if (!isset($_SESSION['email'])) {
                         ?>
                     </tbody>
                 </table>
+               
             <?php
             }
-            ?>
+            ?>            
             <button type="button" class="btn"><i class="fas fa-arrow-left"></i>&nbsp; Preview</button>
             <button type="button" class="btn">Next&nbsp;<i class="fas fa-arrow-right"></i></button>
             

@@ -1,7 +1,7 @@
 body {
     margin: 0;
 	/* background-image: url(../images/bg3.jpg); */
-    background-color: #cceaf5b8;
+    background-color: #becfeebb;
 	height: 100vh;
 	background-size: cover;
 	background-position: center;
@@ -12,7 +12,8 @@ body {
     margin: 0;
     padding: 2px;
     width: 200px;
-    background-color: #3b8294;
+    background-color: #3b4b94;
+    /* background-image: url(../images/bg2.2.jpg); */
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -27,12 +28,12 @@ body {
 }
 
 .sidebar a.active {
-    background-color:  #276879;
+    background-color:  #274179;
     color: white;
 }
 
 .sidebar a:hover:not(.active) {
-    background-color: rgba(103, 157, 165, 0.733);
+    background-color: rgba(103, 119, 165, 0.733);
     border-right-style: inset;
     border-right: 4px solid #ff214f;
     color: white;
@@ -88,9 +89,9 @@ div.content {
 /* button */
 
 .btn{
-    background-color: rgba(68, 170, 184, 0.925);
+    background-color: rgba(68, 89, 184, 0.925);
     border-radius: 5px;
-	border: 2px solid rgb(67, 143, 167);
+	border: 2px solid rgb(67, 52, 131);
 	padding:5px 20px;
 	color: rgb(255, 255, 255);
 	text-decoration: none; 
@@ -98,7 +99,7 @@ div.content {
 }	
 
 .btn:hover{
-	background-color:  rgba(70, 188, 206, 0.849);
+	background-color:  rgba(59, 102, 180, 0.849);
     color: rgb(255, 255, 255);
     box-shadow: 0 0 6px rgb(35, 44, 49);
 	transition: 0.3s ease;
@@ -111,13 +112,14 @@ div.content {
 
 .table>thead {
     vertical-align: bottom;
-    background:  #4291a5;
+    background:  #4261a5;
     color: white;
     text-align: center;
 }
 
 .table{
-    border: #3fa6c0;
+    background-color: transparent;
+    border: #1a2629;
     color: rgb(0, 0, 0);
 }
 

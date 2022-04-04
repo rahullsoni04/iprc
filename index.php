@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="plugins/slick-master/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="plugins/slick-master/slick/slick-theme.css" />
-    <link rel="stylesheet" href="css/style.css">
-    <title>IPR</title>
+    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
+    <title>IPR Homepage</title>
     <?php
     require_once 'requirements.php';
     ?>
@@ -25,7 +25,7 @@
             <div class="logo">
                 <img src="/images/IPR logo.png">
             </div>&nbsp; &nbsp;
-            <a class="navbar-brand" href="#">SAKEC IPR</a>
+            <a class="navbar-brand" href="index.php">SAKEC IPR</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

@@ -8,7 +8,7 @@
 
 body {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(../images/bg2.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(../images/bg2.2.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
@@ -37,7 +37,7 @@ p {
 }
 
 .container{
-    background-image: url(../images/bg2.jpg);
+    background-image: url(../images/bg2.2.jpg);
     border-radius: 10px;
     box-shadow: 0 14px 28px rgb(0, 0, 0, 0.25), 0 10px 10px rgb(0, 0, 0, 0.22);
     position: relative;
@@ -59,7 +59,7 @@ p {
 }
 
 .form-container input{
-    background: #eee;
+    background: rgb(238, 238, 238);
     border: none;
     border-radius: 20px;
     padding: 12px 15px;
@@ -68,7 +68,7 @@ p {
 }
 
 .form-container select{
-    background: #eee;
+    background: rgb(238, 238, 238);
     border: none;
     border-radius: 20px;
     padding: 12px 35px;
@@ -77,10 +77,11 @@ p {
 }
 
 button{  
-    background: rgb(73, 214, 214);
-    background: linear-gradient(90deg, rgb(77, 181, 207) 22%, rgb(86, 219, 219) 82%, rgba(29,233,253,1) 100%);
+    background: rgb(59,146,191);
+    background: radial-gradient(circle, rgb(79, 171, 218) 0%, rgba(38,44,150,1) 100%);
     border-radius: 20px;
-	border: 1px solid #2bffed;  
+	border: 1px solid #3338a1;  
+    box-shadow: 0 0 7px rgb(67, 67, 104);
 	color: rgb(255, 255, 255);
 	font-size: 12px;
     font-weight: bold;
@@ -91,8 +92,8 @@ button{
 }	
 
 button:hover{
-    background: rgb(73, 214, 214);
-    background: linear-gradient(90deg, rgba(29,233,253,1) 0%, rgb(86, 219, 219) 14%, rgb(77, 181, 207) 82%);
+    background: rgb(59,146,191);
+    background: radial-gradient(circle, rgb(92, 156, 240) 10%, rgba(38,44,150,1) 80%);
     color: rgb(255, 255, 255);
     box-shadow: 0 0 1px rgb(0, 0, 0);
 }

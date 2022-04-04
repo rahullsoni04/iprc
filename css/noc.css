@@ -64,7 +64,7 @@ body {
 
 .btn1:hover{
 	background: rgb(92,1,1);
-    background: linear-gradient(90deg,rgb(233, 56, 33) 2%,  rgb(187, 30, 16) 56%, rgb(141, 12, 12)99%);
+    background: linear-gradient(90deg,rgb(233, 56, 33) 2%,  rgb(187, 30, 16) 56%, rgb(141, 12, 12) 99%);
     color: rgb(255, 255, 255);
     box-shadow: 0 0 6px rgb(248, 56, 56);
 	transition: 0.3s ease;

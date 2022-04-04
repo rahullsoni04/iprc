@@ -87,7 +87,7 @@ if (!isset($_SESSION['email'])) {
                 <p> Event Banner :
                 <div class="button-wrap">
 
-                    <label class="button" for="upload">Upload File</label>
+                   
                     <input id="upload" type="file" name="banner" accept="image/*" requiredv></p>
                 </div>
             </div>
@@ -210,7 +210,7 @@ if (!isset($_SESSION['email'])) {
                 <div class="container-upload">
                 <div> 
                 <p> Speaker Image :         
-                <label class="button" for="upload">Upload File</label>
+                
                 <input id="upload" type="file" class="img" ></p>
                 </div> 
                 </div>

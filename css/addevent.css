@@ -6,7 +6,7 @@
 }
 body{
  
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/loginbg.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/bg2.2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     font-family:  system-ui;
@@ -17,30 +17,30 @@ body{
 .heading{
     padding: 0px 15px;
     text-shadow: 2px 2px 2px #ababab;
-    color: #ffffff;
+    color: #000000;
 }
 .new-section{
-    background-color:rgba(254, 255, 255, 0.479);
+    background-color:rgba(255, 255, 255, 0.884);
     border: 2px solid white;
     border-radius: 15px;
     border: 1px solid white;
-    box-shadow: 0 0 15px rgb(27, 164, 189);
+    box-shadow: 0 0 15px rgb(54, 100, 168);
     padding: 20px 300px;
 }
 
 .new-section p{
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 0px 13px;
   font-size: 17px;
   font-weight: bold;
 }
 
 .new-section hr{
-  color: white;
+  color: rgb(7, 19, 70);
 }
 
 .new-section h5{
-  color: rgb(133, 221, 236);
+  color: rgb(7, 19, 70);
 }
 
 /* Tabs styliing */
@@ -50,9 +50,9 @@ textarea {
     height: 100px;
     border-radius: 6px 6px 6px 6px;
     border-radius: 15px;
-    box-shadow: 0 0 5px rgb(27, 164, 189);
-    border: 1px solid white;
-    color: #ffffff;
+    box-shadow: 0 0 5px rgb(32, 61, 104);
+    border: 1px solid rgb(92, 162, 199);
+    color: #000000;
     background-color: transparent;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 1em;
@@ -80,7 +80,7 @@ textarea {
     transition: background-color 0.2s ease 0s;
   } */
   input:focus {
-    background: none repeat scroll 0 0 #FFFFFF;
+    background: none repeat scroll 0 0 #7b92a1;
     outline-width: 0;
 }
  select{
@@ -98,7 +98,7 @@ textarea {
     transition: background-color 0.2s ease 0s;
   }
   select:focus {
-    background: none repeat scroll 0 0 #FFFFFF;
+    background: none repeat scroll 0 0 #7b92a1;
     outline-width: 0;
 }
 
@@ -110,15 +110,12 @@ textarea {
 }
 
 input[type="file"] {
-  position: absolute;
-  z-index: -1;
-  top: 5px;
-  left: 13px;
+  box-shadow: 0 0 5px rgba(32, 61, 104, 0.863);
   font-size: 15px;
-  color: #b8b8b8;
+  color: #000000;
 }
 
-.button-wrap {
+/* .button-wrap {
   position: relative;
 }
 .button {
@@ -135,40 +132,40 @@ input[type="file"] {
 
 .button:hover{
   box-shadow: 0 0 3px white;
-}
+} */
 
 /* textbox */
 .txt{
   background:transparent;
   border-radius: 15px;
-  border: 1px solid white;
-  box-shadow: 0 0 5px rgb(27, 164, 189);
-  color: rgb(255, 255, 255);
+  box-shadow: 0 0 5px rgb(32, 61, 104);
+  border: 1px solid rgb(92, 162, 199);
+  color: rgb(0, 0, 0);
   padding: 5px 8px;
 }
 
 .txt:hover{
   background:transparent;
-  border: 1px solid white;
-  color: rgb(255, 255, 255);
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 }
 
 ::-webkit-input-placeholder { /* Edge */
-  color: rgb(156, 179, 180);
+  color: rgb(29, 31, 31);
 }
 
 ::-webkit-text-placeholder { /* Edge */
-  color: rgb(156, 179, 180);
+  color: rgb(29, 31, 31);
 }
 
 .btnp{
     background: rgb(58,89,180);
     background: linear-gradient(90deg, rgba(58,89,180,1) 22%, rgba(69,156,252,1) 82%, rgba(29,233,253,1) 100%);
     border-radius: 15px;
-	border: 1px solid rgb(196, 220, 247);
-	padding:7px 50px;
-	color: rgb(255, 255, 255);
-	text-decoration: none; 
+	  border: 1px solid rgb(196, 220, 247);
+	  padding:7px 50px;
+	  color: rgb(255, 255, 255);
+	  text-decoration: none; 
 }	
 
 .btnp:hover{

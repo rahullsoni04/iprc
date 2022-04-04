@@ -36,7 +36,7 @@ select{
     padding: 10px 10px;
     transition: 500ms ease;
     font-family:  system-ui;
-    background-color: rgba(130, 201, 211, 0.753) !important;
+    background-color: rgba(130, 162, 211, 0.753) !important;
 }
 .navbar-light .navbar-brand  {
     color: rgb(0, 0, 0);
@@ -123,8 +123,8 @@ font-size: 18px;
 form.example input[type=text] {
     padding: 7px;
     font-size: 15px;
-    border: 1px solid grey;
-    box-shadow: 0 0 5px rgb(87, 100, 99);
+    border: 1px solid rgb(128, 128, 128);
+    box-shadow: 0 0 5px rgb(87, 89, 100);
     float: left;
     width: 80%;
     background: #f1f1f1;
@@ -134,17 +134,17 @@ form.example input[type=text] {
     float: left;
     width: 20%;
     padding: 7px;
-    background:  rgba(68, 170, 184, 0.925);
-    box-shadow: 0 0 5px rgb(87, 100, 99);
+    background:  rgba(68, 80, 184, 0.925);
+    box-shadow: 0 0 5px rgb(87, 89, 100);
     color: white;
     font-size: 15px;
-    border: 1px solid grey;
+    border: 1px solid rgb(128, 128, 128);
     border-left: none;
     cursor: pointer;
   }
   
   form.example button:hover {
-    background: rgba(70, 188, 206, 0.849);
+    background: rgba(52, 69, 163, 0.849);
   }
   
   form.example::after {
@@ -171,9 +171,9 @@ div.content {
 
 .btn{
     margin: 0px 20px;
-    background-color: rgba(68, 170, 184, 0.925);
+    background-color: rgba(68, 89, 184, 0.925);
     border-radius: 5px;
-	border: 2px solid rgb(67, 143, 167);
+	border: 2px solid rgb(67, 52, 131);
 	padding:5px 20px;
 	color: rgb(255, 255, 255);
 	text-decoration: none; 
@@ -181,7 +181,7 @@ div.content {
 }	
 
 .btn:hover{
-	background-color:  rgba(70, 188, 206, 0.849);
+	background-color:  rgba(59, 102, 180, 0.849);
     color: rgb(255, 255, 255);
     box-shadow: 0 0 6px rgb(35, 44, 49);
 	transition: 0.3s ease;
@@ -193,7 +193,7 @@ div.content {
 
 .table>thead {
     vertical-align: bottom;
-    background:  #4291a5;
+    background:  #5a7cc4;
     color: white;
     text-align: center;
 }
@@ -202,7 +202,7 @@ div.content {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    border: #3fa6c0;
+    border: #3f4cc0;
     color: rgb(0, 0, 0);
 }
 
