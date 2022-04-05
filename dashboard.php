@@ -15,11 +15,13 @@ if (!isset($_SESSION['email'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/dashboard.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <title>Dashboard</title>
 </head>
 
-<body>
+<body style="background-color: #becfee;">
     <div class="sidebar">
         <div onclick="update()" class="toggle-collapse">
             <div class="toggle-icons text block">
@@ -52,7 +54,7 @@ if (!isset($_SESSION['email'])) {
                 echo '<h3>No Records Found</h3>';
             } else {
                 ?>                
-                <table class="table table-bordered" id='myTable'>
+                <table class="table table-striped table-bordered" id='myTable'>
                     
                     <thead>
                         <tr>
@@ -70,7 +72,7 @@ if (!isset($_SESSION['email'])) {
                         $row = mysqli_fetch_all($query, MYSQLI_BOTH);
                         for ($i = 0; $i < mysqli_num_rows($query); $i++) {
                         ?>
-                            <tr>
+                            <tr style="background-color:#becfee">
                                 <td><?php echo ($i + 1); ?></td>
                                 <td><?php echo $row[$i]['title']; ?></td>
                                 <td><?php echo $row[$i]['description']; ?></td>
@@ -104,8 +106,8 @@ if (!isset($_SESSION['email'])) {
             <?php
             }
             ?>            
-            <button type="button" class="btn"><i class="fas fa-arrow-left"></i>&nbsp; Preview</button>
-            <button type="button" class="btn">Next&nbsp;<i class="fas fa-arrow-right"></i></button>
+            <!-- <button type="button" class="btn"><i class="fas fa-arrow-left"></i>&nbsp; Preview</button>
+            <button type="button" class="btn">Next&nbsp;<i class="fas fa-arrow-right"></i></button> -->
             
         </div>
     </div>
@@ -113,6 +115,7 @@ if (!isset($_SESSION['email'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable();
