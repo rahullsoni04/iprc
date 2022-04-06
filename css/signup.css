@@ -35,7 +35,9 @@ p {
     letter-spacing: 0.5px;
     margin: 20px 0 30px;
 }
-
+.btn{
+    color: white;
+}
 .container{
     background-image: url(../images/bg2.2.jpg);
     border-radius: 10px;
@@ -80,6 +82,7 @@ button{
     background: rgb(59,146,191);
     background: radial-gradient(circle, rgb(79, 171, 218) 0%, rgba(38,44,150,1) 100%);
     border-radius: 20px;
+    margin-top: 20px;
 	border: 1px solid #3338a1;  
     box-shadow: 0 0 7px rgb(67, 67, 104);
 	color: rgb(255, 255, 255);
@@ -265,6 +268,7 @@ button.btn{
 
     a.btn{
         background: transparent;
+        color: white;
         border-color: rgb(255, 255, 255); 
     }
     

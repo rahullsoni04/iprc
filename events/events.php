@@ -21,7 +21,7 @@ require_once '../requirements.php';
         <div class="container-fluid">
             <div class="logo">
                 <a href="../index.php">
-                    <img src="images/IPR logo.png">
+                    <img src="../images/IPR logo.png">
                 </a>
             </div>&nbsp; &nbsp;
             <a class="navbar-brand" href="../index.php">SAKEC IPR</a>
@@ -31,7 +31,7 @@ require_once '../requirements.php';
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../index.php#about">About</a>
@@ -89,6 +89,7 @@ require_once '../requirements.php';
             </div>
         </div>
     </nav>
+    <div style="height: 60px;"></div>
 
     <!-- navbar ends -->
     <!-- events -->
@@ -112,9 +113,9 @@ require_once '../requirements.php';
     ?>
 
             <section id="events" class="new-section">
-                <div class="container">
-                    <div class="col-sm-12  heading-first text-center">
-                        <h1>Event of <?php echo $previousYear . "-" . $endYear; ?></h1>
+                <div class="container heading-first">
+                    <div class="col-sm-12 text-center">
+                        <h2>Event of <?php echo $previousYear . "-" . $endYear; ?></h2>
                     </div>
 
                     <div class="row ">
@@ -124,12 +125,9 @@ require_once '../requirements.php';
                             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                                 <div class="posts">
                                     <div class="image-overlay-card">
-                                        <!-- <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid image"> -->
+                                        <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid image"> 
                                         <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($eveRow['banner']) . '" alt="" class="img-fluid image" > '; ?>
-                                        <div class="text-block">
-                                            <h5><i class="fas fa-calendar-alt"></i> &nbsp;<?php echo date('d F, Y', mktime(0, 0, 0, $eveRow['month'], $eveRow['day'], $eveRow['year'])) ?></span></h4>
-                                                <p><i class="far fa-clock"></i> &nbsp; All Day</p>
-                                        </div>
+                                      
                                     </div>
                                     <div class="blog-inner">
                                         <h2><a href="blog-single.html"><?php echo $eveRow['title'] ?></a></h2>
@@ -165,6 +163,7 @@ require_once '../requirements.php';
 
 
             </section>
+           
         <?php
         }
     }
@@ -181,52 +180,60 @@ require_once '../requirements.php';
             <section id="events" class="new-section">
 
                 <div class="container">
-                    <div class="col-sm-12 my-4 heading-first text-center">
-                        <h1>Event of <?php echo $previousYear . "-" . $endYear; ?></h1>
+                    <div class="col-sm-12 my-4 heading text-center">
+                        <h2>Event of <?php echo $previousYear . "-" . $endYear; ?></h2>
                     </div>
 
                     <div class="row ">
                         <?php
                         while ($eveRow = mysqli_fetch_assoc($eventResult)) {
                         ?>
+                           
+
+
+
                             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                                 <div class="posts">
-                                    <div class="image-overlay-card">
-                                        <!-- <img src="images/homepage ipr 2.jpg" alt="" class="img-fluid image"> -->
-                                        <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($eveRow['banner']) . '" alt="" class="img-fluid image" > '; ?>
-                                        <div class="text-block">
-                                            <h5><i class="fas fa-calendar-alt"></i> &nbsp;<?php echo date('d F, Y', mktime(0, 0, 0, $eveRow['month'], $eveRow['day'], $eveRow['year'])) ?></span></h4>
-                                                <p><i class="far fa-clock"></i> &nbsp; All Day</p>
-                                        </div>
-                                    </div>
+                                <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($eveRow['banner']) . '" alt="" class="img-fluid image" > '; ?>
                                     <div class="blog-inner">
                                         <h2><a href="blog-single.html"><?php echo $eveRow['title'] ?></a></h2>
+                                        <hr>
                                         <div class="mh-blog-post-info">
-                                            <p><strong>Event on </strong><span class="event_date"> <?php echo $eveRow['day'] ?></span><span class="event_date"><?php echo date('F Y', mktime(0, 0, 0, $eveRow['month'], $eveRow['day'], $eveRow['year'])) ?></span>
+                                            <p><strong>Event on </strong><span class="event-day">  <?php echo $eveRow['day'] ?></span><span class="event-date"> <?php echo date('F Y', mktime(0, 0, 0, $eveRow['month'], $eveRow['day'], $eveRow['year'])) ?></span>
                                         </div>
-                                        <p><?php echo $eveRow['description'] ?></p>
-
-                                        <div class="d-flex justify-content-between price-btn">
+                                        <p><?php echo $eveRow['description'] ?> </p>
+                                        <div class="d-flex  justify-content-between price-btn ">
                                             <?php
                                             if ($currentDate <= $eveRow['to_date']) {
                                             ?>
-                                                <h4>&nbsp;Upcoming</h4>
+                                                <p>&nbsp;Upcoming</p>
                                                 <!-- <td>Upcoming</td> -->
                                             <?php
                                             } else {
                                             ?>
-                                                <h4>&nbsp;Completed</h4>
+                                                <p>&nbsp;Completed</p>
                                             <?php
                                             }
                                             ?>
                                             <!-- <h4><i class="fas fa-money-check-alt"></i> &nbsp;$12</h4> -->
-                                            <a class="button event-datail" href="eventdetail.php?id=<?php echo $eveRow['id'] ?>" type="submit">More details</a>
+                                            <a class="button mt-auto" href="eventdetail.php?id=<?php echo $eveRow['id'] ?>" type="submit">More details</a>
 
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
+
+
+
+
+
+
+
+
+
+
+
+
                         <?php } ?>
                     </div>
                 </div>
