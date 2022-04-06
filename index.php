@@ -23,7 +23,9 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
             <div class="logo">
-                <img src="/images/IPR logo.png">
+                <a href="index.php">
+                    <img src="images/IPR logo.png">
+                </a>
             </div>&nbsp; &nbsp;
             <a class="navbar-brand" href="index.php">SAKEC IPR</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,25 +37,30 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link " href="#">
-                            Events
-                        </a>
-
+                        <?php 
+                            if ((isset($_SESSION['email'])&& ($_SESSION['email']==="a@sakec.ac.in"))){
+                                echo '<a class="nav-link " href="events/event_management.php">Events Management</a>';
+                            } else {
+                                echo '<a class="nav-link " href="#events">Events</a>';
+                            }
+                        ?>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link " href="#">
-                            Our Team
-                        </a>
-
+                    <?php 
+                            if ((isset($_SESSION['email'])&& ($_SESSION['email']==="a@sakec.ac.in"))){
+                                echo '<a class="nav-link " href="admin/landing.php">Edit Landing</a>';
+                            } else {
+                                echo '<a class="nav-link " href="#roles">Our Team</a>';
+                            }
+                        ?>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link " href="#">
+                        <a class="nav-link " href="#footer">
                             Contact Us
                         </a>
-
                     </li>
 
                 </ul>
@@ -61,7 +68,7 @@
                     <?php
                     if (!isset($_SESSION['email'])) {
                     ?>
-                        <a href="login.php" class="button" style=" padding: 5px 15px; color: white;">Login</a>
+                        <a href="sign-up.php" class="button" style=" padding: 5px 15px; color: white;">Login</a>
                     <?php
                     } else {
                     ?>
@@ -87,7 +94,7 @@
                 <p class="mt-4">
                     To create awareness about the rules and regulations of the IPR policy amongst the
                     students and faculty </p>
-                <a type="button" class="button btn-home">Upcoming Events <i class="fas fa-chevron-right"></i></a>
+                <a type="button" href="events/events.php" class="button btn-home">Upcoming Events <i class="fas fa-chevron-right"></i></a>
                 <!-- <a type="button" class="btn btn-second">How we work <i class="fas fa-chevron-right"></i></a> -->
             </div>
             <div class="model">
@@ -273,30 +280,12 @@
                                     </div>
                                 </div>
                             </div>
-                           
-                          
                         </div>
-                 </div>
-                    
+                 </div>          
 
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
-                   
-                 
-             
-            <?php
+                <?php
             // $sql = "SELECT * FROM events";
             // $query=mysqli_query($conn,$sql);
             // $result=mysqli_fetch_all($query,MYSQLI_ASSOC);
@@ -378,9 +367,6 @@
                     <p class="testimonial-name mt-2">Israil Alam</p>
                     <p class="testimonial-designition">Head</p>
                 </div>
-
-
-
             </div>
         </div>
     </section>

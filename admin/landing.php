@@ -19,11 +19,13 @@
 <body>
     <!-- sidebar -->
     <section class="tabs-container"><br><br>
+
+        <a href="../index.php"><label for="">Home</label>  </a>
         <label for="tab1"> About Us </label>
         <label for="tab2"> Our Team </label>
         <label for="tab3"> Testimonials </label>
     </section>
-    <div class="container" id="notification"><?php (isset($_SESSION['msg']))?"heeloo":"world"; ?></div>
+    <div class="container" id="notification"><?php (isset($_SESSION['msg'])) ? "heeloo" : "world"; ?></div>
     <?php
     //Notify(var_dump($_SESSION['REQUEST_METHOD']));
     if ($_SERVER['REQUEST_METHOD'] == "POST"  && isset($_POST['aboutUsBtn'])) {
@@ -35,7 +37,7 @@
         $response = UploadFile($conn, $sql, "about_us_image", $dir);
         unset($_POST['aboutUsBtn']);
         unset($_SERVER['REQUEST_METHOD']);
-        $msg=$response['msg']."<br>"."About us section updated successfully";
+        $msg = $response['msg'] . "<br>" . "About us section updated successfully";
         PushNotification($msg);
         //RedirectAfterMsg("About Us Content Updated Successfully", "../admin/landing.php");
     }
@@ -55,9 +57,9 @@
 
             <h5>Description</h5>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" enctype="multipart/form-data">
-                <textarea placeholder="Write description here..." rows="20" name="about_us_content" id="comment_text" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" value="<?php echo $rows['description']; ?>"><?php echo isset($rows['description'])?$rows['description']:""; ?></textarea>
+                <textarea placeholder="Write description here..." rows="20" name="about_us_content" id="comment_text" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" value="<?php echo $rows['description']; ?>"><?php echo isset($rows['description']) ? $rows['description'] : ""; ?></textarea>
                 <div class="spacer" style="height: 40px;"></div>
-                <img id="aboutUsImg" src="../images/about_us/<?php echo isset($rows['img'])?$rows['img']:""; ?>" alt="your image" style="display: none" onload="this.style.display=''" />
+                <img id="aboutUsImg" src="../images/about_us/<?php echo isset($rows['img']) ? $rows['img'] : ""; ?>" alt="your image" style="display: none" onload="this.style.display=''" />
                 <div class="spacer" style="height: 20px;"></div>
                 <div class="wrapper ">
                     <h5> Change image</h5>
@@ -78,28 +80,29 @@
             <h2>Edit Testimonials section for Homepage</h2>
         </div>
         <div class="container my-4 new-section">
-            <img id="blah" src="#" alt="your image" style="display: none" onload="this.style.display=''" />
-            <div class="spacer" style="height: 20px;"></div>
-            <div class="wrapper ">
-                <h5> Change image</h5>
-                <input type="file" id="imgInp" />
+            <div class="">
+                <form action="" method="post">
+                    <img id="blah" src="#" alt="your image" style="display: none" onload="this.style.display=''" />
+                    <div class="spacer" style="height: 20px;"></div>
+                    <div class="wrapper ">
+                        <h5> Change image</h5>
+                        <input type="file" id="imgInp" />
+                    </div>
+                    <div class="spacer" style="height: 40px;"></div>
+                    <h5>Comment</h5>
+                    <textarea placeholder="Write your comment here..." rows="20" name="comment[text]" id="comment_text" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+
+
+                    <div class="spacer" style="height: 40px;"></div>
+                    <h5>Name</h5>
+                    <input type="text" name="name">
+                    <div class="spacer" style="height: 40px;"></div>
+                    <h5>Designition</h5>
+                    <input type="text" name="designition">
+                    <div class="spacer" style="height: 40px;"></div>
+                    <button class="btn btn-success">Submit</button>
+                </form>
             </div>
-            <div class="spacer" style="height: 40px;"></div>
-            <h5>Comment</h5>
-            <textarea placeholder="Write your comment here..." rows="20" name="comment[text]" id="comment_text" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
-
-
-            <div class="spacer" style="height: 40px;"></div>
-            <h5>Name</h5>
-            <input type="text" name="name">
-            <div class="spacer" style="height: 40px;"></div>
-            <h5>Designition</h5>
-            <input type="text" name="designition">
-            <div class="spacer" style="height: 40px;"></div>
-            <button class="btn btn-success">Submit</button>
-
-
-
             <div class="spacer" style="height: 50px;"></div>
             <!-- testimonial available -->
 
@@ -111,12 +114,8 @@
                         <h1>Available feedbacks</h1>
 
                     </div>
-
-
                     <!-- Set up your HTML -->
                     <div class="responsive-slides">
-
-
                         <div class="rounded testim testim-1">
                             <img class="img-fluid testimonial-img my-4" src="../images/man.png" alt="">
                             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam omnis dolore

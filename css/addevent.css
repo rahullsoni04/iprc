@@ -1,10 +1,58 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
 }
-body{
+
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/loginbg.jpg);
+  background-size: cover;
+  font-family: system-ui;
+  scroll-behavior: smooth;
+  align-items: center;
+  overflow-x: hidden;
+}
+.logo img{
+  position: relative;
+  left: auto;
+width:auto;
+height: 55px;
+}
+/* Navbar */
+.bg-dark {
+  padding: 15px 30px;
+  transition: 500ms ease;
+  font-family:  system-ui;
+  background-image: -webkit-linear-gradient(left, #1b48aa 0%, #59b6d3 50%, #2868b1 100%);
+  background-image: -o-linear-gradient(left, #285fb1 0%, #45bbd8 50%, #287fb1 100%);
+  background-image: linear-gradient(to right, #285fb1 0%, #2298b6 50%, #5cb8f6 100%);
+}
+.navbar-light .navbar-brand  {
+  color: white;
+  font-size: 25px;
+}
+.navbar-light .navbar-brand:hover{
+  color: white;
+}
+
+
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show>.nav-link {
+color: rgb(255 255 255 / 90%);
+padding: 0px 30px;
+font-size: 18px;
+}
+
+.navbar-light .navbar-nav .nav-link:focus {
+  color:white;
+  outline: none;
+}
+
+.navbar-light .navbar-nav .nav-link.active{
+  border-bottom: solid 3px #019fb6; 
+  color: white;
  
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/bg2.2.jpg);
     background-repeat: no-repeat;
@@ -102,7 +150,7 @@ textarea {
     outline-width: 0;
 }
 
-.container-upload{
+.container-upload {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -118,6 +166,7 @@ input[type="file"] {
 /* .button-wrap {
   position: relative;
 }
+
 .button {
   display: inline-block;
   padding: 5px 10px;
@@ -130,13 +179,13 @@ input[type="file"] {
   color: #fff;
 }
 
-.button:hover{
+.button:hover {
   box-shadow: 0 0 3px white;
 } */
 
 /* textbox */
-.txt{
-  background:transparent;
+.txt {
+  background: transparent;
   border-radius: 15px;
   box-shadow: 0 0 5px rgb(32, 61, 104);
   border: 1px solid rgb(92, 162, 199);
@@ -174,4 +223,11 @@ input[type="file"] {
     color: rgb(255, 255, 255);
 
 	transition: 0.3s ease;
+}
+
+.btnp:hover {
+  background: rgb(29, 233, 253);
+  background: linear-gradient(90deg, rgba(29, 233, 253, 1) 0%, rgba(69, 156, 252, 1) 14%, rgba(58, 89, 180, 1) 82%);
+  color: rgb(255, 255, 255);
+  transition: 0.3s ease;
 }

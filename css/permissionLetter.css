@@ -61,9 +61,6 @@ body {
 
 header {
     color:white;
-    background-image: -webkit-linear-gradient(left, #2c28b1 0%, #9b5cf6 51%, #2c28b1 100%);
-    background-image: -o-linear-gradient(left, #2c28b1 0%, #9b5cf6 51%, #2c28b1 100%);
-    background-image: linear-gradient(to right, #2c28b1 0%, #9b5cf6 51%, #2c28b1 100%);
     background-size: 200% auto;
     padding: 10px;
 }

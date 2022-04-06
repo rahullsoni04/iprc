@@ -34,41 +34,41 @@
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
       <div class="logo">
-        <img src="/images/IPR logo.png">
+        <img src="../images/IPR logo.png">
       </div>
-      <a class="navbar-brand" href="#">SAKEC IPR</a>
+      <a class="navbar-brand" href="../index.php">SAKEC IPR</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">
+            <a class="nav-link" aria-current="page" href="../index.php">
               <i class="fas fa-home"></i> &nbsp;Home</a>
           </li>
 
           <li class="nav-item ">
-            <a class="nav-link active" href="#">
+            <a class="nav-link active" href="permissionletter.php?event_id=<?php echo $id?>">
               <i class="fas fa-envelope-open-text"></i> &nbsp; Permission Letter
             </a>
 
           </li>
           <li class="nav-item ">
-            <a class="nav-link " href="#">
+            <a class="nav-link " href="event_report.php?event_id=<?php echo $id?>">
               <i class="fas fa-file-word"></i> &nbsp; Report
             </a>
 
           </li>
-          <li class="nav-item ">
+          <!-- <li class="nav-item ">
             <a class="nav-link " href="#">
               <i class="fas fa-clipboard-check"></i> &nbsp; Confirm Event Registeration
             </a>
 
-          </li>
+          </li> -->
 
         </ul>
         <div class="d-flex justify-content-center">
-          <a class="button" style=" padding: 5px 15px; color: white;">Back</a>
+          <a href="event_management.php"  class="button" style=" padding: 5px 15px; color: white;">Back</a>
         </div>
       </div>
     </div>
@@ -141,7 +141,7 @@
           <div class="col-sm-12 col-lg-4 col-md-6">
             <br><br>
             <?php
-            echo '<img  src="data:image/jpeg;base64,' . base64_encode($event_row['banner']) . '" alt="banner" class="banner" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >';
+            echo '<img  src="../images/IPR_fb.jpg" alt="banner" class="banner" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >';
 
             ?> <br>
 

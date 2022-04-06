@@ -22,25 +22,25 @@
       <div class="logo">
         <img src="../images/IPR logo.png">
       </div>&nbsp;
-      &nbsp;<a class="navbar-brand" href="#">SAKEC IPR</a>
+      &nbsp;<a class="navbar-brand" href="../index.php">SAKEC IPR</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.php">Home</a>
+            <a class="nav-link" aria-current="page" href="../index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Manage Event</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="addevent.html">
+            <a class="nav-link" href="addevent.php">
               Add Event
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link " href="index.php"><i class="fas fa-arrow-left"></i>&nbsp;Back</a>
+            <a class="nav-link " href="../index.php"><i class="fas fa-arrow-left"></i>&nbsp;Back</a>
           </li>
         </ul>
         <form class="example" action="action_page.php">
@@ -134,7 +134,7 @@
             console.log(document.getElementById(id).value);
             let sql = (value == 1) ? "UPDATE `ipr_events` SET `status`=0 WHERE `id`=" + id : "UPDATE `ipr_events` SET `status`=1 WHERE `id`=" + id;
             $.ajax({
-              url: 'crud.php',
+              url: '../crud.php',
               type: 'POST',
               data: {
                 'id': $(this).attr('id'),
@@ -162,7 +162,7 @@
             let sql = (value == 1) ? "UPDATE `ipr_events` SET `feedback`=0 WHERE `id`=" + id : "UPDATE `ipr_events` SET `feedback`=1 WHERE `id`=" + id;
             // console.log(sql);
             $.ajax({
-              url: 'crud.php',
+              url: '../crud.php',
               type: 'POST',
               data: {
                 'id': $(this).attr('id'),

@@ -1,6 +1,6 @@
 <?php
-  require_once '../requirements.php';
-  ?>
+require_once '../requirements.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,14 +15,16 @@
 </head>
 
 <body>
-    <!-- Navbar -->
+       <!-- Navbar -->
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-dark">
+       <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
             <div class="logo">
-                <img src="./images/IPR logo.png">
+                <a href="../index.php">
+                    <img src="images/IPR logo.png">
+                </a>
             </div>&nbsp; &nbsp;
-            <a class="navbar-brand" href="#">SAKEC IPR</a>
+            <a class="navbar-brand" href="../index.php">SAKEC IPR</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,30 +34,57 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="../index.php#about">About</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link " href="#">
-                            Events
-                        </a>
-
+                        <?php 
+                            if ((isset($_SESSION['email'])&& ($_SESSION['email']==="a@sakec.ac.in"))){
+                                echo '<a class="nav-link " href="event_management.php">Events Management</a>';
+                            } 
+                        ?>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link " href="#">
-                            Our Team
-                        </a>
-
+                    <?php 
+                            if ((isset($_SESSION['email'])&& ($_SESSION['email']==="a@sakec.ac.in"))){
+                                echo '<a class="nav-link " href="../admin/landing.php">Edit Landing</a>';
+                            } else {
+                                echo '<a class="nav-link " href="../index.php#roles">Our Team</a>';
+                            }
+                        ?>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link " href="#">
+                    <?php 
+                            if ((isset($_SESSION['email'])&& ($_SESSION['email']==="a@sakec.ac.in"))){
+                                echo '<a class="nav-link " href="../query.php">Query</a>';
+                            }
+                        ?>
+                    </li>
+                    <li class="nav-item ">
+                    <?php 
+                            if ((isset($_SESSION['email'])&& ($_SESSION['email']==="a@sakec.ac.in"))){
+                                echo '<a class="nav-link " href="../roles.php">Edit Roles</a>';
+                            }
+                        ?>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="#footer">
                             Contact Us
                         </a>
-
                     </li>
 
                 </ul>
                 <div class="d-flex justify-content-center">
-                    <a class="button" style=" padding: 5px 15px; color: white;">Login</a>
+                    <?php
+                    if (!isset($_SESSION['email'])) {
+                    ?>
+                        <a href="../sign-up.php" class="button" style=" padding: 5px 15px; color: white;">Login</a>
+                    <?php
+                    } else {
+                    ?>
+                        <a href="../logout.php" class="button" style=" padding: 5px 15px; color: white;">Logout</a>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -83,14 +112,9 @@
     ?>
 
             <section id="events" class="new-section">
-
                 <div class="container">
                     <div class="col-sm-12  heading-first text-center">
-
                         <h1>Event of <?php echo $previousYear . "-" . $endYear; ?></h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos ab facere accusantium corrupti, error
-                            deleniti quidem saepe odit quos atque, animi velit quia laudantium esse blanditiis. Magni animi
-                            eaque impedit?</p>
                     </div>
 
                     <div class="row ">
@@ -157,12 +181,8 @@
             <section id="events" class="new-section">
 
                 <div class="container">
-                    <div class="col-sm-12  heading-first text-center">
-
+                    <div class="col-sm-12 my-4 heading-first text-center">
                         <h1>Event of <?php echo $previousYear . "-" . $endYear; ?></h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos ab facere accusantium corrupti, error
-                            deleniti quidem saepe odit quos atque, animi velit quia laudantium esse blanditiis. Magni animi
-                            eaque impedit?</p>
                     </div>
 
                     <div class="row ">

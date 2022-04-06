@@ -13,26 +13,24 @@
   <title>Event Detail</title>
 </head>
 <?php
-  require_once '../requirements.php';
-  ?>
-<body>
+require_once '../requirements.php';
+?>
 
+<body>
   <?php
-  if(!isset($_GET['id'])) {
+  if (!isset($_GET['id'])) {
     header("Location: events.php");
   }
   $id = $_GET['id'];
   // fetching from event table
-  $sql = 'SELECT * FROM `ipr_events` WHERE `id`= '.$id;
+  $sql = 'SELECT * FROM `ipr_events` WHERE `id`= ' . $id;
   $query = mysqli_query($conn, $sql);
   if (!mysqli_num_rows($query)) {
     echo '<h3>No Records Found</h3>';
   } else {
     $event_row = mysqli_fetch_assoc($query);
   }
-
   ?>
-
 
   <!-- banner -->
   <div id="detail">
@@ -40,7 +38,6 @@
       <div class="main-text">
         <h1><?php echo $event_row['title']; ?></h1>
         <p>Event 2021-2022</p>
-
       </div>
     </div>
   </div>
@@ -54,55 +51,37 @@
         <div class="row">
           <div class="col-sm-12 col-lg-4 col-md-6">
             <br>
-            <p><i class="fas fa-calendar-alt"></i><span class="event_date">&nbsp;
-                <?php
-                echo date('j F Y', strtotime($event_row['from_date']));
-                ?> to
-                <?php
-                echo date('j F Y', strtotime($event_row['to_date']));
-                ?> </span>
+            <p>
+              <i class="fas fa-calendar-alt"></i>
+              <span class="event_date">&nbsp; <?php echo date('j F Y', strtotime($event_row['from_date'])) . " to " . date('j F Y', strtotime($event_row['to_date'])); ?> </span>
               <br><br>
               <i class="fas fa-clock"></i>&nbsp;
-              <?php
-              echo date('h:i', strtotime($event_row['from_time']));
-              ?> -
-
-              <?php
-              echo date('h:i', strtotime($event_row['to_time']));
-              ?>
+              <?php echo date('h:i', strtotime($event_row['from_time'])) . " - " . date('h:i', strtotime($event_row['to_time'])); ?>
             </p>
             <div class="spacer" style="height: 20px;"></div>
             <h4 class="mt-6">For any Queries :</h4>
             <?php
             // fetching from coordinator table
-            $sql = 'SELECT * FROM `ipr_event_coordinator` WHERE `event_id`= '.$id;
+            $sql = 'SELECT * FROM `ipr_event_coordinator` WHERE `event_id`= ' . $id;
             $query = mysqli_query($conn, $sql);
             if (!mysqli_num_rows($query)) {
               echo '<h3>No Records Found</h3>';
             } else {
               while ($event_coordinator_row = mysqli_fetch_assoc($query)) {
-
             ?>
                 <p class="my-4"><?php echo $event_coordinator_row['name']; ?> - <i class="fas fa-phone"></i>&nbsp;<?php echo $event_coordinator_row['contact']; ?> </p>
-
             <?php
-
               }
             }
-
             ?>
-
           </div>
           <div class="col-sm-12 col-lg-4 col-md-6"><br>
-
           </div>
           <div class="col-sm-12 col-lg-4 col-md-6">
             <br><br>
-            <?php
-            echo '<img  src="data:image/jpeg;base64,' . base64_encode($event_row['banner']) . '" alt="banner" class="banner" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >';
-
-            ?> <br>
-
+            <img src="data:image/jpg;base64,'<?php echo base64_encode($event_row['banner']) ?>'">
+            <img src="data:image/jpg;base64">
+            <br>
             <div class="spacer" style="height: 20px;"></div>
             <a class="register" type="submit">Register</a>
           </div>
@@ -110,15 +89,11 @@
         <br>
         <hr class="new-row">
       </div>
-
-
       <div class="spacer" style="height: 40px;"></div>
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-12 col-lg-8">
-
             <h4>Event Overview</h4>
-
             <p class="my-4">
               <?php echo $event_row['description']; ?>
             </p>
@@ -131,11 +106,8 @@
             <i class="fab fa-linkedin"></i>&nbsp; &nbsp;
             <i class="fab fa-youtube"></i>
           </div>
-
           <div class="col-sm-12 col-md-12 col-lg-4">
-
             <!-- popup image -->
-
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -147,58 +119,50 @@
                   </div>
                   <div class="modal-body">
                     <?php
-                    echo '<img  src="data:image/jpeg;base64,' . base64_decode($event_row['banner']) . '"  alt="banner" class="banner-popup" >';
-
+                    echo '<img  src="src="../images/IPR_fb.jpg""  alt="banner" class="banner-popup" >';
                     ?>
-
-
                   </div>
-
                 </div>
               </div>
             </div>
-            <!-- Modal ends -->
 
-            <div class="speaker-info text-center">
-              <h4 class="mt-4">Speaker For the Event</h4>
+            <?php
+            // fetching from event table
+            $sql = 'SELECT * FROM `ipr_speakers` WHERE `event_id`=' . $id;
+            $query = mysqli_query($conn, $sql);
+            if ($query) {
+              if (mysqli_num_rows($query)) {
+            ?>
 
-              <div class="responsive-slides">
+              <!-- Modal ends -->
+              <div class="speaker-info text-center">
+                <h4 class="mt-4">Speaker For the Event</h4>
+                <div class="responsive-slides">
+                  <?php
+                    while ($event_speaker_row = mysqli_fetch_assoc($query)) {
+                  ?>
+                      <div class="speakers">
+                        <?php
+                        echo '<img  src="data:image/jpeg;base64,' . base64_encode($event_speaker_row['img']) . '"  alt="banner" class="speaker-img" >';
+                        ?>
+                        <p class="mt-4 speaker-name"><?php echo $event_speaker_row['name']; ?></p>
+                        <p class="speaker-designation"><?php echo $event_speaker_row['designation']; ?></p>
+                        <p class="speaker-description"><?php echo $event_speaker_row['description']; ?></p>
+                        <i class="fab fa-facebook-square"> <a href=<?php echo $event_speaker_row['facebook']; ?>></i></a> &nbsp; &nbsp;
+                        <i class="fab fa-instagram"> <a href=<?php echo $event_speaker_row['instagram']; ?>> </i></a> &nbsp; &nbsp;
+                        <i class="fab fa-linkedin"><a href=<?php echo $event_speaker_row['linkedin']; ?>></i></a> &nbsp; &nbsp;
+                      </div>
                 <?php
-                // fetching from event table
-                $sql = 'SELECT * FROM `ipr_speakers` WHERE `event_id`=`' . $id ;
-                $query = mysqli_query($conn, $sql);
-                if (!mysqli_num_rows($query)) {
-                  echo '<h3>No Records Found</h3>';
-                } else {
-                  while ($event_speaker_row = mysqli_fetch_assoc($query)) {
-                ?>
-                    <div class="speakers">
-                      <?php
-                      echo '<img  src="data:image/jpeg;base64,' . base64_encode($event_speaker_row['img']) . '"  alt="banner" class="speaker-img" >';
-
-                      ?>
-                      <p class="mt-4 speaker-name"><?php echo $event_speaker_row['name']; ?></p>
-                      <p class="speaker-designation"><?php echo $event_speaker_row['designation']; ?></p>
-                      <p class="speaker-description"><?php echo $event_speaker_row['description']; ?></p>
-                      <i class="fab fa-facebook-square"> <a href=<?php echo $event_speaker_row['facebook']; ?>></i></a> &nbsp; &nbsp;
-                      <i class="fab fa-instagram"> <a href=<?php echo $event_speaker_row['instagram']; ?>> </i></a> &nbsp; &nbsp;
-                      <i class="fab fa-linkedin"><a href=<?php echo $event_speaker_row['linkedin']; ?>></i></a> &nbsp; &nbsp;
-                    </div>
-
-                <?php
+                    }
                   }
                 }
                 ?>
+                </div>
+                <div class="spacer" style="height: 20px;"></div>
               </div>
-
-              <div class="spacer" style="height: 20px;"></div>
-
-            </div>
           </div>
         </div>
       </div>
-
-
   </section>
   <hr>
   <!-- Event Details ends -->

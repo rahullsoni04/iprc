@@ -18,7 +18,9 @@ body{
    padding: 10px 0px;
 }
 
-
+a{
+    text-decoration: none;
+}
 /* Tabs styliing */
 /* Tabs Name Container */
 .tabs-container{
@@ -30,6 +32,15 @@ body{
     z-index: 20;
   
  }
+#aboutUsImg{
+    width: 400px;
+    height: auto;
+}
+
+ input[name="tab"]:checked + .tab-content {
+    display: grid !important;
+    animation: slide 0.5s forwards;
+}
  /* Tabs Names Label */
  .tabs-container label{
     position: relative;

@@ -33,7 +33,6 @@
                 if ($query) {
                     if (!mysqli_num_rows($query)) {
                         RedirectAfterMsg("Event Not Found", "event_management.php");
-                        // die();
                     }
                     $row = mysqli_fetch_assoc($query);
                     // echo var_dump($row);
@@ -62,7 +61,6 @@
         }
     }
     ?>
-
     <title>Report</title>
 </head>
 
@@ -139,7 +137,6 @@
             <div><br></div>   
             <div><b>Topics Covered : </b></div> 
             <div>
-            
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
